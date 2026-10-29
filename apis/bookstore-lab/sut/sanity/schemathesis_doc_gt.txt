@@ -1,0 +1,256 @@
+Schemathesis v4.32.5
+━━━━━━━━━━━━━━━━━━━━
+
+ ✅  Loaded specification from ground_truth/openapi.yaml (in 0.27s)
+
+     Base URL:         http://localhost:8000/v1
+     Specification:    Open API 3.0.3
+     Operations:       8 selected / 8 total
+
+ ✅  API capabilities:
+
+     Supports NULL byte in headers:                            ✘
+     Accepts backslash and control characters in URL paths:    ✓
+
+ ⏭   Examples (in 0.01s)
+
+     ⏭  8 skipped
+
+ ❌  Coverage (in 0.79s)
+
+     ✅ 4 passed  ❌ 4 failed
+
+ ❌  Fuzzing (in 8.89s)
+
+     ✅ 3 passed  ❌ 5 failed
+
+ ❌  Stateful (in 35.26s)
+
+     Scenarios:    1141
+     API Links:    11 covered / 16 selected / 16 total
+
+     ✅ 1112 passed  ❌ 29 failed
+
+=================================== FAILURES ===================================
+_________________________________ GET /authors _________________________________
+1. Test Case ID: bzby6t
+
+- ST101 Server error
+
+- ST103 Undocumented status code
+
+    Received: 500
+    Documented: 200, 400
+
+[500] Internal Server Error:
+
+    `Internal Server Error`
+
+Reproduce with:
+
+    curl -X GET 'http://localhost:8000/v1/authors?page=-535'
+
+    st replay bzby6t
+
+__________________________________ GET /books __________________________________
+1. Test Case ID: lc3INt
+
+- ST108 Response violates schema (2 violations)
+
+    "children" is not one of "fiction", "science" or "history"
+
+    Validated against the response schema for status code 200.
+
+    Schema at /components/schemas/Book/properties/genre:
+
+        {
+            "enum": [
+                "fiction",
+                "science",
+                "history"
+            ],
+            "type": "string"
+        }
+
+    Value:
+
+        "children"
+
+    null is not of type "string"
+
+    Validated against the response schema for status code 200.
+
+    Schema at /components/schemas/Book/properties/isbn:
+
+        {
+            "type": "string",
+            "pattern": "^[0-9]{13}$"
+        }
+
+    Value:
+
+        null
+
+[200] OK:
+
+    `{"items":[{"id":27,"title":"Amber Logic","isbn":"9780000000027","price":24.9,"genre":"children","published_at":"2017-04-28","tags":[],"author_id":4},{"id":1,"title":"Atlas of Clouds","isbn":"9780000000001","price":8.7,"genre":"science","published_at":"1991-02-02","tags":[],"author_id":2},{"id":2,"title":"Binary Rivers","isbn":"9780000000002","price":12.4,"genre":"history","published_at":"1992-03-03","tags":[],"author_id":3},{"id":28,"title":"Blue Monsoon","isbn":"9780000000028","price":28.6,"genre":"fiction // Output truncated...`
+
+Reproduce with:
+
+    curl -X GET 'http://localhost:8000/v1/books?limit=20&sort=title&order=asc'
+
+    st replay lc3INt
+
+2. Test Case ID: MehU8O
+
+- ST201 Schema-violating request accepted
+
+    Invalid data should have been rejected
+    Expected: 400, 401, 403, 404, 405, 406, 409, 415, 422, 428, 429, 5xx
+    Invalid component: in query - violates `additionalProperties`
+
+[200] OK:
+
+    `{"items":[{"id":27,"title":"Amber Logic","isbn":"9780000000027","price":24.9,"genre":"children","published_at":"2017-04-28","tags":[],"author_id":4},{"id":1,"title":"Atlas of Clouds","isbn":"9780000000001","price":8.7,"genre":"science","published_at":"1991-02-02","tags":[],"author_id":2},{"id":2,"title":"Binary Rivers","isbn":"9780000000002","price":12.4,"genre":"history","published_at":"1992-03-03","tags":[],"author_id":3},{"id":28,"title":"Blue Monsoon","isbn":"9780000000028","price":28.6,"genre":"fiction // Output truncated...`
+
+Reproduce with:
+
+    curl -X GET 'http://localhost:8000/v1/books?=0'
+
+    st replay MehU8O
+
+_____________________________ GET /books/{book_id} _____________________________
+1. Test Case ID: ovvCAq
+
+- ST103 Undocumented status code
+
+    Received: 400
+    Documented: 200
+
+[400] Bad Request:
+
+    `{"error":"book_id must be a positive integer","field":"book_id"}`
+
+Reproduce with:
+
+    curl -X GET http://localhost:8000/v1/books/0
+
+    st replay ovvCAq
+
+_________________________________ POST /books __________________________________
+1. Test Case ID: 1tDmgG
+
+- ST202 Schema-valid request rejected
+
+    Valid data should have been accepted
+    Expected: 2xx, 3xx, 401, 403, 404, 409, 429, 5xx
+
+[400] Bad Request:
+
+    `{"error":"title must be between 1 and 200 characters","field":"title"}`
+
+Reproduce with:
+
+    curl -X POST -H 'Content-Type: application/json' -d '{"title": "", "isbn": "0000000000000", "price": 5e-324, "genre": "fiction", "published_at": "2000-01-01", "tags": [""], "author_id": "[Filtered]"}' http://localhost:8000/v1/books
+
+    st replay 1tDmgG
+
+_________________________________ POST /orders _________________________________
+1. Test Case ID: 73G9nt
+
+- ST103 Undocumented status code
+
+    Received: 201
+    Documented: 200, 400
+
+[201] Created:
+
+    `{"id":1,"book_id":1,"quantity":1,"total_price":6.7,"status":"pending","coupon_code":""}`
+
+Reproduce with:
+
+    curl -X POST -H 'Content-Type: application/json' -d '{"book_id": 1, "quantity": 1, "coupon_code": "", "voucher_type": "fixed"}' http://localhost:8000/v1/orders
+
+    st replay 73G9nt
+
+2. Test Case ID: EBgboP
+
+- ST202 Schema-valid request rejected
+
+    Valid data should have been accepted
+    Expected: 2xx, 3xx, 401, 403, 404, 409, 429, 5xx
+    Hint: The request body contains 5 additional properties not defined in the schema (``, `test.`, `` and 2 more). The server appears to reject properties the schema allows. Declare `additionalProperties: false` if extras are not accepted, or make the server ignore unknown fields.
+
+[400] Bad Request:
+
+    `{"error":"book_id does not refer to an existing book","field":"book_id"}`
+
+Reproduce with:
+
+    curl -X POST -H 'Content-Type: application/json' -d '{"\u00d9\u00dc": ["\u008a\u00b1\ud855\udd8dv_\u0006\u00be"], "": null, "\u00f6\u00eb\u00ecZ\u00a7\f\u0091": {"\u00f9\u0005*\uda5f\udff2^c\u00e2\u0081": [], "\u00f2\u0081\u00fa\u00d1\u0016\u00d5\u365a\uda99\udc5a\u00dc\u00fc\u00c0": [], "C\u009bf\u00e9\udaac\udc92\u00a8\u00df": {"": "\u00f6"}}, "test.": [], "\u008c": {"^\u00ca\u00c9": [6.725087646753201e+45], "\ud9f1\udc60w": [true, -409, false]}, "book_id": -519356139, "quantity": 1}' http://localhost:8000/v1/orders
+
+    st replay EBgboP
+
+________________________________ Stateful tests ________________________________
+1. Test Case ID: dJLuM3
+
+- ST202 Schema-valid request rejected
+
+    Valid data should have been accepted
+    Expected: 2xx, 3xx, 401, 403, 404, 409, 429, 5xx
+
+[400] Bad Request:
+
+    `{"error":"limit must be between 1 and 100","field":"limit"}`
+
+Reproduce with:
+
+    curl -X GET 'http://localhost:8000/v1/books?sort=title&limit=137438953472&page=6172396876518233891854715191296&order=asc'
+
+    st replay dJLuM3
+
+2. Test Case ID: CsfGad
+
+- ST103 Undocumented status code
+
+    Received: 404
+    Documented: 200
+
+[404] Not Found:
+
+    `{"error":"book not found","field":null}`
+
+Reproduce with:
+
+    curl -X GET 'http://localhost:8000/v1/books?page=139&order=desc&sort=published_at'
+    curl -X GET http://localhost:8000/v1/books/15812668572905
+
+    st replay CsfGad
+
+=================================== SUMMARY ====================================
+
+API Operations:
+  Selected: 8/8
+  Tested: 8
+
+Test Phases:
+  ⏭  Examples
+  ❌ Coverage
+  ❌ Fuzzing
+  ❌ Stateful
+
+Failures:
+  ❌ ST101 Server error: 1
+  ❌ ST108 Response violates schema: 2
+  ❌ ST202 Schema-valid request rejected: 3
+  ❌ ST201 Schema-violating request accepted: 1
+  ❌ ST103 Undocumented status code: 4
+
+For more information, run `st explain <code>` for ST101, ST103, ST108, ST201, ST202.
+
+Test cases:
+  6830 generated, 9 found 11 unique failures
+
+Seed: 7
+
+============================ 11 failures in 45.02s =============================

@@ -1,0 +1,44 @@
+id: rest-countries
+name: REST Countries API (v2/v3 – bản lưu trữ)
+group: B
+description: 'API thông tin quốc gia REST Countries (bản v2/v3 trong NLP2REST): 21
+  operation. Các phiên bản này đã bị nhà cung cấp gỡ (thay bằng v5 cần khóa) nên chỉ
+  dùng cho đánh giá trích xuất (RQ1), không kiểm thử runtime.'
+source:
+  spec_url: https://github.com/codingsoo/nlp2rest/blob/ae3783b7/specifications/openapi/rest-countries.yaml
+  spec_file: source/openapi_original.yaml
+  license: Đặc tả công khai của nhà cung cấp, lấy từ kho NLP2REST (ISSTA 2023) – chỉ
+    dùng cho nghiên cứu
+  homepage: https://github.com/codingsoo/nlp2rest
+  docs_url: https://restcountries.com/docs/legacy-api-deprecation
+  retrieved_at: '2026-10-27'
+  normalization:
+  - đổi nhãn phiên bản 3.0.0 -> 3.0.3 (tương thích ngữ nghĩa)
+environment:
+  type: offline
+  base_url: http://localhost:8080 (cần tự triển khai EMB restcountries)
+  test_scope: none
+  auth:
+    type: none
+  rate_limit_rps: 5
+  connectivity_checked: false
+  probe:
+    method: GET
+    path: null
+    params: {}
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: null
+  make_ablated: false
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+added_by: nhóm đề tài (nhập ban đầu)
+notes: 'Muốn kiểm thử runtime: tự chạy bản restcountries trong EvoMaster Benchmark
+  (EMB) rồi đổi environment.type thành local-docker.'

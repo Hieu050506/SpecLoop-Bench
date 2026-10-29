@@ -1,0 +1,139 @@
+# Nguồn để sinh discrepancies.json (chạy: python sut/make_discrepancies.py)
+# code: D0 lỗi máy chủ; D1 thiếu ràng buộc; D2 ràng buộc quá chặt; D3 sai biên; D4 sai tính bắt buộc;
+#       D5 sai enum; D6 sai kiểu/định dạng; D7 mã trạng thái chưa khai báo; D8 lệch schema phản hồi; D9 phụ thuộc
+discrepancies:
+  - id: BS-01
+    code: D1
+    op: GET /books
+    location: query:limit
+    keyword: [minimum, maximum]
+    doc: "không nêu biên (chỉ có default 20)"
+    behavior: "minimum: 1, maximum: 100"
+    description: Tài liệu không nêu miền giá trị của limit; cài đặt từ chối limit ngoài [1, 100].
+    probe: {method: GET, path: /books, query: {limit: 101}, expect_status: 400, expect_message: "limit must be between 1 and 100"}
+  - id: BS-02
+    code: D4
+    op: GET /books
+    location: query:sort
+    keyword: [required]
+    doc: "required: true"
+    behavior: "không bắt buộc, mặc định title"
+    description: Tài liệu ghi sort là bắt buộc nhưng bỏ sort vẫn trả 200.
+    probe: {method: GET, path: /books, query: {}, expect_status: 200}
+  - id: BS-03
+    code: D2
+    op: GET /books
+    location: operation
+    keyword: [x-dependencies]
+    doc: "IF order THEN sort;"
+    behavior: "không ràng buộc – order dùng được khi không có sort"
+    description: Phụ thuộc order → sort trong tài liệu không được cài đặt kiểm tra.
+    probe: {method: GET, path: /books, query: {order: desc}, expect_status: 200}
+  - id: BS-04
+    code: D8
+    op: GET /books, GET /books/{book_id}
+    location: resp200:isbn
+    keyword: [nullable]
+    doc: "isbn: string (không null)"
+    behavior: "isbn có thể null (bản ghi cũ)"
+    description: Một số sách cũ không có ISBN nên phản hồi trả isbn = null.
+    probe: {method: GET, path: /books/6, expect_status: 200, expect_body: {isbn: null}}
+  - id: BS-05
+    code: D7
+    op: GET /books/{book_id}
+    location: responses
+    keyword: ["404"]
+    doc: "chỉ mô tả 200"
+    behavior: "404 khi không tìm thấy"
+    description: Mã 404 không có trong tài liệu.
+    probe: {method: GET, path: /books/9999, expect_status: 404}
+  - id: BS-06
+    code: D7
+    op: GET /books/{book_id}
+    location: responses
+    keyword: ["400"]
+    doc: "chỉ mô tả 200"
+    behavior: "400 khi book_id không phải số nguyên dương"
+    description: Mã 400 không có trong tài liệu.
+    probe: {method: GET, path: /books/abc, expect_status: 400, expect_message: "book_id must be a positive integer"}
+  - id: BS-07
+    code: D1
+    op: POST /books
+    location: body:title
+    keyword: [minLength, maxLength]
+    doc: "không nêu độ dài"
+    behavior: "minLength: 1, maxLength: 200"
+    description: Tiêu đề rỗng hoặc dài hơn 200 ký tự bị từ chối.
+    probe: {method: POST, path: /books, body: {title: "<201 ký tự>", isbn: "9780000000001", price: 10, genre: fiction, author_id: 1}, expect_status: 400, expect_message: "title must be between 1 and 200 characters"}
+  - id: BS-08
+    code: D2
+    op: POST /books
+    location: body:price
+    keyword: [exclusiveMinimum]
+    doc: "phải lớn hơn 0 (minimum 0, exclusiveMinimum true)"
+    behavior: "minimum: 0 (cho phép 0)"
+    description: Tài liệu yêu cầu price > 0 nhưng cài đặt chấp nhận price = 0.
+    probe: {method: POST, path: /books, body: {title: Free Book, isbn: "9780000000002", price: 0, genre: fiction, author_id: 1}, expect_status: 201}
+  - id: BS-09
+    code: D5
+    op: POST /books (và Book.genre trong phản hồi)
+    location: body:genre
+    keyword: [enum]
+    doc: "[fiction, science, history]"
+    behavior: "[fiction, science, history, children]"
+    description: Cài đặt chấp nhận thêm thể loại children; thông báo lỗi liệt kê đủ 4 giá trị.
+    probe: {method: POST, path: /books, body: {title: Kids, isbn: "9780000000003", price: 3, genre: children, author_id: 1}, expect_status: 201}
+  - id: BS-10
+    code: D1
+    op: POST /books
+    location: body:tags
+    keyword: [maxItems]
+    doc: "không nêu"
+    behavior: "maxItems: 5"
+    description: Danh sách tags quá 5 phần tử bị từ chối.
+    probe: {method: POST, path: /books, body: {title: Tagged, isbn: "9780000000004", price: 3, genre: fiction, author_id: 1, tags: [a, b, c, d, e, f]}, expect_status: 400, expect_message: "tags must contain at most 5 items"}
+  - id: BS-11
+    code: D9
+    op: POST /orders
+    location: operation
+    keyword: [x-dependencies]
+    doc: "không nêu"
+    behavior: "IF coupon_code THEN voucher_type;"
+    description: Có coupon_code mà thiếu voucher_type thì bị từ chối.
+    probe: {method: POST, path: /orders, body: {book_id: 1, quantity: 1, coupon_code: SALE}, expect_status: 400, expect_message: "voucher_type is required when coupon_code is provided"}
+  - id: BS-12
+    code: D7
+    op: POST /orders
+    location: responses
+    keyword: ["201"]
+    doc: "200"
+    behavior: "201"
+    description: Tạo đơn thành công trả 201 thay vì 200 như tài liệu.
+    probe: {method: POST, path: /orders, body: {book_id: 1, quantity: 2}, expect_status: 201}
+  - id: BS-13
+    code: D0
+    op: GET /authors
+    location: query:page
+    keyword: []
+    doc: "minimum: 1"
+    behavior: "page âm gây 500 (lỗi cài đặt; đặc tả hành vi vẫn giữ minimum 1)"
+    description: Lỗi máy chủ cài cắm – hệ thống phải báo lỗi chứ không được sửa đặc tả.
+    probe: {method: GET, path: /authors, query: {page: -1}, expect_status: 500}
+controls:
+  # Ràng buộc tài liệu nêu ĐÚNG với cài đặt – dùng đo cảnh báo sai (false positive)
+  - {op: GET /books, location: query:page, keyword: minimum, value: 1}
+  - {op: GET /books, location: query:sort, keyword: enum, value: [title, published_at]}
+  - {op: GET /books, location: query:order, keyword: enum, value: [asc, desc]}
+  - {op: GET /authors, location: query:q, keyword: minLength, value: 2}
+  - {op: POST /books, location: body:isbn, keyword: pattern, value: "^[0-9]{13}$"}
+  - {op: POST /orders, location: body:quantity, keyword: minimum, value: 1}
+  - {op: POST /orders, location: body:quantity, keyword: maximum, value: 10}
+  - {op: POST /orders, location: body:voucher_type, keyword: enum, value: [percent, fixed]}
+  - {op: "GET /authors/{author_id}", location: responses, keyword: "404", value: documented}
+  - {op: "GET /orders/{order_id}", location: responses, keyword: "404", value: documented}
+non_expressible:
+  # Hành vi có thật nhưng KHÔNG biểu diễn được bằng từ khóa OpenAPI 3.0.3 – công cụ kiểm thử có thể báo
+  # "Schema-valid request rejected" (ST202) ở đây; hệ thống không nên đề xuất sửa đặc tả cho các mục này.
+  - {op: POST /books, field: author_id, rule: "phải là id của một tác giả đang tồn tại (ràng buộc tham chiếu)", status: 400}
+  - {op: POST /orders, field: book_id, rule: "phải là id của một cuốn sách đang tồn tại (ràng buộc tham chiếu)", status: 400}
+  - {op: POST /orders, field: quantity, rule: "price × quantity phải là số hữu hạn (chống tràn số)", status: 400}

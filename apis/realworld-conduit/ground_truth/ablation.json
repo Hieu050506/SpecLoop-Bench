@@ -1,0 +1,27 @@
+{
+ "seed": 2911980494,
+ "ratio": 0.4,
+ "n_candidates": 19,
+ "n_hidden": 8,
+ "hidden_keys": [
+  "constraint|GET /api/articles/feed|query:limit|limit|minimum",
+  "constraint|GET /api/articles/feed|query:offset|offset|minimum",
+  "constraint|GET /api/articles|query:offset|offset|minimum",
+  "constraint|POST /api/articles|body:article.body|article.body|required",
+  "constraint|POST /api/articles|body:article.description|article.description|required",
+  "constraint|POST /api/articles|body:article.title|article.title|required",
+  "constraint|POST /api/users/login|body:user.email|user.email|required",
+  "constraint|PUT /api/articles/{}|body:article|article|required"
+ ],
+ "hidden_fact_ids": [
+  "ef3a0b12b4be",
+  "7d173dec8649",
+  "46a200c3f8c3",
+  "1c0daf3c0580",
+  "62a018886145",
+  "71e7d8bedd18",
+  "e9c765fb55a7",
+  "3c728f0bd11d"
+ ],
+ "note": "Các ràng buộc này bị ẩn trong docs/ablated.md (kể cả câu mô tả có nhắc tới giá trị). Dùng để đo 'constraint recovery' nhờ phản hồi kiểm thử."
+}

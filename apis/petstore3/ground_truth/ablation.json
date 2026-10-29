@@ -1,0 +1,19 @@
+{
+ "seed": 2407518356,
+ "ratio": 0.4,
+ "n_candidates": 10,
+ "n_hidden": 4,
+ "hidden_keys": [
+  "constraint|GET /api/v3/pet/findByTags|query:tags|tags|required",
+  "constraint|POST /api/v3/pet|body:photoUrls|photoUrls|required",
+  "constraint|POST /api/v3/pet|body:status|status|enum",
+  "constraint|POST /api/v3/store/order|body:status|status|enum"
+ ],
+ "hidden_fact_ids": [
+  "1c2d357ca920",
+  "35ae72016aa1",
+  "eec0c3904147",
+  "759ca50575bb"
+ ],
+ "note": "Các ràng buộc này bị ẩn trong docs/ablated.md (kể cả câu mô tả có nhắc tới giá trị). Dùng để đo 'constraint recovery' nhờ phản hồi kiểm thử."
+}

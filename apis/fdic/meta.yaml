@@ -1,0 +1,48 @@
+id: fdic
+name: FDIC BankFind Suite API
+group: B
+description: 'API dữ liệu ngân hàng của FDIC (Mỹ): 6 operation nhưng mỗi operation
+  có nhiều tham số lọc/sắp xếp và schema phản hồi rất lớn (hàng nghìn trường dữ liệu
+  tài chính). Không cần khóa.'
+source:
+  spec_url: https://github.com/codingsoo/nlp2rest/blob/ae3783b7/specifications/openapi/fdic.yaml
+  spec_file: source/openapi_original.yaml
+  license: Đặc tả công khai của nhà cung cấp, lấy từ kho NLP2REST (ISSTA 2023) – chỉ
+    dùng cho nghiên cứu
+  homepage: https://github.com/codingsoo/nlp2rest
+  docs_url: https://api.fdic.gov/banks/docs/
+  retrieved_at: '2026-10-27'
+  normalization:
+  - đổi nhãn phiên bản 3.0.0 -> 3.0.3 (tương thích ngữ nghĩa)
+  - 'servers[0].url: ''http://localhost:9001/api'' -> ''https://api.fdic.gov/banks'''
+environment:
+  type: public
+  base_url: https://api.fdic.gov/banks
+  test_scope: read-only
+  auth:
+    type: none
+  rate_limit_rps: 1
+  connectivity_checked: false
+  probe:
+    method: GET
+    path: /institutions
+    params:
+      limit: 1
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: null
+  make_ablated: false
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (nhập ban đầu)
+notes: FDIC đã chuyển máy chủ API sang api.fdic.gov/banks; cần chạy check_connectivity
+  để xác nhận các path cũ còn hoạt động.

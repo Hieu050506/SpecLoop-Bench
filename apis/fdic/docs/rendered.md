@@ -1,0 +1,2060 @@
+# FDIC Bank Data API (Beta) — API Reference
+
+API to serve banking industry data to the public.
+
+**Version:** 0.1.0  
+**Base URL:** `https://api.fdic.gov/banks`
+
+## Structure
+
+Financial institution demographic and location information
+
+### GET /institutions
+
+**Get Financial Institutions**
+
+Returns a list of financial institutions.
+
+**Parameters**
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `filters` | query | string | No | The filter for the bank search. Examples: * Filter by State name `STNAME:"West Virginia"` * Filter for any one of multiple State names `STNAME:("West Virginia","Delaware")` * Filter all but a specified value `!(STNAME:"Virginia")` * Filter by last updated within an inclusive date range `DATEUPDT:["2010-01-01" TO "2010-12-31"]` * Filter for deposits over 50,000,000 (50000 thousands of dollars) `DEP:[50000 TO *]` |
+| `search` | query | string | No | Flexible text search against institution records - currently only supporting name search. Search supports text search and fuzzy matching, as opposed to filters that are exact matches. Examples: * Search by name `NAME: Island` * Search by name (fuzzy match) `NAME: Iland` |
+| `fields` | query | string | No | Comma delimited list of fields to search. |
+| `sort_by` | query | string | No | Field name by which to sort returned data. Default: `NAME`. |
+| `sort_order` | query | string | No | Indicator if ascending (ASC) or descending (DESC). Default: `ASC`. |
+| `limit` | query | integer | No | The number of records to return. Default is 10 and maximum is 10,000. Default: `10`. Minimum: 0. Maximum: 10000. |
+| `offset` | query | integer | No | The offset of page to return. Default: `0`. Minimum: 0. |
+| `format` | query | string | No | The format of the data to return. Allowed values: `json`, `csv`. |
+| `download` | query | string | No | Whether the data should be downloaded as a file. Allowed values: `false`, `true`. |
+| `filename` | query | string | No | The filename to use when downloading data. |
+
+**Responses**
+
+- **200** — Successful Operation
+  Body (`application/json`, object):
+  - `meta` (object)
+    - `total` (integer) — Total query result count
+    - `parameters` (object) — Query parameters supplied
+    - `index` (object)
+      - `name` (string) — name of index used to retrieve data
+      - `createTimestamp` (string (date-time)) — date/time index was created
+  - `data` (array of object)
+    - `data` (object)
+      - `ACTIVE` (string) — A number indicating the status of an institution. 1='Institutions that are currently open and insured by the FDIC'; 0='Institution closed or not insured by FDIC'
+      - `ADDRESS` (string) — The street address in which an institution or branch office is physically located.
+      - `ASSET` (number) — The sum of all assets owned by the institution including cash, loans, securities, bank premises and other assets. This total does not include off-balance-sheet accounts.
+      - `BKCLASS` (string) — A classification code assigned by the FDIC based on the institution's charter type (commercial bank or savings institution), charter agent (state or federal), Federal Reserve membership status (Fed member, Fed non-member) and its primary federal regulator (state chartered institutions are subject to both federal and state supervision). N - Commercial bank, national (federal) charter, Fed member, and supervised by the Office of the Comptroller of the Currency (OCC); NM - Commercial bank, state charter, Fed non-member, and supervised by the Federal Deposit Insurance Corporation (FDIC); OI - Insured U.S. branch of a foreign chartered institution (IBA) and supervised by the OCC or FDIC; SB – Federal savings banks, federal charter, supervised by the OCC or before July 21,2011 the Office of Thrift Supervision (OTS); SI - State chartered stock savings banks, supervised by the FDIC; SL - State chartered stock savings and loan associations, supervised by the FDIC or before July 21,2011 the OTS; SM - Commercial bank, state charter, Fed member, and supervised by the Federal Reserve Bank (FRB); NC – Noninsured non-deposit commercial banks and/or trust companies regulated by the OCC, a state, or a territory; NS - Noninsured stock savings bank supervised by a state or territory; CU - state or federally chartered credit unions supervised by the National Credit Union Association (NCUA). Allowed values: `N`, `SM`, `NM`, `SB`, `SA`, `OI`.
+      - `CB` (string) — FDIC community banks are identified based on criteria defined in the FDIC Community Banking Study. Using detailed balance sheet and geographic data, the study defines community banks in terms of their traditional relationship banking and limited geographic scope of operations
+      - `CBSA` (string) — Name of the Core Based Statistical Area (CBSA) as defined by the US Census Bureau Office of Management and Budget.
+      - `CBSA_DIV` (string) — Name of the Core Based Statistical Division as defined by the US Census Bureau Office of Management and Budget.
+      - `CBSA_DIV_FLG` (string) — A flag (1=Yes) indicating member of a Core Based Statistical Division as defined by the US Census Bureau Office of Management and Budget.
+      - `CBSA_DIV_NO` (string) — Numeric code of the Core Based Statistical Division as defined by the US Census Bureau Office of Management and Budget.s
+      - `CBSA_METRO` (string) — Numeric code of the Metropolitan Statistical Area as defined by the US Census Bureau Office of Management and Budget
+      - `CBSA_METRO_FLG` (string) — A flag (1=Yes) used to indicate whether an branch is in a Metropolitan Statistical Area as defined by the US Census Bureau Office of Management and Budget
+      - `CBSA_METRO_NAME` (string) — Name of the Metropolitan Statistical Area as defined by the US Census Bureau Office of Management and Budget
+      - `CBSA_MICRO_FLG` (string) — A flag (1=Yes) used to indicate whether an branch is in a Metropolitan Statistical Area as defined by the US Census Bureau Office of Management and Budget
+      - `CBSA_NO` (string) — Numeric code of the Core Based Statistical Area (CBSA) as defined by the US Census Bureau Office of Management and Budget.
+      - `CERT` (string) — A unique NUMBER assigned by the FDIC used to identify institutions and for the issuance of insurance certificates.
+      - `CERTCONS` (string) — FDIC certificate number of the parent bank or savings institution with which the reported institution’s financial data has been consolidated. Beginning in March 1997, both the Thrift Financial Reports and Call Reports are completed on a fully consolidated basis. Previously, the consolidation of subsidiary depository institutions was prohibited. Now, parent institutions are required to file consolidated reports, while their subsidiary financial institutions are still required to file separate reports. Click on the certificate number to identify the parent bank or thrift.
+      - `CFPBEFFDTE` (string (date-time)) — Date the institution began secondary supervision by CFPB
+      - `CFPBENDDTE` (string (date-time)) — Date the institution ended supervision by CFPB
+      - `CFPBFLAG` (string) — Indicates secondary supervision by CFPB ('0' - not supervised by CFPB, '1'- secondarily supervised by CFPB)
+      - `PRIORNAME1` (string) — Previous Name of Institution 1
+      - `PRIORNAME2` (any) — Previous Name of Institution 2
+      - `PRIORNAME3` (any) — Previous Name of Institution 3
+      - `PRIORNAME4` (any) — Previous Name of Institution 4
+      - `PRIORNAME5` (any) — Previous Name of Institution 5
+      - `PRIORNAME6` (any) — Previous Name of Institution 6
+      - `PRIORNAME7` (any) — Previous Name of Institution 7
+      - `PRIORNAME8` (any) — Previous Name of Institution 8
+      - `PRIORNAME9` (any) — Previous Name of Institution 9
+      - `PRIORNAME10` (any) — Previous Name of Institution 10
+      - `CHANGEC1` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC2` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC3` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC4` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC5` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC6` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC7` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC8` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC9` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC10` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC11` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC12` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC13` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC14` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHANGEC15` (string) — FDIC code used to signify a structural event relating to an institution.
+      - `CHARTER` (string) — The charter number identifying a financial institution supervised by the Office of Comptroller of Currency.
+      - `CHRTAGNT` (string) — All Chartering Agencies - State and Federal Comptroller of the Currency - Chartering authority for nationally chartered commercial banks and for federally chartered savings associations (The Office of Thrift Supervision (OTS) before 7/21/11) State (includes U.S. Territories) - Chartering authority for institutions that are not chartered by the OCC or OTS
+      - `CITY` (string) — The city in which an institution or branch office is physically located.
+      - `CITYHCR` (string) — City in which the headquarters of the institution's regulatory high holder are physically located.
+      - `CLCODE` (string) — Numeric code which identifies the major and minor categories of an institution.
+      - `CMSA_NO` (string) — The numeric code given by the US Census Bureau office of Management and Budget that represents the CMSA prior to the year 2000 standards. 1=yes
+      - `CMSA` (string) — The Federal Information Processing Standards (FIPS) Consolidated Metropolitan Statistical Area (CMSA) code is a number representing the institution location. CMSA consists of two or more contiguous Metropolitan Statistical Areas (MSA) with a combined population of over 1 Million. Note: If an institution is not located in a CMSA, the value of the field will be zeroes.
+      - `CONSERVE` (string) — A flag (1=yes;0=no) that indicates if an institution is being operated in government conservatorship.
+      - `COUNTY` (string) — The county name in which an institution or branch office is physically located.
+      - `CSA` (string) — Name of the Combined Statistical Area (CSA) as defined by the US Census Bureau.
+      - `CSA_NO` (string) — The numeric code that the U.S. Census Bureau Office of Management and Budget assigns for the combined statistical area (CSA) per the 2000 standards. If an institution is not defined as a CSA, the value of the field will be zero. For more information see: http://www.census.gov/population/www/estimates/metroarea.html .
+      - `CSA_FLG` (string) — A flag used to indicate whether an institution is in a Combined Statistical Area. 1=yes and 0=no.
+      - `DATEUPDT` (string) — The date of the last data update.
+      - `DENOVO` (string) — A flag used to indicate whether an institution is a new institution (not a recharter). This flag is set quarterly. For instance, if REPDTE is 3/31/98 and DENOVO equals 1, the institution was a denovo during the first quarter of 1998.
+      - `DEP` (number) — The sum of all deposits including demand deposits, money market deposits, other savings deposits, time deposits and deposits in foreign offices.
+      - `DEPDOM` (number) — The sum of all domestic office deposits, including demand deposits, money market deposits, other savings deposits and time deposits.
+      - `DOCKET` (string) — An identification number assigned to institutions chartered by the Office of Thrift Supervision (OTS) or members of the Federal Housing Finance Board (FHFB) and formerly by the Federal Home Loan Bank (FHLB) Board. The value is '00000' for institutions not members of the FHFB.
+      - `EFFDATE` (string (date-time)) — A date indicating when an institution's change/event is effective.
+      - `ENDEFYMD` (string (date-time)) — The date that ends or closes out the last structural event relating to an institution. For closed institutions, this date represents the day that the institution became inactive.
+      - `EQ` (string) — Total equity capital (includes preferred and common stock, surplus and undivided profits).
+      - `ESTYMD` (string (date-time)) — The date on which the institution began operations.
+      - `FDICDBS` (string) — The FDIC Office assigned to the geographic area. The eight FDIC Regions and their respective states are: Boston - Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont New York - Delaware, District of Columbia, Maryland, New Jersey, New York, Pennsylvania, Puerto Rico, U.S. Virgin Islands Atlanta - Alabama, Florida, Georgia, North Carolina, South Carolina, Virginia, West Virginia Memphis - Arkansas, Kentucky, Louisiana, Mississippi, Tennessee Chicago - Illinois, Indiana, Michigan, Ohio, Wisconsin Kansas City - Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota Dallas - Colorado, New Mexico, Oklahoma, Texas San Francisco - Alaska, American Samoa, Arizona, California, Guam, Hawaii, Idaho, Montana, Nevada, Oregon, States of Micronesia, Utah, Washington, Wyoming
+      - `FDICREGN` (string) — The supervisory FDIC office assigned to the institution. The eight FDIC Supervisory Regions and their respective states are: Boston - Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont New York - Delaware, District of Columbia, Maryland, New Jersey, New York, Pennsylvania, Puerto Rico, U.S. Virgin Islands Atlanta - Alabama, Florida, Georgia, North Carolina, South Carolina, Virginia, West Virginia Memphis - Arkansas, Kentucky, Louisiana, Mississippi, Tennessee Chicago - Illinois, Indiana, Michigan, Ohio, Wisconsin Kansas City - Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota Dallas - Colorado, New Mexico, Oklahoma, Texas San Francisco - Alaska, American Samoa, Arizona, California, Guam, Hawaii, Idaho, Montana, Nevada, Oregon, States of Micronesia, Utah, Washington, Wyoming
+      - `FDICSUPV` (string) — The supervisory FDIC office assigned to the institution. There are twelve Federal Reserve Districts, with two Districts serving one state in some instances. The list of Federal Reserve Districts and their respective states are as follows: Boston - Connecticut, Maine, Massachusetts, New Hampshire, Rhode Island, Vermont New York - Connecticut, New Jersey, New York, Puerto Rico U.S. Virgin Islands Philadelphia - Delaware, New Jersey, Pennsylvania Cleveland - Kentucky, Ohio, Pennsylvania, West Virginia Richmond - Maryland, North Carolina, South Carolina, Virginia, West Virginia Atlanta - Alabama, Florida, Georgia, Louisiana, Mississippi, Tennessee Chicago - Illinois, Indiana, Iowa, Michigan, Wisconsin St. Louis - Arkansas, Illinois, Indiana, Kentucky, Mississippi, Missouri, Tennessee Minneapolis - Michigan, Minnesota, Montana, North Dakota, South Dakota, Wisconsin Kansas City - Colorado, Kansas, Missouri, Nebraska, New Mexico, Oklahoma, Wyoming Dallas - Louisiana, New Mexico, Texas San Francisco> - Alaska, American Samoa, Arizona, California, Guam, Hawaii, Idaho, Nevada, Oregon, States of Micronesia, Utah, Washington
+      - `FED` (string) — A number used to identify the Federal Reserve district in which the institution is located. 01 – Boston, 02 - New York,03 – Philadelphia, 04 – Cleveland,05 – Richmond,06 – Atlanta,07 – Chicago,08 - St. Louis,09 – Minneapolis,10 - Kansas city,11 – Dallas,12 - San Francisco
+      - `FED_RSSD` (string) — A unique number assigned by the Federal Reserve board as the entity's unique identifier
+      - `FEDCHRTR` (string) — A flag used to indicate whether the institution is chartered by an agent of the federal government.
+      - `FLDOFF` (string) — The FDIC Field Office where an institution is physically located.
+      - `FORM31` (string) — A flag (1=yes,0=no) that indicates whether and institution filed an FFIEC 031 Call Report. Commercial banks with domestic and foreign offices are required to file such a report.
+      - `HCTMULT` (string) — A flag used to indicate whether an institution is a member of a multibank holding company 1=yes, 0=no
+      - `IBA` (string) — Includes Bank Insurance Fund insured branches in the U.S. established by banks chartered and headquartered in foreign countries. These institutions are regulated by one of the three Federal commercial bank regulators and submit financial data to the Federal Reserve.
+      - `INACTIVE` (string) — Institutions that are currently closed but were once insured by the FDIC.
+      - `INSAGNT1` (string) — Abbreviated primary insurance agency.
+      - `INSAGNT2` (string) — As a result of the establishment of a single Deposit Insurance Fund (DIF) effective April 1, 2006, the Secondary Insurance fund is no longer applicable. previously both bif and saif bank insurance fund - institutions that are members of the bank insurance fund savings association insurance fund - Institutions that are members of the Savings Association Insurance Fund
+      - `INSBIF` (string) — Institutions who are members of the Bank Insurance Fund. As of April 1, 2006 BIF was merged together with the Savings Institution Insurance Fund (SAIF) to create a single Deposit Insurance Fund (DIF). All FDIC insured BIF member institutions, that are still active or open, are now insured members of DIF.
+      - `INSCOML` (string) — Includes commercial banks insured by the FDIC. These institutions are regulated by one of the three Federal commercial bank regulators (FDIC, Federal Reserve Board, or Office of the Comptroller of the Currency). They submit financial reports to the Federal Reserve (state member banks) or the FDIC (state non-member banks and national banks).
+      - `INSDATE` (string (date-time)) — The date that an institution obtained federal deposit insurance.
+      - `INSDROPDATE_RAW` (string (date-time)) — The date that an institution relinquished federal deposit insurance.
+      - `INSDROPDATE` (string (date-time)) — The date that an institution relinquished federal deposit insurance.
+      - `INSDIF` (string) — A flag used to indicate whether an institution is insured under the Deposit Insurance Fund (DIF). As of April 1, 2006 the Bank Insurance Fund (BIF) was merged together with the Savings Institution Insurance Fund (SAIF) to create a single Deposit Insurance Fund (DIF). All FDIC insured BIF and SAIF member institutions that are still active or open are now insured members of DIF. 0 = No, not DIF insured and 1 = Yes, DIF insured. Note that institutions that became inactive prior to April 1006 will also have zero value.
+      - `INSFDIC` (number) — Includes institutions insured by the FDIC.
+      - `INSSAIF` (string) — Institutions who are members of the Savings Association Insurance Fund. As of April 1, 2006 SAIF was merged together with the Bank Insurance Fund (BIF) to create a single Deposit Insurance Fund (DIF). All FDIC insured SAIF member institutions, that are still active or open, are now insured members of DIF.
+      - `INSSAVE` (string) — Includes savings institutions insured by the FDIC that operate under state or federal banking codes applicable to thrift institutions. These institutions are regulated by and submit financial reports to one of two Federal regulators (FDIC or Office of Thrift Supervision).
+      - `INSTAG` (string) — An indicator specifying whether an institution is primarily an agricultural lending institution.
+      - `INSTCRCD` (string) — Institutions with total loans greater than 50% of total assets and credit card loans greater than 50% of total loans, including loans that have been securitized and sold.
+      - `LATITUDE` (number) — The latitude of the physical address.
+      - `LAW_SASSER_FLG` (string) — A flag, yes=1 and no=0 associated with OTS supervised savings associations that converted their charter to that of a commercial or savings bank. Converted associations remain members of the SAIF, but they become subject to supervision by one of the three federal banking agencies. Not Applicable as of March 31, 2006.
+      - `LONGITUDE` (number) — The longitude of the physical address.
+      - `MDI_STATUS_CODE` (string) — A numeric flag used to indicate whether an institution is primarily a minority owned institution.
+      - `MDI_STATUS_DESC` (string) — A descriptive flag used to indicate type of minority owned institution.
+      - `MSA` (string) — The Metropolitan Statistical Areas based on Census Bureau data, as defined by the US Office of Management (OMB) prior to the year 2000.
+      - `MSA_NO` (string) — The Metropolitan Statistical Area Number (MSA_NO) in which the institution is physically located. The Office of Management and Budget defines MSAs in terms of entire counties surrounding central cities, except in the six New England states where they are defined in terms of cities and towns within counties. Before 200 standards
+      - `MUTUAL` (string) — Banking institutions fall into one of two ownership types, stock or non-stock. An institution which sells stock to raise capital is called a stock institution. It is owned by the shareholders who benefit from profits earned by the institution. A non-stock institution, or mutual institution, is owned and controlled solely by its depositors. A mutual does not issue capital stock.
+      - `NAME` (string) — The legal title or name of the institution.
+      - `NAMEHCR` (string) — Regulatory top holder is assigned by the Federal Reserve Board based on ownership and control percentages. Note: Information on bank holding companies is only as of quarter-end. Regulatory top holder is any company that directly or indirectly owns, controls or has power to vote 25 percent or more of a bank's or direct holding company's shares or controls in any manner the election of a majority of the directors or trustees of a bank or direct holding company or exercises a controlling influence over the management or policies of a bank or direct holding company. Information on Thrift Holding Companies that own Savings Associations but do not own banks is not currently available in the ID System. Source: Federal Reserve Board National Information Center data base.
+      - `NETINC` (number) — Net interest income plus total noninterest income plus realized gains (losses) on securities and extraordinary items, less total noninterest expense, loan loss provisions and income taxes.
+      - `NETINCQ` (number) — Quarterly net interest income plus total noninterest income plus realized gains (losses) on securities and extraordinary items, less total noninterest expense, loan loss provisions and income taxes.
+      - `NEWCERT` (string) — A new certificate number of an already existing FDIC-insured institution resulting from either a merger or an acquisition.
+      - `OAKAR` (string) — A member of one insurance fund that acquired deposits insured by the other fund, where that portion of the buyer's deposits remained insured by, and assessable by, the other fund.
+      - `OCCDIST` (string) — The Office of the Comptroller of the Currency (OCC) District in which the institution is physically located. The six OCC Districts and their respective states are: Northeast - Connecticut, Delaware, District of Columbia, Maine, Maryland, Massachusetts, New Hampshire, New Jersey, New York, Pennsylvania, Puerto Rico, Rhode Island, Vermont, U.S. Virgin Islands Southeast - Alabama, Florida, Georgia, Mississippi, North Carolina, South Carolina, Tennessee, Virginia, West Virginia Central - Illinois, Indiana, Kentucky, Michigan, Ohio, Wisconsin Midwest - Iowa, Kansas, Minnesota, Missouri, Nebraska, North Dakota, South Dakota Southwest - Arkansas, Louisiana, New Mexico, Oklahoma, Texas West - Alaska, American Samoa, Arizona, California, Colorado, Guam, Hawaii, Idaho, Montana, Nevada, Oregon, States of Micronesia, Utah, Washington, Wyoming
+      - `OFFDOM` (number) — The number of domestic offices (including headquarters) operated by active institutions in the 50 states of the U.S.A.
+      - `OFFFOR` (number) — The number of foreign offices (outside the U.S.) operated by the institution.
+      - `OFFICES` (number) — A branch/office is any location, or facility, of a financial institution, including its main office, where deposit accounts are opened, deposits are accepted, checks paid, and loans granted. Some branches include, but are not limited to, brick and mortar locations, detached or attached drive-in facilities, seasonal offices, offices on military bases or government installations, paying/receiving stations or units, nondeposit offices, Internet and PhoneBanking locations where a customer can open accounts, make deposits and borrow money. A branch does not include Automated Teller Machines (ATM), Consumer Credit Offices, Contractual Offices, Customer Bank Communication Terminals (CBCT), Electronic Fund Transfer Units (EFTU), and Loan Production Offices Summary of Deposits information is required for each insured office located in any State, the District of Columbia, the Commonwealth of Puerto Rico or any U.S. territory or possession such as Guam or the U.S. Virgin Islands, without regard to the location of the main office.
+      - `OFFOA` (number) — The number of offices operated by an FDIC-insured institution in all commonwealths and territories of the US, along with those in freely associated states under the Compact of Free Association
+      - `OTSDIST` (string) — Office of Thrift Supervision (OTS) District - No longer used as of 7/21/11
+      - `OTSREGNM` (string) — Prior to 7/21/11, the Office of Thrift Supervision (OTS) Region in which the institution is physically located. The five OTS Regions and their respective states are: Northeast - Connecticut, Delaware, Maine, Massachusetts, New Hampshire, New Jersey, New York, Pennsylvania, Rhode Island, Vermont, West Virginia Southeast - Alabama, District of Columbia, Florida, Georgia, Maryland, North Carolina, Puerto Rico, South Carolina, U.S. Virgin Islands, Virginia Central - Illinois, Indiana, Kentucky, Michigan, Ohio, Tennessee, Wisconsin Midwest - Arkansas, Colorado, Iowa, Kansas, Louisiana, Minnesota, Mississippi, Missouri, Nebraska, New Mexico, North Dakota, Oklahoma, South Dakota, Texas West - Alaska, American Samoa, Arizona, California, Guam, Hawaii, Idaho, Montana, Nevada, States of Micronesia, Oregon, Utah, Washington, Wyoming
+      - `PARCERT` (string) — The PARCERT number identifies the subsidiary institutions parent certificate number. Beginning in March 1997, both the Thrift Financial Reports and Call Reports are completed on a fully consolidated basis. Previously, the consolidation of subsidiary depository institutions was prohibited. Now, parent institutions are required to file consolidated reports, while their subsidiary financial institutions are still required to file separate reports.
+      - `PROCDATE` (string (date-time)) — A date indicating when an institution's change/event is processed.
+      - `QBPRCOML` (string) — The Quarterly Banking Profile (QBP) Commercial Bank Region in which the institution is physically located. Select from a drop down box. regional breakdown. group data by qbp region is only available for insured commercial banks and insured savings institutions and NOT All Insured Institutions, Insured Commercial Banks by asset size and Insured Savings Institutions by asset size.
+      - `REGAGNT` (string) — A code indicating the federal regulatory agency that provides primary supervision over an institution. OCC=Office of the Comptroller of Currency; FDIC=Federal Deposit Insurance Corporation; FRB=Federal Reserve Board; NCUA=National Credit Union Association; OTS=Office of Thrift Supervision.
+      - `REGAGENT2` (string) — A code indicating the federal regulatory agency that provides secondary supervision over an institution. CFPB = Consumer Financial Protection Bureau; OTS=Office of Thrift Supervision.
+      - `REPDTE` (string) — The last day of the financial reporting period selected.
+      - `RISDATE` (string (date-time)) — The financial reporting period selected in CCYYMM format.
+      - `ROA` (number) — Net income after taxes and extraordinary items (annualized) as a percent of average total assets.
+      - `ROAPTX` (number) — Annualized pre-tax net income as a percent of average assets. Note: Includes extraordinary items and other adjustments, net of taxes.
+      - `ROAPTXQ` (number) — Quarterly pre-tax net income as a percent of average assets. Note: Includes extraordinary items and other adjustments, net of taxes.
+      - `ROAQ` (number) — Quarterly net income after taxes and extraordinary items as a percent of average total assets.
+      - `ROE` (number) — Annualized net income as a percent of average equity on a consolidated basis. Note: If retained earnings are negative, the ratio is shown as NA.
+      - `ROEQ` (number) — Quarterly net income (including gains or losses on securities and extraordinary items) as a percentage of average total equity capital.
+      - `RSSDHCR` (string) — The unique number assigned by the Federal Reserve Board to the regulatory high holding company of the institution.
+      - `RUNDATE` (string (date-time)) — The day the institution information was updated.
+      - `SASSER` (string) — OTS supervised savings associations that converted their charter to that of a commercial or savings bank. Converted associations remain members of the SAIF, but they become subject to supervision by one of the three federal banking agencies. Not Applicable as of March 31, 2006.
+      - `SPECGRP` (number) — An indicator of an institution's primary specialization in terms of asset concentration
+      - `SPECGRPN` (string) — Name associated with the numeric indicator (SPECGRP) of an institution's primary specialization in terms of asset concentration
+      - `STALP` (string) — The state abbreviation of the location of the institution's main office.
+      - `STALPHCR` (string) — State location of the regulatory high holding company (either direct or indirect owner).
+      - `STCHRTR` (string) — A flag (1=yes;0=no) that indicates if an institution is state chartered.
+      - `STCNTY` (string) — A five digit number representing the state and county in which the institution is physically located. The first two digits represent the FIPS state numeric code and the last three digits represent the FIPS county numeric code.
+      - `STNAME` (string) — State in which the the institution is physically located. The FDIC Act defines state as any State of the United States, the District of Columbia, and any territory of the United States, Puerto Rico, Guam, American Samoa, the Trust Territory of the Pacific Islands, the Virgin Island, and the Northern Mariana Islands.
+      - `STNUM` (string) — The Federal Information Processing Standard code used to identify states
+      - `SUBCHAPS` (string) — The Small Business Job Protection Act of 1996 changed the Internal Revenue Code to allow financial institutions to elect Subchapter S corporation status, beginning in 1997. Banks are required to indicate on the Call Report whether there is currently in effect an election to file under Subchapter S. Thrifts have a similar requirement as of March 1998. The most important IRS requirements to elect and maintain Subchapter S status are: There can be no more than 75 eligible shareholders and no more than one class of stock. (In general, shareholders can only be individuals, estates, and certain types of trusts. Certain retirement plans and charitable organizations will be eligible in 1998.) All shareholders must consent. Banks and thrifts converting to Subchapter S status must use the specific charge-off method for tax purposes rather than the reserve method of accounting for bad debts and recapture tax bad debt reserves over a period of six years, if the reserve method had been used prior to conversion. (Note: even though the specific charge-off method is required for tax purposes, an adequate allowance for loan and lease losses must still be maintained on the financial statements and Call Reports.) Banks and thrifts are subject to a built-in gains (BIG) tax, if the aggregate fair market value of assets is greater than their aggregate adjusted bases on the date of conversion to Subchapter S status. [Banks are required to indicate separately on the Call Report in December of each year, the deferred portion of income taxes reported in net income. For Subchapter S banks, some or all of their deferred tax assets and liabilities may be eliminated upon conversion to Subchapter S status; however, deferred taxes related to the BIG tax and the recapture of bad debt reserves must be recognized.]. A Subchapter S corporation is treated as a pass-through entity, similar to a partnership, for federal income tax purposes. It is generally not subject to any federal income taxes at the corporate level. Its taxable income flows through to its shareholders in proportion to their stock ownership, and the shareholders generally pay federal income taxes on their share of this taxable income. This can have the effect of reducing institutions' reported income tax expense and increasing their after-tax earnings.. The election of Subchapter S status may result in an increase in shareholders' personal tax liabilities. Therefore, S corporations typically increase the amount of earnings distributed as dividends to compensate for higher personal taxes.
+      - `SUPRV_FD` (string) — A two-digit number indicating the FDIC Supervisory Division or Region. 02 = New York; 05 = Atlanta; 09 = Chicago; 11 = Kansas City; 13 = Dallas; 14 = San Francisco; 16 = Office of Complex Financial Institutions (CFI)
+      - `TE01N528` (string) — URL of other public-facing internet web site the reporting institution uses to accept or solicit deposits from the public
+      - `TE02N528` (string) — URL of other public-facing internet web site the reporting institution uses to accept or solicit deposits from the public
+      - `TE03N528` (string) — URL of other public-facing internet web site the reporting institution uses to accept or solicit deposits from the public
+      - `TE04N528` (string) — URL of other public-facing internet web site the reporting institution uses to accept or solicit deposits from the public
+      - `TE05N528` (string) — URL of other public-facing internet web site the reporting institution uses to accept or solicit deposits from the public
+      - `TE06N528` (string) — URL of other public-facing internet web site the reporting institution uses to accept or solicit deposits from the public
+      - `TE07N528` (string) — URL of other public-facing internet web site the reporting institution uses to accept or solicit deposits from the public
+      - `TE08N528` (string) — URL of other public-facing internet web site the reporting institution uses to accept or solicit deposits from the public
+      - `TE09N528` (string) — URL of other public-facing internet web site the reporting institution uses to accept or solicit deposits from the public
+      - `TE10N528` (string) — URL of other public-facing internet web site the reporting institution uses to accept or solicit deposits from the public
+      - `TE01N529` (string) — Trade name other than the institution's legal name used to identify one of the institution's physical offices at which deposits are accepted or solicited from the public
+      - `TE02N529` (string) — Trade name other than the institution's legal name used to identify one of the institution's physical offices at which deposits are accepted or solicited from the public
+      - `TE03N529` (string) — Trade name other than the institution's legal name used to identify one of the institution's physical offices at which deposits are accepted or solicited from the public
+      - `TE04N529` (string) — Trade name other than the institution's legal name used to identify one of the institution's physical offices at which deposits are accepted or solicited from the public
+      - `TE05N529` (string) — Trade name other than the institution's legal name used to identify one of the institution's physical offices at which deposits are accepted or solicited from the public
+      - `TE06N529` (string) — Trade name other than the institution's legal name used to identify one of the institution's physical offices at which deposits are accepted or solicited from the public
+      - `TRACT` (string) — Beyond having trust powers granted and exercised, institutions with fiduciary assets accounts, income, or other reportable fiduciary related service
+      - `TRUST` (string) — A number corresponding to a valid type of trust power that an institution can possess and exercise. 00=Trust Powers Not Known; 10=Full Trust Powers Granted; 11=Full Trust Powers Granted, Exercised; 12=Full Trust Powers Granted, Not Exercised; 20=Limited Trust Powers Granted; 21=Limited Trust Powers Granted, Exercised; 30=Trust Powers Not Granted; 31=Trust Powers Not Granted, But Exercised; 40=Trust Powers Grandfathered
+      - `ULTCERT` (string) — The cert number of the last successor or acquirer of the institution
+      - `UNINUM` (string) — FDIC's unique identifier number for holding companies, banks, branches and nondeposit subsidiaries.
+      - `WEBADDR` (string) — The primary internet web address is the public internet site obtained from the most recent FFIEC Call Report (CALL) for commercial banks or from the supplemental information for Thrift Financial Reporters (TFR). The primary internet web address is included only for those institutions reporting an address on the most recent FFIEC Call Report or Thrift Financial Report.
+      - `ZIP` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or one of its branch offices.
+- **400** — bad input parameter
+
+### GET /locations
+
+**Get Institution Locations**
+
+Returns locations/branches of financial institutions.
+
+**Parameters**
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `filters` | query | string | No | The filter for the location search. |
+| `fields` | query | string | No | Comma delimited list of fields to return. |
+| `sort_by` | query | string | No | Field name by which to sort returned data. Default: `NAME`. |
+| `sort_order` | query | string | No | Indicator if ascending (ASC) or descending (DESC). Default: `ASC`. |
+| `limit` | query | integer | No | The number of records to return. Default is 10 and maximum is 10,000. Default: `10`. Minimum: 0. Maximum: 10000. |
+| `offset` | query | integer | No | The offset of page to return. Default: `0`. Minimum: 0. |
+| `format` | query | string | No | The format of the data to return. Allowed values: `json`, `csv`. |
+| `download` | query | string | No | Whether the data should be downloaded as a file. Allowed values: `false`, `true`. |
+| `filename` | query | string | No | The filename to use when downloading data. |
+
+**Responses**
+
+- **200** — Successful Operation
+  Body (`application/json`, object):
+  - `meta` (object)
+    - `total` (integer) — Total query result count
+    - `parameters` (object) — Query parameters supplied
+    - `index` (object)
+      - `name` (string) — name of index used to retrieve data
+      - `createTimestamp` (string (date-time)) — date/time index was created
+  - `data` (array of object)
+    - `data` (object)
+      - `ADDRESS` (string) — The street address in which an institution or branch office is physically located.
+      - `BKCLASS` (string) — A classification code assigned by the FDIC based on the institution's charter type (commercial bank or savings institution), charter agent (state or federal), Federal Reserve membership status (Fed member, Fed non-member) and its primary federal regulator (state chartered institutions are subject to both federal and state supervision). N - Commercial bank, national (federal) charter, Fed member, and supervised by the Office of the Comptroller of the Currency (OCC); NM - Commercial bank, state charter, Fed non-member, and supervised by the Federal Deposit Insurance Corporation (FDIC); OI - Insured U.S. branch of a foreign chartered institution (IBA) and supervised by the OCC or FDIC; SB – Federal savings banks, federal charter, supervised by the OCC or before July 21,2011 the Office of Thrift Supervision (OTS); SI - State chartered stock savings banks, supervised by the FDIC; SL - State chartered stock savings and loan associations, supervised by the FDIC or before July 21,2011 the OTS; SM - Commercial bank, state charter, Fed member, and supervised by the Federal Reserve Bank (FRB); NC – Noninsured non-deposit commercial banks and/or trust companies regulated by the OCC, a state, or a territory; NS - Noninsured stock savings bank supervised by a state or territory; CU - state or federally chartered credit unions supervised by the National Credit Union Association (NCUA). Allowed values: `N`, `NM`, `OI`, `SA`, `SB`, `SM`.
+      - `CBSA` (string) — Name of the Core Based Statistical Area (CBSA) as defined by the US Census Bureau Office of Management and Budget.
+      - `CBSA_DIV` (string) — Name of the Core Based Statistical Division as defined by the US Census Bureau Office of Management and Budget.
+      - `CBSA_DIV_FLG` (string) — A flag (1=Yes) indicating member of a Core Based Statistical Division as defined by the US Census Bureau Office of Management and Budget. Allowed values: `0`, `1`.
+      - `CBSA_DIV_NO` (string) — Numeric code of the Core Based Statistical Division as defined by the US Census Bureau Office of Management and Budget.
+      - `CBSA_METRO` (string) — Numeric code of the Metropolitan Statistical Area as defined by the US Census Bureau Office of Management and Budget
+      - `CBSA_METRO_FLG` (string) — A flag (1=Yes) used to indicate whether an branch is in a Metropolitan Statistical Area as defined by the US Census Bureau Office of Management and Budget
+      - `CBSA_METRO_NAME` (string) — Name of the Metropolitan Statistical Area as defined by the US Census Bureau Office of Management and Budget
+      - `CBSA_MICRO_FLG` (string) — A flag (1=Yes) used to indicate whether an branch is in a Metropolitan Statistical Area as defined by the US Census Bureau Office of Management and Budget. Allowed values: `0`, `1`.
+      - `CBSA_NO` (string) — Numeric code of the Core Based Statistical Area (CBSA) as defined by the US Census Bureau Office of Management and Budget.
+      - `CERT` (string) — A unique number assigned by the FDIC used to identify institutions and for the issuance of insurance certificates.
+      - `CITY` (string) — The city in which an institution or branch office is physically located.
+      - `COUNTY` (string) — The county name in which an institution or branch office is physically located.
+      - `CSA` (string) — Name of the Combined Statistical Area (CSA) as defined by the US Census Bureau.
+      - `CSA_FLG` (string) — Flag (1=Yes) indicating member of a Combined Statistical Area (CSA) as defined by the US Census Bureau Office of Management and Budget. Allowed values: `0`, `1`.
+      - `CSA_NO` (string) — Numeric code of the Combined Statistical Area (CSA) as defined by the US Census Bureau Office of Management and Budget
+      - `ESTYMD` (string (date-time)) — The date on which the branch began operations.
+      - `FI_UNINUM` (string) — FDIC's unique identifier number for holding companies, banks, branches and nondeposit subsidiaries. This value maps the branch back to the parent financial institution.
+      - `LATITUDE` (number) — The latitude of the physical address.
+      - `LONGITUDE` (number) — The longitude of the physical address.
+      - `MDI_STATUS_CODE` (string) — A numeric flag used to indicate whether an institution is primarily a minority owned institution.
+      - `MDI_STATUS_DESC` (string) — A descriptive flag used to indicate type of minority owned institution.
+      - `MAINOFF` (integer) — Flag (1=Yes) indicating this location is the main office for the institution. Allowed values: `0`, `1`.
+      - `NAME` (string) — The legal title or name of the institution.
+      - `OFFNAME` (string) — Branch office name.
+      - `OFFNUM` (string) — An institution's branch office number used internally by FDIC.
+      - `RUNDATE` (string (date-time)) — The day the institution information was updated.
+      - `SERVTYPE` (integer) — Define the various types of offices of FDIC-insured institutions. 11 - Full Service - Brick and Mortar; 12 - Full Service - Retail; 13 - Full Service - Home Banking; 14 - Full Service Mobile Office; 15 - Full Service Home/Phone Banking; 16 - Full Service Seasonal Office; 21 - Limited Service - Administrative; 22 - Limited Service - Military Facility; 23 - Limited Service - Drive Thru/Detached Facility; 24 - Limited Service - Loan Production; 25 - Limited Service - Consumer Credit; 26 - Limited Service - Contractual; 27 - Limited Service - Messenger; 28 - Limited Service - Retail; 29 - Limited Service - Mobile/Seasonal; 30 - Limited Service - Trust; 99 - Limited Service - Other Office/Branch. Allowed values: `11`, `12`, `13`, `14`, `15`, `16`, `21`, `22`, `23`, `24`, `25`, `26`, `27`, `28`, `29`, `30`.
+      - `SERVTYPE_DESC` (string) — Define the various types of offices of FDIC-insured institutions. 11 - Full Service - Brick and Mortar; 12 - Full Service - Retail; 13 - Full Service - Home Banking; 14 - Full Service Mobile Office; 15 - Full Service Home/Phone Banking; 16 - Full Service Seasonal Office; 21 - Limited Service - Administrative; 22 - Limited Service - Military Facility; 23 - Limited Service - Drive Thru/Detached Facility; 24 - Limited Service - Loan Production; 25 - Limited Service - Consumer Credit; 26 - Limited Service - Contractual; 27 - Limited Service - Messenger; 28 - Limited Service - Retail; 29 - Limited Service - Mobile/Seasonal; 30 - Limited Service - Trust; 99 - Limited Service - Other Office/Branch
+      - `STALP` (string) — The state abbreviation of the location of the institution's main office.
+      - `STCNTY` (string) — A five digit number representing the state and county in which the institution is physically located. The first two digits represent the FIPS state numeric code and the last three digits represent the FIPS county numeric code.
+      - `STNAME` (string) — State in which the branch is physically located. The FDIC Act defines state as any State of the United States, the District of Columbia, and any territory of the United States, Puerto Rico, Guam, American Samoa, the Trust Territory of the Pacific Islands, the Virgin Island, and the Northern Mariana Islands.
+      - `UNINUM` (string) — FDIC's unique identifier number for holding companies, banks, branches and nondeposit subsidiaries.
+      - `ZIP` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or one of its branch offices.
+- **400** — bad input parameter
+
+## Historical
+
+Historical data from 1934 onward regarding financial institutions.
+
+### GET /summary
+
+**Get Historical Aggregate Data by Year**
+
+Returns aggregate financial and structure data, subtotaled by year, regarding finanical institutions.
+
+**Parameters**
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `filters` | query | string | No | The filter criteria that refines the records included in the calculated result. example: >- STNAME:"Alabama" AND YEAR:2005 Examples: * Filter by Community Banks (CB) vs. Savings Institutions (SI) `CB_SI:CB` * Filter by State name `STNAME:"Virginia"` * Filter all but a specified value `!(STNAME:"Virginia")` * Filter for any one of multiple State names `STNAME:("West Virginia","Delaware")` * Filter data by the year range `YEAR:["2015" TO "2017"]` |
+| `fields` | query | string | No | Comma delimited list of fields with aggregated annual financial data to return. |
+| `sort_by` | query | string | No | Field name by which to sort returned data. Default: `YEAR`. |
+| `sort_order` | query | string | No | Indicator if ascending (ASC) or descending (DESC). Default: `ASC`. |
+| `limit` | query | integer | No | The number of records to return. Default is 10 and maximum is 10,000. Default: `10`. Minimum: 0. Maximum: 10000. |
+| `offset` | query | integer | No | The offset of page to return. Default: `0`. Minimum: 0. |
+| `agg_by` | query | string | No | The field(s) by which data will be aggregated. Valid values are 'YEAR' or 'YEAR,STNAME'. |
+| `agg_term_fields` | query | string | No | The field(s) for which aggregations will be counted for each unique term. |
+| `agg_sum_fields` | query | string | No | The field(s) for which aggregations will be summed or aggregated. |
+| `agg_limit` | query | integer | No | The limit on how many aggregated results will be displayed. Minimum: 0. Maximum: 10000. |
+| `format` | query | string | No | The format of the data to return. Allowed values: `json`, `csv`. |
+| `download` | query | string | No | Whether the data should be downloaded as a file. Allowed values: `false`, `true`. |
+| `filename` | query | string | No | The filename to use when downloading data. |
+
+**Responses**
+
+- **200** — Successful Operation
+  Body (`application/json`, object):
+  - `meta` (object)
+    - `total` (integer) — Total query result count
+    - `parameters` (object) — Query parameters supplied
+    - `index` (object)
+      - `name` (string) — name of index used to retrieve data
+      - `createTimestamp` (string (date-time)) — date/time index was created
+  - `data` (array of object)
+    - `data` (object)
+      - `ALLOTHER` (integer) — All Other Loans
+      - `alsonew` (integer) — New savings institution charter created to absorb any other type of charter in its first quarter of operation.
+      - `ASSET` (integer) — Total Assets On A Consolidated Basis Note: For Banks With Foreign Operations Data For March & September Of 1973 Through 1975 Are Reported On A Domestic Basis
+      - `BANKS` (integer) — Total Insured Commercial Banks filing 12/31 fincncial report (See Notes to User for definition of commercial bank)
+      - `BKPREM` (integer) — Premises and Fixed Assets Note: (1) Premises and Fixed Assets (Including Capitalized Leases) On A Consolidated Basis (2) For Banks With Foreign Operations Data For March & September Of 1972 Through 1975 Was Reported On A Domestic Basis
+      - `BRANCHES` (integer) — Branches include all offices of a bank, other than its head office, at which deposits are received, checks paid or money lent. Banking facilities separate from a banking house, banking facilities at government installations, offices, agencies, paying or receiving stations, drive-in facilities and other facilities operated for limited purposes are defined as branches under the FDI Act (see Notes to User)
+      - `BRANCHIN` (integer) — Banks with branches are institutions that operate one or more offices at which deposits are received or other banking business conducted in addition to the main or head office.
+      - `BRO` (integer) — Borrowed Deposits (Represents funds which the reporting bank obtains, directly or indirectly, by or through any deposit broker for deposit into one or more deposit accounts. Includes both those in which the entire beneficial interest in a given bank deposit account or investment is held by a single depositor and those in which deposit broker sells participation in a given bank deposit account or instrument to one or more investors).
+      - `BRWDMONY` (integer) — Borrowed Funds - (1969-Present -- Represents Federal Funds purchase. securities sold under agreements to repurchase, demand notes issued to the US Treasury, mortgage indebtedness, liabilities under capitalized leases and all other liabilities for borrowed money. -- 1934-1968 -- Does not include mortgage indebtedness which is netted against bank premsises.)
+      - `CB_SI` (string) — Differentiates the summarised data between the Commercial Banks and the Savings Institutions. Allowed values: `CB`, `SI`.
+      - `chartoth` (integer) — Represents the transfer of a commercial bank to a savings institution charter that meets the definition of a thrift (see Notes to Table SI-1) and has applied for and received FDIC insurance (BIF or SAIF).
+      - `CHBAL` (integer) — Total Cash and Balances Due From Depository Institutions Which Include Both Noninterest-Bearing and Interest-Bearing Deposits On A Consolidated Basis Note: (1): Additional Detail Can Be Found On Schedule Rc-A (2) For Banks With Foreign Operations Data For March and September 1972 Through 1975 Are Reported On A Domestic Basis
+      - `CHBALI` (integer) — Interest-Bearing Balances Due From Depository Institutions On A Consolidated Basis Note: Additional Detail Can Be Found On Schedule Rc-A
+      - `chrtrest` (integer) — Represents the transfer of an existing institution that does not have deposit insurance to a savings institution charter with FDIC insurance from BIF or SAIF. Examples of such institutions include Trust Banks and savings institutions with state deposit insurance that apply for and receive FDIC insurance
+      - `comboass` (integer) — Represents the absorption of a failing savings institution by another savings institution with assistance from either the BIF or SAIF. (Included are RTC Accelerated Resolution Program (ARP) assisted mergers. These institutions were not placed in RTC conservatorship.)
+      - `combos` (integer) — Represents the absorption of a savings institution charter by another savings institution without assistance. Both institutions may be owned by the same holding company in a consolidation of affiliates.
+      - `CONS` (integer) — Institutions in RTC Conservatorship
+      - `CORPBNDS` (integer) — Other Debt Securities
+      - `COUNT` (integer) — All FDIC Insured Savings Institutions filing a 12/31 financial report
+      - `CRLNLS` (integer) — Total Recoveries Of Loans and Lease Financing Receivables Credited To The Allowance For Loan and Lease Losses Note: For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `DDT` (integer) — Total Demand Deposits Included In Total Transaction Accounts Held In Domestic Offices Note: For Tfr Filers Between June 1989 Through March 1990 Includes Non-interest Bearing Deposits
+      - `DEP` (integer) — Total Deposits On A Consolidated Basis Note: (1) Additional Detail Can Be Found On Schedule Rc-E (2) For Banks With Foreign Operations Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `DEPDOM` (integer) — Represents the sum of total deposits, domestic offices only
+      - `DEPFOR` (integer) — Represents the sum of total deposits in foreign offices
+      - `DEPI` (integer) — Interest-Bearing Consolidated Office Deposits Note: (1) Additional Detail Can Be Found On Schedule Rc-E (2) Tfr Filers With Less Than $300 Million In Assets and Risk-Based Capital Ratios In Excess Of 12 Percent Are Not Required To File Schedule Cmr Beginning March 1993, However, When Cmr Data Is Either Incorrect Or Not Filed Fts Assumes That All Deposits Are Interest-Bearing (3) Prior To Receipt Of The 75-Day Tfr Tape All Tfr Filers Deposits Are Assumed To Be Interest-Bearing (4) For Banks With Foreign Operations Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `DEPIFOR` (integer) — Represents any deposit in foreign offices, whether demand, savings or time, on which the bank pays or accrues interest
+      - `DEPNI` (integer) — Represents any deposit on which the bank does not pay or accrue interest
+      - `DEPNIFOR` (integer) — Represents any deposit in foreign offices on which the bank does not pay or accrue interest
+      - `DRLNLS` (integer) — Total Charged-Off Loans and Lease Financing Receivables Debited To The Allowance For Loan and Lease Losses Note: For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EAMINTAN` (integer) — Goodwill Impairment Losses and Amortization Expense and Impairment Loss For Other Intangible Assets On A Consolidated Basis Note: (1) Prior To March 2001, Listed As Memoranda Only and Is Included In All Other Non-interest Expense (2) Includes Only Amortization Of Goodwill For Tfr Filers
+      - `EDEP` (integer) — Interest Expense On Total Deposits (Domestic and Foreign) On A Consolidated Basis Note: For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EDEPDOM` (integer) — Interest Expense On Total Deposits Held In Domestic Offices Note: For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EDEPFOR` (integer) — Deposit Interest Expense-For (1976-Present -- Represents all interests on all liabilities reportable as deposits in foreign offices. -- 1934-1975 -- Interest on foregin office deposits is not available. Reports of income were submitted on a domestic only basis.)
+      - `EEREPP` (integer) — Represents the gross expenses of all liabilities reportable under this category
+      - `EFHLBADV` (integer) — Interest Expense and The Amortization Of Any Related Yield Adjustments On Fhlbank Advances Note: Only Reported By Tfr Filers
+      - `EFREPP` (integer) — Interest Expense On Federal Funds Purchased and Securities Sold Under Agreements To Repurchase On A Consolidated Basis (Prior To March 1997 Was On A Consolidated Basis In Domestic Offices Of The Bank and Of Its Edge and Agreement Subsidiaries, and In Ibf'S) Note: For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EINTEXP` (integer) — Total Interest Expense On A Consolidated Basis Note: For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EINTEXP2` (integer) — Eintexp2
+      - `ELNATR` (integer) — Provision For Loan & Lease Losses On A Consolidated Basis Note: (1) Beginning March 2003, Includes The Provision For Allocated Transfer Risk Related To Loans (2) From March 1997 To December 2000, Defined As The Provision For Credit Losses & Allocated Transfer Risk Reserve Which Includes The Provision For Off-Balance Sheet Credit Losses For Call Report Filers (3) Prior To March 1997, Defined As The Provision For Loan and Lease Losses & Allocated Transfer Risk (4) For Tfr Filers, Consists Of The Provision For Loan and Lease Losses (5) Reflects Net Provision For Losses On Interest-Bearing Assets For Tfr Filers (6) For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EOTHNINT` (integer) — All Other Non-interest Expense On A Consolidated Basis Note: (1) Prior To March 2001, Included The Amortization Of Intangible Assets For Call Reporters (2) Greater Detail Is Provided In Subsequent Data Fields For All Items In Excess Of 10% Of This Item All Other Non-interest Expense On A Consolidated Basis (3) Does Not Include Losses On Asset Sales For Tfr Filers Beginning June 1996, Such Gains (Losses) Are Included Net In Non-interest Income (4) Includes Loss On Sale Of Securities Held For Investments For Tfr Filers Between March 1984 Through December 1986 (5) For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EPREMAGG` (integer) — Expenses Of Premises and Fixed Assets (Net Of Rental Income and Excluding Salaries and Employee Benefits and Mortgage Interest) On A Consolidated Basis Note: For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EQ` (integer) — Represents the sum of all capital accounts
+      - `EQCDIV` (integer) — Cash Dividends Declared On Common and Preferred Stock On A Consolidated Basis Note: For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EQCDIVC` (integer) — Cash Dividends Declared On Common Stock On A Consolidated Basis Note: (1) 034 Reporters Only File Data On The December Call (2) For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EQCDIVP` (integer) — Cash Dividends Declared On Preferred Stock On A Consolidated Basis Note: (1) 034 Reporters Only File Data On The December Call (2) For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EQCS` (integer) — Common Stock On A Consolidated Basis Note: For Banks With Foreign Operations, Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `EQDIV` (integer) — The total of cash dividends declared on all preferred and common stock during the calendar year, regardless of when payable
+      - `EQNM` (integer) — Total Capital (Represents the total of all capital components, including FDIC net worth certificates.)
+      - `EQNWCERT` (integer) — Net Worth Certificates Represents The Outstanding Balances Issued To The Fdic In Exchange For Promissory Notes Received From The Fdic On A Consolidated Basis
+      - `EQOTHCC` (integer) — Other Capital
+      - `EQPP` (integer) — Perpetual Preferred Stock and Related Surplus On A Consolidated Basis Note: For Banks With Foreign Operations, Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `EQSUR` (integer) — Surplus (Excludes All Surplus Related To Preferred Stock) On A Consolidated Basis Note: For Banks With Foreign Operations, Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `EQUPTOT` (integer) — Undivided Profits, Capital Reserves, Net Unrealized Holding Gains (Losses) On Available-For-Sale Securities and Other Equity Capital Components and/Or Accumulated Gains (Losses) On Cash Flow Hedges On A Consolidated Basis Note: (1) Prior To March 1999 Included Undivided Profits, Capital Reserves and Net Unrealized Gains (Losses) On Available-For-Sale Securities (2) Prior To March 1994 Included Undivided Profits and Capital Reserves Less Net Unrealized Loss On Marketable Equity Securities (3) This Item Includes Net Worth Certificates For Bif Thrifts (4) For Banks With Foreign Operations, Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `ESAL` (integer) — Salaries and Employee Benefits On A Consolidated Basis Note: For Banks With Foreign Operations, Data For December 72 Through December 1975 Are Domestic Only
+      - `ESUBND` (integer) — Interest Expense On Subordinated Notes and Debentures On A Consolidated Basis Note: 1. This Item Is Not Reported By Form 51 Filers 2. For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `EXTRA` (integer) — Discontinued Operations, Net Of Applicable Income Taxes On A Consolidated Basis Note: (1) Prior To March 2016, Defined As Extraordinary Items and and Other Adjustments, Net Of Taxes On A Consolidated Basis (2) This Item Does Not Include The Tax Effects Related To Securities Gains and Losses and Extraordinary Items From June 1984 Through December 1985 For Bif Thrifts (Refer To Applicable Income Taxes) (3) For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `FD_BIF` (integer) — FDIC Supervised, BIF Insured Institutions
+      - `FD_SAIF` (integer) — FDIC supervised SAIF insured institutions
+      - `FREPO` (integer) — Federal Funds Sold and Securities Purchased Under Agreements To Resell On A Consolidated Basis Note: (1) Prior To March 1997, Includes Only Federal Funds Sold and Securities Purchased Under Agreements To Resell In Domestic Offices Of The Bank and Of Its Edge and Agreement Subsidiaries, and In Ibf'S (2) Prior To March 1998, Includes Only Federal Funds Sold For Tfr Filers (3) For Banks With Foreign Operations, Data For March & September Of 1972 Through 1975 Was Reported On A Domestic Basis
+      - `FREPP` (integer) — Federal Funds Purchased and Securities Sold Under Agreements To Repurchase On A Consolidated Basis Note: (1) Prior To March 1998, Includes Only Reverse Repurchase Agreements For Tfr Filers (2) For Banks With Foreign Operations Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `ICHBAL` (integer) — Total Interest Income On Balances Due From Depository Institutions On A Consolidated Basis
+      - `IFEE` (integer) — Fee Income (Represents service charges on deposit accounts such as maintenance fees, activity charges, administrative charges, overdraft charges and check certification charges; mortgage loans servicing fees plus other fees and charges, including prepayment loan fees, late charges, assumption fees, and amortization of commitment fees.)
+      - `IFREPO` (integer) — Interest Income On Federal Funds Sold and Securities Purchased Under Agreements To Resell On A Consolidated Basis Note: (1) Prior To March 1997 Included Only Income From Domestic Offices Of The Bank and Of Its Edge and Agreement Subsidiaries, and In Ibfs On A Consolidated Basis (2) For Banks With Foreign Operations Data For December 1972 Through 1975 Are Domestic Only
+      - `IGLSEC` (integer) — Realized Gains (Losses) On Held-To-Maturity and Available-For-Sale Debt Securities and Unrealized Holding Gains (Losses) On Equity Securities Not Held For Trading Before Adjustments For Income Taxes On A Consolidated Basis (Also Includes Realized Gains On Equity Securities Until The Institution Adopts Asu 2016-01) Note: 1. Prior To March 2018, Defined As Realized Gains (Losses) On Held-To-Maturity and Available-For-Sale Securities Before Adjustments For Income Taxes On A Consolidated Basis 2. Beginning In The 2018 Reporting Year, Includes Unrealized Gains (Losses) On Equity Securities For Institutions That Adopted Asu2016-01 and Includes Realized Gains (Losses) On Equity Securities For Institutions That Have Not Yet Adopted Asu2016-01 3. Prior To March 1994 Defined As Gains (Losses) On Securities Not Held In Trading Accounts 4. From March 1990 Through March 2009, Includes Gains (Losses) On Assets Held For Sale For Tfr Filers 5. Includes Gains (Losses) On Loans Held For Investment From March 1984 Through December 1989 For Tfr Filers 6. Tfr Filers Report Only Gains From March 1984 Through December 1986 7. For Banks With Foreign Operations Data For December 1972 Through December 1975 Are Domestic Only
+      - `ILNDOM` (integer) — Total Interest and Fees On Loans Held In Domestic Offices Note: (1) U-Size-Stratum = 0001 Means That Bank Has Total Assets Less Than $25 Million (2) U-Size-Stratum = 0002 Means That Bank Has Total Assets Equal To Or Greater Than $25 Million (3) For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `ILNFOR` (integer) — Total Interest and Fees On Loans Held In Foreign Offices, Edge and Agreement Subsidiaries, and Ibf'S
+      - `ILNLS` (integer) — Interest and Fees On Loans and Lease Financing Receivables On A Consolidated Basis Note: (1) U-Size-Stratum = 0001 Means That Bank Has Total Assets Less Than $25 Million (2) U-Size-Stratum = 0002 Means That Bank Has Total Assets Equal To Or Greater Than $25 Million (3) For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `ILNS` (integer) — Loans (Represents all interest, fees and similar charges levied against or associated with all assets reportable as loans. Includes interest, yield related fees, commitment fees, service charges on loans and discount accretion. (One savings bank with an office in Canada has been reporting on the Domestic & Foregin Consolidated Call Report form (FFIEC 031). It does not, however, indicate any income or expenses related to foregin operations.))
+      - `ILS` (integer) — Total Interest Income From Lease Financing Receivables On A Consolidated Basis
+      - `INTAN` (integer) — Intangible Assets On A Consolidated Basis
+      - `INTBAST` (integer) — Total Interest Earning Assets (Derived See Si-19) - Sc
+      - `INTBLIB` (integer) — Total Interest Bearing Liabilities (Derived See Si-19) - Sc
+      - `INTINC` (integer) — Total Interest Income On A Consolidated Basis Note: For Banks With Foreign Operations Data For December 1972 Through December 1975 Are Domestic Only
+      - `INTINC2` (integer) — INTINC2
+      - `IRAKEOGH` (integer) — Individual Retirement Accounts (Ira'S) and Keogh Plan Accounts Held In Domestic Offices Note: Listed As Memoranda Only
+      - `ISC` (integer) — Total Interest and Dividend Income On: U.S. Treasury Securities, U.S. Government Agency and Corporation Obligations, Securities Issued By States and Political Subdivision In The U.S., Other Domestic Debt Securities, Foreign Debt Securities, and Equity Securities (Including Investments In Mutual Funds) On A Consolidated Basis Note: (1) This Item Includes Interest Income On Deposits For Tfr Filers (2) Includes Interest Income On Assets Held In Trading Accounts For Tfr Filers For Two Distinct Periods: (A) March 1984 Through December 1989 and (B) June 1996 And Following Quarters. (3) For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `ISERCHG` (integer) — Represents service charges on deposit accounts in domestic offices such as maintenance fees, activity charges, administrative charges, overdraft charges, and check certification charges
+      - `ITAX` (integer) — Represents Federal, state and local taxes on income. It does not include taxes relating to securities transactions or extraordinary items
+      - `ITAXR` (integer) — Pre-Tax Net Operating Income (Represents Net Interest Income plus Total Non-interest Income less Total Non-interest Expense and the Provision for Loan & Lease Losses.)
+      - `ITRADE` (integer) — Interest Income From Assets Held In Trading Accounts On A Consolidated Basis Note: Beginning March 2017, Reported As An Individual Income Category For Form 031 Filers Only and Is Included As A Component Of Other Interest Income For All Other Report Forms
+      - `LIAB` (integer) — Total Liabilities Including Subordinated Notes and Debentures and Limited Life Preferred Stock and Related Surplus On A Consolidated Basis Note: Prior To March 2009, This Item Included Noncontrolling (Minority) Interests In Consolidated Subsidiaries For Call Report and Tfr Filers
+      - `LIABEQ` (integer) — Total Liabilities, Limited-Life Preferred Stock, and Equity Capital On A Consolidated Basis Note: For Banks With Foreign Operations Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `liqasstd` (integer) — Represents all assisted payouts of FDIC-insured savings institutions that are not in RTC conservatorship.
+      - `liqunass` (integer) — Represents all instances where the owners of a thrift voluntarily surrender their charter with all liabilities including deposits paid down and all assets sold.
+      - `LNAG` (integer) — Loans To Finance Agricultural Production and Other Loans To Farmers On A Consolidated Basis Note: For Banks With Foreign Operations, Data For All Periods Form December 1972 Through September 1978 Are Domestic Only
+      - `LNALLOTH` (integer) — All Other Loans (1969-Present -- Represents Federal funds purchased, securities sold under agreements to repurchase, demand notes issued to the US Treasury, mortgage indebtedness, liabilities under capitalized leases and all other liabilities for borrowed money. -- 1934-1968 -- Does not include mortgage indebtedness which is netted against bank premises.)
+      - `LNATRES` (integer) — Allowance For Loan and Lease Financing Receivable Losses and Allocated Transfer Risk On A Consolidated Basis Note: (1) From March 2001 To Dec 2002 Allocated Transfer Riskis Netted From Loans & Not Included As Part Of The Reserve (2) Additional Detail Can Be Found On Schedule Ri-B (3) For Tfr Filers Between March 1984 Through December 1989 Includes Allowance For Mortgage Pool Securities (4) For Banks With Foreign Operations, Data For March & September Of 1972 Through 1975 Was Reported On A Domestic Basis
+      - `LNAUTO` (integer) — Represents installment loans to purchase private passenger automobiles, both direct loans and purchased paper
+      - `LNCI` (integer) — Commercial and Industrial Loans On A Consolidated Basis Note: For Banks With Foreign Operations, Data For All Periods From December 1972 Through September 1978 Are Domestic Only
+      - `LNCON` (integer) — Loans To Individuals For Household, Family, and Other Personal Expenditures (Consumer Loans) On A Consolidated Basis Note: (1) For Tfr Filers Includes Revolving Loans Secured By 1-4 Family Dwelling Units From March 1984 Through March 1988 (1) For Banks With Foreign Operations, Data For All Periods From December 1972 Through September 1978 Are Domestic Only
+      - `LNCONOT1` (integer) — Installment Loans To Individuals To Repair and Modernize Residential Property Held In Domestic Offices
+      - `LNCONOTH` (integer) — Represents all other loans to individuals for household, family and other personal expenditures. It includes auto loans, both direct and indirect, mobile homes (unless secured by a real estate mortgage), education loans, other installment loans both secured by personal property or unsecured, and single payment loans (time or demand, secured or unsecured)
+      - `LNCRCD` (integer) — Credit Cards Related Plans On A Consolidated Basis Note: (1)Prior To March 2001 Includes Credit Cards Related Plans-Loans To Individuals For Household, Family, and Other Personal Expenditures (Consumer Loans) Includes Check Credit and Other Revolving Credit Plans (2) For Tfr Filers Between March 1984 Through March 1988 This Figure Includes Home Equity Loans Based On The Creditworthiness Of The Borrower (T-Sc340) (3) For Banks With Foreign Operations, Data For All Periods From December 1972 Through September 1978 Are Domestic Only
+      - `LNDEP` (integer) — Loans To Depository Institutions On A Consolidated Basis Note: For Banks With Foreign Operations, Data For All Periods From December 1972 Through September 1978 Are Domestic Only Note:(1) Beginning March 2001 Includes Acceptances Of Other Banks (2) Beginning March 2001, Includes Acceptances Of Other Banks For Ibas
+      - `LNLS` (integer) — Represents the sum of all components of loans
+      - `LNLSGR` (integer) — Loans and Lease Financing Receivables, Net Of Unearned Income, On A Consolidated Basis Note: (1) Additional Detail Can Be Found On Schedule Rc-C (2) For Tfr Filers This Item Is Net Of Unamortized Yield Adjustments For Mortgage Pool Securities From March 1984 Through December 1989 (3) For Banks With Foreign Operations, Data For March & September Of 1972 Through 1975 Was Reported On A Domestic Basis
+      - `LNLSNET` (integer) — Loans and Lease Financing Receivables, Net Of Unearned Income, Allowance, and Reserve On A Consolidated Basis Note: (1) For Tfr Filers This Item Is Net Of Valuation Allowances and Unamortized Yield Adjustments For Mortgage Pool Securities From March 1984 Through (2) For Banks With Foreign Operations, Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `LNMOBILE` (integer) — Represents loans to individuals to purchase mobile homes. (If the bank's security interest in the loan was represented by a mortgage or deed of trust, the loan should be included in real estate loans)
+      - `LNMUNI` (integer) — Obligations (Other Than Securities and Leases) Of States and Political Subdivisions In The U.S. (Including Nonrated Industrial Development Obligations) On A Consolidated Basis
+      - `LNRE` (integer) — Loans Secured By Real Estate On A Consolidated Basis Note: (1) For Tfr Filers Between March 1984 Through March 1988 This Figure Excludes Home Equity Loans Based On The Creditworthiness Of The Borrower (T-Sc340) (2) For Banks With Foreign Operations, Data For All Periods From December 1972 Through September 1978 Are Domestic Only
+      - `LNREAG` (integer) — Represents loans secured by farmland, including improvements, and other land known to be used or usable for agricultural purposes, as evidenced by mortgages or other liens. It includes loans secured by farmland that are guaranteed by the Farmers Home Administration (FHA) or by the Small Business Administration
+      - `LNRECONS` (integer) — Construction and Land Development Loans Secured By Real Estate Held In Domestic Offices Note: For Tfr Filers Portions Of Lnrecons Were Included In Other Real Estate Loan Categories Prior To March 30, 1986
+      - `LNREDOM` (integer) — Represents the total of all loans secured by real estate in domestic offices (U.S. and other areas)
+      - `LNREFOR` (integer) — Represents all loans secured by real estate in foreign offices
+      - `LNRELOC` (integer) — Revolving, Open-End Loans Secured By 1-4 Family Residential Properties and Extended Under Lines Of Credit Held In Domestic Offices
+      - `LNREMULT` (integer) — Multifamily (5 Or More) Residential Properties Secured By Real Estate Held In Domestic Offices
+      - `LNRENRES` (integer) — Nonfarm Nonresidential Properties Secured By Real Estate Held In Domestic Offices Note: For Tfr Filers This Figure Includes Mortgages On Properties That Are Used For Farming
+      - `LNRERES` (integer) — Total Loans Secured By 1-4 Family Residential Properties Held In Domestic Offices Note: For Tfr Filers Between March 1984 Through March 1988 This Figure Excludes Home Equity Loans Based On The Creditworthiness Of The Borrower
+      - `LNRESRE` (integer) — Allowance For Loan Losses On Real Estate Loans On A Consolidated Basis Note: For Tfr Filers Includes Allowance For Mortgage Pool Securities Between March 1984 Through December 1989
+      - `LNSP` (integer) — All loans both time or demand, secured or unsecured, to individuals for personal, family or other household expenditures
+      - `LS` (integer) — Lease Financing Receivables (Net Of Unearned Income) On A Consolidated Basis Note: For Banks With Foreign Operations, Data For March & September Call Dates Are Domestic Only Through December 1975
+      - `MERGERS` (integer) — Mergers, consolidations or absorptions entered into as a result of supervisory actions. The transaction may or may not have required FDIC assistance.
+      - `MISSADJ` (integer) — Represents any FDIC-insured savings institution that did not file a financial report during the year in which the charter was added or deleted.
+      - `MTGLS` (integer) — Represents mortgage indebtedness and liabilities under capitalized leases
+      - `NALNLS` (integer) — Total Nonaccrual Loans and Lease Financing Receivables On A Consolidated Basis
+      - `NCHGREC` (integer) — Net Loans and Leases Charge Offs (-- 1984-1989 -- Represents Loan and Lease Charge-offs less Loan and Lease Recoveries. An amount enclosed in paraentheses indicates net recoveries. Not collected by TFR filers. -- 1990-Present -- Represents Loan and Lease Charge-offs less Loan and Lease Recoveries. An amount enclosed in paraentheses indicates net recoveries.)
+      - `NCLNLS` (integer) — Total Loans and Lease Financing Receivables 90 Days Or More Past Due and Nonaccrual On A Consolidated Basis Note: Includes Delinquent Loans (60 Or More Days Overdue) and Past Due Loans (One Or More Payments Missed) For Tfr Filers Prior To March 1990
+      - `NETINC` (integer) — Net Income Attributable To The Bank On A Consolidated Basis Note: For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `newcount` (integer) — Institutions newly chartered by federal or state banking authorities including authorities in the U. S. Territories or possessions.
+      - `New_Char` (integer) — Institutions newly licensed or chartered by the Office of the Comptroller of the Currency (national banks) or by state banking authorities, including banking authorities in the U. S. territories or possessions. Includes de novo institutions as well as charters issued to take over a failing institution.
+      - `NEW6_1` (integer) — Represents interest expense related to demand notes issued to the U. S. Treasury, mortgage indebtedness, obligations under capitalized leases, and other borrowed money
+      - `NEW9_1` (integer) — Represents all other assets not included in previously mentioned captions. Includes, for the most part, customers' liabilities on acceptances outstanding, income earned not collected as well as any other asset not included above
+      - `NEW10_1` (integer) — Represents all securities, bonds, notes and debentures of domestic and foreign corporations. Also includes privately issued or guaranteed mortgage backed securities and certain detached U.S. Government security coupons held as a result of either their purchase or the bank's stripping them (CATS, TIGRs, COUGARs, LIONs and ETRs).
+      - `NEW10_2` (integer) — Securities within the scope of ASC Topic 320, Investments – Debt Securities, that a bank has elected to report at fair value under a fair value option with changes in fair value reported in current earnings should be classified as trading securities. (https://www.fdic.gov/regulations/resources/call/crinst/2018-06/031-041-618rc-d-063018.pdf)
+      - `NEW10_3` (integer) — For all years except 1969-1973, investment securities are reflected net of general valuation reserves. Specific reserves are deducted from each security so reserved
+      - `NEW11_1` (integer) — Represents unplanned overdrafts and loans to: brokers and dealers in securities, any borrower for the purpose of purchasing and carrying securities, nonprofit institutions and organizations, individuals for investment purposes, real estate investment trusts, mortgage companies holding companies of depository institutions, insurance companies, finance companies, factors and other financial intermediaries, federally sponsored lending agencies, investment banks, the bank's own trust department, Small Business Investment Companies, foreign governments and official institutions, and any other loan not included in one of the above categories
+      - `NEW14_1` (integer) — Represents Federal funds purchased, securities sold under agreements to repurchase, demand notes issued to the US Treasury, mortgage indebtedness, liabilities under capitalized leases and all other liabilities for borrowed money
+      - `NEW14_2` (integer) — Includes all liabilities not included above and limited life preferred stock
+      - `NEW14_3` (integer) — Represents the total of all components of liabilities
+      - `NEW14_4` (integer) — Represents undivided profits and related accounts
+      - `NEW15_1` (integer) — Represents all deposits of individuals, partnerships and corporations in domestic and foreign offices
+      - `NEW15_2` (integer) — Represents all deposits of individuals, partnerships and corporations in domestic and foreign offices
+      - `NEW15_3` (integer) — Represents all deposits of states, counties and municipalities in domestic offices. Such deposits, if any, in foreign offices are not separately reported
+      - `NEW15_4` (integer) — Represents all other deposits. Includes deposits of financial institutions, both domestic and foreign, deposits of foreign governments and official institutions and certified and official checks. Also includes deposits in foreign offices other than those of individuals, partnerships and corporations
+      - `NEW15_5` (integer) — Represents all savings deposits in domestic offices
+      - `NEW15_7` (integer) — Total Domestic Deposits
+      - `NEW16_1` (integer) — Represents demand notes issued to the U.S. Treasury (Treasury tax & loan account), and all other borrowings. Includes mortgage indebtedness and liabilities under capitalized leases for Call report filers. Includes FSLIC net worth certificates for TFR filers
+      - `NEW16_2` (integer) — Represents any deposit in domestic and foreign offices on which the banks pays or accrues interest
+      - `NIM` (integer) — Net Interest Income (Total Interest Income Minus Total Interest Expense) On A Consolidated Basis Note: For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `NONII` (integer) — Total Non-interest Income On A Consolidated Basis Note: (1) From March 1990 Through March 2009, Excludes Gains (Losses) On Assets Held For Sale For Tfr Filers, See Tfr Instructions For So430 (2) Excludes Gains On The Sale Of Loans Held For Investments From March 1984 Through December 1989 For Tfr Filers (3) For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `NONIX` (integer) — Total Non-interest Expense On A Consolidated Basis Note: (1) Excludes Losses On Asset Sales For Tfr Filers Beginning June 1996 (2) Includes Loss On Sale Of Mortgage Pool and Other Securities Held For Investment For Tfr Filers From March 1984 Through December 1986 (3) Excludes Losses On Loans Held For Investment For Tfr Filers From March 1987 Through December 1989 (4) For Banks With Foreign Operations, Data For December 1972 Through December 1975 Are Domestic Only
+      - `NTLNLS` (integer) — Represents Loan and Lease Charge-offs less Loan and Lease Recoveries. An amount enclosed in parentheses indicates net recoveries. Not collected by TFR filers
+      - `NTR` (integer) — Represents deposits that are not included in the definition of transaction accounts above or that do not satisfy the criteria necessary to be defined as a transaction account. MMDA's are specifically defined as nontransaction accounts
+      - `NTRTIME` (integer) — Represents all time certificates of deposit, time open accounts and similar deposits in domestic offices
+      - `NTRTMLG` (integer) — Time Deposits Over $100,000 Or More Held In Domestic Offices Note: (1) Listed As Memoranda Only and Is Included In Total Nontransaction Accounts (2) Prior To March 2007, Includes All Deposits (Not Just Time) Greater Than $100,000 For Tfr Filers. Except For December 2006, Includes All Nonretirement Deposits Over $100,000 and All Retirement Deposits Over $250,000 For Tfr Filers (3) Includes Time Deposits Of $100,000 Or More
+      - `NUMEMP` (integer) — Number Of Full Time-Equivalent Employees On Payroll At The End Of The Current Period Note: (1) Listed As Memoranda Only (2) For Banks With Foreign Operations Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `OEA` (integer) — Other Earning Assests (-- 1984-1989 -- Represents Federal funds sold and securities purchased under agreements to resell (repurchase agreements). Items not separately reported by TFR filers. They are included in Secruties. -- 1990-Present -- Represents Federal funds sold and securities purchased under agreements to resell (repurchase agreements). Includes only Federal funds sold for TFR filers. Repurchase agreements are included in Securities.)
+      - `OFFICES` (integer) — Offices include: Multiple service offices, Military facilities, Drive-in facilities, Loan production offices, Consumer credit offices, Seasonal offices, Administrative offices, Messenger service offices, Supermarket banking offices, and Other offices.
+      - `OINTBOR` (integer) — Demand Notes and Other Borrowings (Represents demand notes issued to US Treasury (Treasury tax & loan account), and all other borrowings. Includes mortgage indebtedness and liabilities under capitalized leases for Call report filers. Includes FSLIC net worth certificates for TFR filers.)
+      - `OINTEXP` (integer) — Total Other Interest Expenses (Federal Funds Purchased and Securities Sold -- Represents the gross expense of all liabilities reportable under this category. This item is not reported separately by TFR filers. It is included in Borrowed Money).
+      - `OINTINC` (integer) — Total Other Interest Income (Represents the total of all Other Interest Income components).
+      - `OONONII` (integer) — Other Non Interest Income (1984-1989 -- Same as Total Other Interest Income except gains on the sale of loans held for investment are excluded for TFR filers. -- 1990- Present -- Represents income derived from the sale of assets held for sale; office building operations; real estate held for investment; REO operations; LOCOM adjustments made to assets held for sale; net income (loss) from investements in service corporations/subsidiaries (other than operating or finance subsidiaires); leasing operations; realized and unrealized gains (losses) on trading assets; gains on the sale of REO real estate held for investment, and loans held for investment; and the amoritization of deferred gains (losses) on asset hedges.)
+      - `ORE` (integer) — Other Real Estate Owned On A Consolidated Basis Note: (1) Prior To June 2009, Includes Direct and Indirect Investments In Real Estate (2) For Banks With Foreign Operations Data For March & September Of 1972 Through 1975 Was Reported On A Domestic Basis
+      - `ORET` (integer) — Other Real Estate (Represents other real estate owned net of reserves for losses). Not available for 1997. For 1986 through 1988 ORET = ORE + INVSUORE; for all other years ORET = ORE
+      - `OT_BIF` (integer) — Non FDIC supervised BIF insured institutions
+      - `OT_SAIF` (integer) — Non FDIC supervised SAIF insured institutions
+      - `OTHASST` (integer) — All Other Assets (Same as Other Real Estate except that investment in service corporations/subsidiaries is reported gross of valuation allowances by TFR filers, and assets held in trading accounts are included in Securities for TFR filers. -- 1990-Present -- Represents all associations assets not previously mentioned. Includes all non real estate repossessed property, investment in service corporations/subsidiaries, property leased to others, income earned but not yet collected, assets held in the trading accounts, and miscellaneous assets) For 2009- present OTHASST = SUM (INVSUB + INVSUORE + CUSLI + OA)
+      - `OTHBFHLB` (integer) — Other Liabilities From The Fhlb Note:Prior To March 2001 Only Reported On Tfrs
+      - `OTHBORR` (integer) — Borrowed Money (Represents interest expense related to demand notes issued the US Treasury, mortage indebtedness, obligations under capitalized leases and on other borrowed money.
+      - `OTHEQ` (integer) — Represents all equity securities not held for trading: investment in mutual funds, common stock of FNMA, Student Loan Marketing Association, Federal Home Loan Mortgage Corporation, Federal Reserve Bank stock, Federal Home Loan Bank stock, minority interests not meeting the definition of associated companies, "restricted" stock, and other equity securities in both domestic and foreign corporations
+      - `OTHER` (integer) — Withdrawals from FDIC insurance, voluntary liquidations, or conversions to institutions that are not considered commercial banks. Also includes relocation of banks from one state to another.
+      - `OTHLIAB` (integer) — Other Liabilities (Includes all liabilities not included above and limited life preferred stock. 2001- present -- Includes OTHER LIAB & MINOR IN SUBS).
+      - `OTHNBORR` (integer) — Borrowed Funds (Includes federal funds purchased, securities sold under agreements to repurchase (reverse repurchase agreements), demand notes issued to the US Treasury, mortgage indebtedness, liabilities under capitalized leases and all other liabilities for borrowed money. Includes only reverse purchase agreements (securities sold under agreements to repurchase) and FSLIC net worth certificates for TFR filers)
+      - `OTLNCNTA` (integer) — Other Contracts (Represents amount reported by savings institutions that file on the Thrift Financial Report. Contra accounts include accrued interest receivable, unamortized yield adjustments and valuation allowances. Negative amounts reflect unamortized premiums and deferred direct costs exceeding unamortized discounts and deferred loan fees).
+      - `PAID_OFF` (integer) — Institutions that were declared insolvent, the insured deposits of which were paid by the FDIC.
+      - `P3LNLS` (integer) — Total Loans and Lease Financing Receivables Past Due 30 Through 89 Days and Still Accruing Interest On A Consolidated Basis Note: (1) Prior To March 2001,This Information On An Institution Level Is Considered Confidential By The Ffiec
+      - `P9LNLS` (integer) — Total Loans and Lease Financing Receivables Past Due 90 Or More Days and Still Accruing Interest On A Consolidated Basis
+      - `PTXNOINC` (integer) — Pre-Tax Net Operating Income
+      - `REL_CO` (integer) — Conversions of existing institutions of any type that meet the definition of commercial banks (see Definition of Total Commercial Banks and have applied for and received FDIC insurance. Also includes bank relocations from one state to another.
+      - `SAVINGS` (integer) — Total Insured Savings Institutions including institutions that did not file a 12/31 fincncial report and other adjustments (See Notes to User).
+      - `SC` (integer) — Total Securities: The Sum Of Held-To-Maturity Securities At Amortized Cost, Available-For-Sale Securities At Fair Value and Equity Securities With Readily Determinable Fair Values Not Held For Trading On A Consolidated Basis Note: 1. Prior To March 2018, Defined As Total Held-To-Maturity At Amortized Cost and Available-For-Sale At Fair Value Securities (Excludes Assets Held In Trading Accounts) On A Consolidated Basis 2. Beginning In 2018, Includes Equity Securities For Institutions That Have Adopted Asu2016-01 and Those Institutions That Have Not Yet Adopted This Accounting Standard 3. Prior To March 1994 Item Defined As Book Value 4. Additional Detail Can Be Found On Schedule Rc-B 5. For Tfr Filers Between March 1984 Through December 1989 Includes Interest-Earning Deposits In Fhlbs, Other Interest-Earning Deposits, Federal Funds Sold and Assets Held In Trading Accounts 6. For Banks With Foreign Operations Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis
+      - `SCAGE` (integer) — Total U.S. Government Agency and Corporation Obligations On A Consolidated Basis Note: 1) From June 2009 Through December 2010, This Item Excluded Other Commercial Mortgage-Backed Securities 2) Prior To June 2009, This Item Included Other Commercial Mortgage-Backed Securities 3) Beginning March 1994 Consists Of Held-To-Maturity At Amortized Cost and Available-For-Sale At Fair Value Securities 4) Includes The Aforementioned Securities Held In Trading Accounts For Tfr Filers 5) Includes U.S. Treasury Securities For Tfr Filers Between March 1984 Through December 1989 and After March 1996 6) Does Not Include Mortgage Derivative Securities For Tfr Filers Between March 1984 Through December 1986 7) For Banks With Foreign Operations, Data For March & September Of 1973 Through 1975 Are Reported On A Domestic Basis
+      - `SCEQ` (integer) — Total Equity Securities Available-For-Sale At Fair Value On A Consolidated Basis Note: (1) Beginning March 2018 Does Not Include Equity Securities For Institutions That Have Adopted Asu 2016-01 See Sceqfv (2) Includes The Aforementioned Securities Held In Trading Accounts For Tfr Filers
+      - `SCMTGBK` (integer) — Mortgage Backed Securities On A Consolidated Basis Includes: (1) U.S. Government Agency and Corporation Obligations Issued Or Guaranteed Certificates Of Participation In Pools Of Residential Mortgages, (2) U.S. Government Agency and Corporation Obligations Collateralized Mortgage Obligations Issued By Fnma and Fhlmc (Including Remics) (3) Other Domestic Debt Securities - Private (I.E., Non-Government-Issued-Or-Guaranteed) Certificates Of Participations In Pools Of Residential Mortgages, and (4) Other Domestic Debt Securities - Privately-Issued Collateralized Mortgage Obligations (Including Remics)
+      - `SCMUNI` (integer) — Total Securities Issued By States and Political Subdivisions Held-To-Maturity At Amortized Cost and Available-For-Sale At Fair Value On A Consolidated Basis Note: (1) Prior To March 1994 Item Was Defined As Book Value (2) Includes The Aforementioned Securities Held In Trading Accounts For Tfr Filers (3) For Banks With Foreign Opeations, Data For March & September Of 1973 Through 1975 Are Reported On A Domestic Basis
+      - `SCMV` (integer) — Represents the market (fair) value of all investment securities
+      - `SCRES` (integer) — Contra-Assets To Securities (Reserves) Note: For Tfr Filers Only
+      - `SCUS` (integer) — Total U.S. Treasury Securities and U.S. Government Agency and Corporation Obligations On A Consolidated Basis Note: 1) From June 2009 Through December 2010 This Item Excluded Commercial Mortgage Backed Securities 2) Prior To June 2009, This Item Included Commercial Mortgage Backed Securities 3) Beginning March 1994 Consists Of Held-To-Maturity At Amortized Cost and Available-For-Sale At Fair Value Securities 4) Does Not Include Mortgage Derivative Securities From March 1984 Through December 1986 For Tfr Filers 5) Includes The Aforementioned Securities Held In Trading Accounts For Tfr Filers 6) For Banks With Foreign Operations Data For March & September Of 1973 Through 1975 Are Reported On A Domestic Basis
+      - `SCUSA` (integer) — Securities Of Us Agencies
+      - `SCUST` (integer) — U.S. Treasury Securities Held-To-Maturity At Amortized Cost and Available-For-Sale At Fair Value On A Consolidated Basis Note: (1) Beginning June 1996, Tfr Filers No Longer Report U.S. Treasury Securities Separately (2) Prior To March 1994 Item Was Defined As Book Value (3) Includes The Aforementioned Securities Held In Trading Accounts For Tfr Filers (4) For Banks With Foreign Operations, Data For March & September Of 1973 Through 1975 Are Reported On A Domestic Basis
+      - `STNAME` (string) — Locations
+      - `STNUM` (string) — State Number
+      - `SUBLLPF` (integer) — Subordinated Notes and Debentures and Limited-Life Preferred Stock and Related Surplus On A Consolidated Basis Note: (1) Banks With Foreign Operations Data For March & September Of 1972 Through 1975 Are Reported On A Domesitc Basis
+      - `SUBND` (integer) — Represents all notes and debentures subordinated to deposits and all capital notes and debentures
+      - `TINTINC` (integer) — Total Other Interest Income (Represents the sum of Other Interest Income - Investment Securities, Trading Account Assets, Federal Funds Sold and Securities Purchased, and Balanaces Due from Depository Institutions)
+      - `tochrt` (integer) — Represents the charter transfer of existing FDIC-insured savings institutions to an FDIC-insured commercial bank charter.
+      - `tofail` (integer) — Represents the absorption of a failing savings institution by a commercial bank with assistance from either the BIF or SAIF.
+      - `TOINTEXP` (integer) — Total Other Interest Expense (Represents the sum of all components of Other Interest Expense)
+      - `tomerg` (integer) — Represents the absorption of a savings institution charter by a commercial bank without assistance.
+      - `tortc` (integer) — Represents institutions that were declared failed and placed under RTC conservatorship until a buyer(s) is(are) found or a payout to depositors occurs.
+      - `TOTAL` (integer) — Total Insured Commercial Banks including institutions that did not file a 12/31 fincncial report and other adjustments (See Notes to User)
+      - `TOT_FDIC` (integer) — Total FDIC Supervised Savings Institutions
+      - `TOT_OTS` (integer) — Total Non FDIC Supervised Savings Institutions
+      - `TOT_SAVE` (integer) — All FDIC Insured Savings Institutions filing a 12/31 financial report
+      - `TPD` (integer) — Total Loans and Leases Past Due
+      - `TRADE` (integer) — Assets Held In Trading Accounts On A Consolidated Basis Note: (1) Effective March 1994 Item Reported On A Gross Basis (2) Additional Detail Can Be Found On Schedule Rc-D (3) For Banks With Foreign Operations Data For March & September Of 1972 Through 1975 Are Reported On A Domestic Basis, (4) For Periods 1972 Through 1983 Includes Only Securities
+      - `TRADES` (integer) — Trading Accounts
+      - `TRN` (integer) — Represents all demand deposits, NOW accounts, ATS accounts, accounts from which payments may be made to third parties by means of an automated teller machine, a remote service unit, or another electronic device, and accounts that permit third party payments through use of checks, drafts, negotiable instruments, or other similar instrument. (MMDA's are specifically excluded from the latter two definitions)
+      - `UNASSIST` (integer) — Voluntary mergers, consolidations or absorptions of two or more institutions.
+      - `UNINC` (integer) — Unearned Income On Loans On A Consolidated Basis Note: For Banks With Foreign Operations, Data For March 1976 Through September 1978 Are Domestic Only
+      - `UNIT` (integer) — Unit banks are institutions that are operating only one office at which deposits are received or other banking business is conducted.
+      - `YEAR` (string) — Statistics reported as of end of year.
+- **400** — bad input parameter
+
+## Failures
+
+List of bank failures to date
+
+### GET /failures
+
+**Get detail on historical bank failures from 1934 to present.**
+
+Returns details on failed financial institutions.
+
+**Parameters**
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `filters` | query | string | No | The filter criteria that refines the records returned. Examples: * Filter by Location `CITYST:"MEMPHIS, TN"` * Filter all but a specified value `!(CITY:"PITTSBURGH")` * Filter by institution fail year range `FAILYR:["2015" TO "2016"]` |
+| `fields` | query | string | No | Comma delimited list of fields of failed financial institutions to return. |
+| `sort_by` | query | string | No | Field name by which to sort returned data. Default: `FAILDATE`. |
+| `sort_order` | query | string | No | Indicator if ascending (ASC) or descending (DESC). Default: `ASC`. |
+| `limit` | query | integer | No | The number of records to return. Default is 10 and maximum is 10,000. Default: `100`. Minimum: 0. Maximum: 10000. |
+| `offset` | query | integer | No | The offset of page to return. Default: `0`. Minimum: 0. |
+| `total_fields` | query | string | No | Fields to sum up (in a totals response object). Only numeric columns are valid. |
+| `subtotal_by` | query | string | No | The field by which data will be subtotaled (in totals response object). Only categorical values should be used. |
+| `agg_by` | query | string | No | The field(s) by which data will be aggregated. Valid values are 'FAILYR' or 'FAILYR,PSTALP'. |
+| `agg_term_fields` | query | string | No | The field(s) for which aggregations will be counted for each unique term. |
+| `agg_sum_fields` | query | string | No | The field(s) for which aggregations will be summed or aggregated. |
+| `agg_limit` | query | integer | No | The limit on how many aggregated results will be displayed. Default: `10`. Minimum: 0. Maximum: 10000. |
+| `format` | query | string | No | The format of the data to return. Allowed values: `json`, `csv`. |
+| `download` | query | string | No | Whether the data should be downloaded as a file. Allowed values: `false`, `true`. |
+| `filename` | query | string | No | The filename to use when downloading data. |
+
+**Responses**
+
+- **200** — Successful Operation
+  Body (`application/json`, object):
+  - `meta` (object)
+    - `total` (integer) — Total query result count
+    - `parameters` (object) — Query parameters supplied
+    - `index` (object)
+      - `name` (string) — name of index used to retrieve data
+      - `createTimestamp` (string (date-time)) — date/time index was created
+  - `data` (array of object)
+    - `data` (object)
+      - `NAME` (string) — This is the legal name of the institution. When available, the Institution's name links to useful information for the customers and vendors of these institutions. This information includes press releases, information about the acquiring institution, (if applicable), how your accounts and loans are affected, and how vendors can file claims against the receivership.
+      - `CERT` (string) — The certificate number assigned by the FDIC used to identify institutions and for the issuance of insurance certificates. By clicking on this number, you will link to the Institution Directory (ID) system which will provide the last demographic and financial data filed by the selected institution.
+      - `FIN` (string) — Financial Institution Number (FIN) is a unique number assigned to the institution as an Assistance Agreement, Conservatorship, Bridge Bank or Receivership.
+      - `CITYST` (string) — The city and state (or territory) of the headquarters of the institution.
+      - `FAILDATE` (string (date-time)) — The date that the failed / assisted institution ceased to exist as a privately held going concern. For institutions that entered into government ownership, such as FDIC Bridge Banks and RTC conservatorships, this is the date that they entered into such ownership.
+      - `FAILYR` (string) — The 4-digit year that the failed / assisted institution ceased to exist as a privately held going concern. For institutions that entered into government ownership, such as FDIC Bridge Banks and RTC conservatorships, this is the date that they entered into such ownership.
+      - `SAVR` (string) — Before 1989, there were two federal deposit insurance funds, one administered by the FDIC, which insured deposits in commercial banks and state-chartered savings banks, and another administered by the Federal Savings and Loan Insurance Corporation (FSLIC), which insured deposits in state- and federally-chartered savings associations. In 1989, the Financial Institutions Reform, Recovery and Enforcement Act (FIRREA) specified that thereafter the FDIC would be the federal deposit insurer of all banks and savings associations and would administer both the FDIC fund, which was renamed the Bank Insurance Fund (BIF) and the replacement for the insolvent FSLIC fund, which was called the Savings Association Insurance Fund (SAIF). Although it was created in 1989, the SAIF was not responsible for savings association failures until 1996. From 1989 through 1995, savings association failures were the responsibility of the Resolution Trust Corporation (RTC). In February 2006, The Federal Deposit Insurance Reform Act of 2005 provided for the merger of the BIF and the SAIF into a single Deposit Insurance Fund (DIF). Necessary technical and conforming changes to the law were made under The Federal Deposit Insurance Reform Conforming Amendments Act of 2005. The merger of the funds was effective on March 31, 2006. For additional information about deposit insurance fund and legislation, go to http://www.fdic.gov/deposit/insurance/index.html. Allowed values: `BIF`, `RTC`, `FSLIC`, `SAIF`, `DIF`, `FDIC`.
+      - `RESTYPE1` (string) — Institutions have been resolved through several different types of transactions. The transaction types outlined below can be grouped into three general categories, based upon the method employed to protect insured depositors and how each transaction affects a failed / assisted institution's charter. In most assistance transactions, insured and uninsured depositors are protected, the failed / assisted institution remains open and its charter survives the resolution process. In purchase and assumption transactions, the failed / assisted institution's insured deposits are transferred to a successor institution, and its charter is closed. In most of these transactions, additional liabilities and assets are also transferred to the successor institution. In payoff transactions, the deposit insurer - the FDIC or the former Federal Savings and Loan Insurance Corporation - pays insured depositors, the failed / assisted institution's charter is closed, and there is no successor institution. For a more complete description of resolution transactions and the FDIC's receivership activities, see Managing the Crisis: The FDIC and RTC Experience, a study prepared by the FDIC's Division of Resolutions and Receiverships. Copies are available from the FDIC's Public Information Center. Category 1 - Institution's charter survives A/A - Assistance Transactions. These include: 1) transactions where assistance was provided to the acquirer, who purchased the entire institution. For a few FSLIC transactions, the acquirer purchased the entire bridge bank - type entity, but certain other assets were moved into a liquidating receivership prior to the sale, and 2) open bank assistance transactions, including those where assistance was provided under a systemic risk determination (in such cases any costs that exceed the amounts estimated under the least cost resolution requirement would be recovered through a special assessment on all FDIC-insured institutions). REP - Reprivatization, management takeover with or without assistance at takeover, followed by a sale with or without additional assistance. Category 2 - Institution's charter is terminated, insured deposits plus some assets and other liabilities are transferred to a successor charter P&A - Purchase and Assumption, where some or all of the deposits, certain other liabilities and a portion of the assets (sometimes all of the assets) were sold to an acquirer. It was not determined if all of the deposits (PA) or only the insured deposits (PI) were assumed. PA - Purchase and Assumption, where the insured and uninsured deposits, certain other liabilities and a portion of the assets were sold to an acquirer. PI - Purchase and Assumption of the insured deposits only, where the traditional P&A was modified so that only the insured deposits were assumed by the acquiring institution. IDT - Insured Deposit Transfer, where the acquiring institution served as a paying agent for the insurer, established accounts on their books for depositors, and often acquired some assets as well. Includes ABT (asset-backed transfer, a FSLIC transaction that is very similar to an IDT). MGR - An institution where FSLIC took over management and generally provided financial assistance. FSLIC closed down before the institution was sold. Category 3 PO - Payout, where the insurer paid the depositors directly and placed the assets in a liquidating receivership. Note: Includes transactions where the FDIC established a Deposit Insurance National Bank to facilitate the payout process. Allowed values: `A/A`, `REP`, `P&A`, `PA`, `PI`, `IDT`, `MGR`, `PO`.
+      - `CHCLASS1` (string) — The FDIC assigns classification codes indicating an institution's charter type (commercial bank, savings bank, or savings association), its chartering agent (state or federal government), its Federal Reserve membership status (member or nonmember), and its primary federal regulator (state-chartered institutions are subject to both federal and state supervision). These codes are: N - National chartered commercial bank supervised by the Office of the Comptroller of the Currency; SM - State charter Fed member commercial bank supervised by the Federal Reserve; NM - State charter Fed nonmember commercial bank supervised by the FDIC; SA - State or federal charter savings association supervised by the Office of Thrift Supervision or Office of the Comptroller of the Currency; SB - State charter savings bank supervised by the FDIC. Allowed values: `N`, `SM`, `NM`, `SA`, `SB`.
+      - `RESTYPE` (string) — The given institution has failure stature or it can be assistance has been provided by FDIC in merging with other institution. Allowed values: `Failure`, `Assistance`.
+      - `QBFDEP` (number) — Total including demand deposits, money market deposits, other savings deposits, time deposits and deposits in foreign offices as of the last Call Report or Thrift Financial Report filed by the institution prior to the effective date. Note this does not necessarily reflect total deposits on the last report filed because in some cases reports were filed after the effective date.
+      - `QBFASSET` (number) — The Total assets owned by the institution including cash, loans, securities, bank premises and other assets as of the last Call Report or Thrift Financial Report filed by the institution prior to the effective date. Note this does not necessarily reflect total assets on the last report filed because in some cases reports were filed after the effective date. This total does not include off-balance-sheet accounts.
+      - `COST` (number) — The estimated loss is the difference between the amount disbursed from the Deposit Insurance Fund (DIF) to cover obligations to insured depositors and the amount estimated to be ultimately recovered from the liquidation of the receivership estate. Estimated losses reflect unpaid principal amounts deemed unrecoverable and do not reflect interest that may be due on the DIF's administrative or subrogated claims should its principal be repaid in full. Notes: Comprehensive data on estimated losses are not available for FDIC-insured failures prior to 1986, or for FSLIC-insured failures from 1934-88. Estimated loss is presented as "N/A" in years for which comprehensive information is not available. Estimated Loss data was previously referred to as 'Estimated Cost' in past releases of the Historical Statistic on Banking. For RTC receiverships, the 'Estimated Cost' included an allocation of FDIC corporate revenue and expense items such as interest expense on Federal Financing Bank debt, interest expense on escrowed funds and interest revenue on advances to receiverships. Other FDIC receiverships did not include such an allocation. To maintain consistency with FDIC receiverships, the RTC allocation is no longer reflected in the estimated loss amounts for failed / assisted institutions that were resolved through RTC receiverships. Beginning with the release of 2007 information, the 'Estimated Loss' in the Historical Statistics on Banking is presented and defined consistently with the aggregate Estimated Receivership Loss for FRF-RTC institutions and Estimated Losses for FDIC receiverships that are reported in the FDIC's Annual Report. The estimated loss is obtained from the FDIC's Failed Bank Cost Analysis (FBCA) report and the RTC Loss report. The FBCA provides data for receiverships back to 1986. The RTC Loss Report provides similar data back to 1989. Questions regarding Estimated Loss should be sent to DOFBusinessCenter@fdic.gov. Also, for more detail regarding resolution transactions and the FDIC's receivership activities, see Managing the Crisis: The FDIC and RTC Experience, a historical study prepared by the FDIC's Division of Resolutions and Receiverships. Copies are available from the FDIC's Public Information Center.
+      - `PSTALP` (string) — Two-character alphanumeric code for US state or Territory
+  - `totals` (object) — Total and subtotal data (additional properties based on fields selected)
+    - `count` (integer) — Total result count
+- **400** — bad input parameter
+
+## History
+
+List of structure change events
+
+### GET /history
+
+**Get Detail on Structure Change Events**
+
+Returns details on structure change events
+
+**Parameters**
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `filters` | query | string | No | The filter criteria that refines the records returned. Examples: * Filter by State `STATE:"VIRGINIA"` * Filter all but a specified value `!(STATE:"VIRGINIA")` * Filter by Date Range `PROCDATE:[2020-01-01 TO 2020-02-01]` |
+| `search` | query | string | No | Flexible text search against institution records Search supports text search and fuzzy matching, as opposed to filters that are exact matches. Examples: * Search by Name `NAME: Island` * Search by Name (fuzzy match) `NAME: Iland` * Search by State `STATE: VA` |
+| `fields` | query | string | No | Comma delimited list of fields of failed financial institutions to return. |
+| `sort_by` | query | string | No | Field name by which to sort returned data. Default: `PROCDATE`. |
+| `sort_order` | query | string | No | Indicator if ascending (ASC) or descending (DESC). Default: `ASC`. |
+| `limit` | query | integer | No | The number of records to return. Default is 10 and maximum is 10,000. Default: `100`. Minimum: 0. Maximum: 10000. |
+| `offset` | query | integer | No | The offset of page to return. Default: `0`. Minimum: 0. |
+| `agg_by` | query | string | No | The field(s) by which data will be aggregated |
+| `agg_term_fields` | query | string | No | The field(s) for which aggregations will be counted for each unique term. |
+| `agg_limit` | query | integer | No | The limit on how many aggregated results will be displayed. Default: `10`. Minimum: 0. Maximum: 10000. |
+| `format` | query | string | No | The format of the data to return. Allowed values: `json`, `csv`. |
+| `download` | query | string | No | Whether the data should be downloaded as a file. Allowed values: `false`, `true`. |
+| `filename` | query | string | No | The filename to use when downloading data. |
+
+**Responses**
+
+- **200** — Successful Operation
+  Body (`application/json`, object):
+  - `meta` (object)
+    - `total` (integer) — Total query result count
+    - `parameters` (object) — Query parameters supplied
+    - `index` (object)
+      - `name` (string) — name of index used to retrieve data
+      - `createTimestamp` (string (date-time)) — date/time index was created
+  - `data` (array of object)
+    - `data` (object)
+      - `TRANSNUM` (number) — System Transaction Number
+      - `CHANGECODE` (number) — Activity Event Code
+      - `CHANGECODE_DESC` (string) — Activity Event Code Description
+      - `PROCDATE` (string (date-time)) — A date indicating when an institution's change/event is processed.
+      - `EFFDATE` (string (date-time)) — Effective Date
+      - `ENDDATE` (string (date-time)) — Effective Date
+      - `UNINUM` (number) — FDIC's unique identifier number for holding companies, banks, branches and nondeposit subsidiaries.
+      - `ACQ_UNINUM` (number) — FDIC's unique identifier number for holding companies, banks, branches and nondeposit subsidiaries. This value maps to the main office for the acquiring Institution in a merger, acquisition, etc.
+      - `OUT_UNINUM` (number) — FDIC's unique identifier number for holding companies, banks, branches and nondeposit subsidiaries. This value maps to the main office for the divesting Institution in a merger, acquisition, etc.
+      - `ORG_ROLE_CDE` (string) — Codes include FI (Financial Institution), BR (Branch), and PA
+      - `REPORT_TYPE` (number) — Type of Report
+      - `CLASS` (string) — TBD
+      - `BANK_INSURED` (string) — Bank Insurance Status
+      - `ACQ_CHANGECODE` (number) — Activity Event Code
+      - `ACQ_ORG_EFF_DTE` (string (date-time)) — Acquiring Institution's Effective Date
+      - `ACQ_INSTNAME` (string) — The legal name of the institution.
+      - `ACQ_CERT` (number) — A unique NUMBER assigned by the FDIC used to identify institutions and for the issuance of insurance certificates.
+      - `ACQ_CLCODE` (number) — Numeric code which identifies the major and minor categories of an institution.
+      - `ACQ_CHARTER` (number) — A unique number assigned by the Office of the Comptroller of the Currency (OCC) used to identify institutions that it has chartered and regulates (i.e. national banks).
+      - `ACQ_CHARTAGENT` (string) — All Chartering Agencies - State and Federal Comptroller of the Currency - Chartering authority for nationally chartered commercial banks and for federally chartered savings associations (The Office of Thrift Supervision (OTS) before 7/21/11) State (includes U.S. Territories) - Chartering authority for institutions that are not chartered by the OCC or OTS
+      - `ACQ_FDICREGION` (number) — A numeric value associated with the name of an FDIC supervisory region
+      - `ACQ_FDICREGION_DESC` (string) — A description associated with the name of an FDIC supervisory region
+      - `ACQ_PADDR` (string) — Street address at which the institution or one of its branches is physically located.
+      - `ACQ_PCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `ACQ_PSTALP` (string) — State in which the acquiring institution's main office or one if its branches are physically located. The FDIC Act defines state as any State of the United States, the District of Columbia, and any territory of the United States, Puerto Rico, Guam, American Samoa, the Trust Territory of the Pacific Islands, the Virgin Island, and the Northern Mariana Islands.
+      - `ACQ_PZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `ACQ_PZIPREST` (string) — Zip Code Extension
+      - `ACQ_MADDR` (string) — Street address at which the institution or one of its branches receives mail.
+      - `ACQ_MCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `ACQ_MSTATE` (string) — Mailing State
+      - `ACQ_MSTALP` (string) — Mailing State Abbbreviation
+      - `ACQ_MZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `ACQ_MZIPREST` (string) — Zip Code Extension
+      - `ACQ_CLASS` (string) — TBD
+      - `ACQ_CNTYNAME` (string) — County where the institution is physically located (abbreviated if the county name exceeds 16 characters).
+      - `ACQ_CNTYNUM` (number) — TBD
+      - `ACQ_INSAGENT1` (string) — Deposit Insurance Fund (DIF), Bank Insurance Fund (BIF), Savings Association Insurance Fund (SAIF)
+      - `ACQ_INSAGENT2` (string) — As a result of the establishment of a single Deposit Insurance Fund (DIF) effective April 1, 2006, the Secondary Insurance fund is no longer applicable. previously both bif and saif bank insurance fund - institutions that are members of the bank insurance fund savings association insurance fund - Institutions that are members of the Savings Association Insurance Fund
+      - `ACQ_REGAGENT` (string) — A code indicating the federal regulatory agency that provides primary supervision over an institution. OCC=Office of the Comptroller of Currency; FDIC=Federal Deposit Insurance Corporation; FRB=Federal Reserve Board; NCUA=National Credit Union Association; OTS=Office of Thrift Supervision.
+      - `ACQ_TRUST` (string) — Trust Power
+      - `ACQ_LATITUDE` (number) — Surviving Location Address Latitude
+      - `ACQ_LONGITUDE` (number) — Surviving Location Address Latitude
+      - `OUT_INSTNAME` (string) — The legal name of the institution.
+      - `OUT_CERT` (number) — A unique NUMBER assigned by the FDIC used to identify institutions and for the issuance of insurance certificates.
+      - `OUT_CLCODE` (number) — Numeric code which identifies the major and minor categories of an institution.
+      - `OUT_CHARTER` (number) — A unique number assigned by the Office of the Comptroller of the Currency (OCC) used to identify institutions that it has chartered and regulates (i.e. national banks).
+      - `OUT_CHARTAGENT` (string) — All Chartering Agencies - State and Federal Comptroller of the Currency - Chartering authority for nationally chartered commercial banks and for federally chartered savings associations (The Office of Thrift Supervision (OTS) before 7/21/11) State (includes U.S. Territories) - Chartering authority for institutions that are not chartered by the OCC or OTS
+      - `OUT_FDICREGION` (number) — A numeric value associated with the name of an FDIC supervisory region
+      - `OUT_FDICREGION_DESC` (string) — A description associated with the name of an FDIC supervisory region
+      - `OUT_PADDR` (string) — Street address at which the institution or one of its branches is physically located.
+      - `OUT_PCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `OUT_PSTALP` (string) — State in which the the headquarters are physically located. The FDIC Act defines state as any State of the United States, the District of Columbia, and any territory of the United States, Puerto Rico, Guam, American Samoa, the Trust Territory of the Pacific Islands, the Virgin Island, and the Northern Mariana Islands.
+      - `OUT_PZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `OUT_PZIPREST` (string) — Zip Code Extension
+      - `OUT_MADDR` (string) — Street address at which the institution or one of its branches receives mail.
+      - `OUT_MCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `OUT_MSTATE` (string) — Mailing State
+      - `OUT_MSTALP` (string) — Mailing State Abbbreviation
+      - `OUT_MZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `OUT_MZIPREST` (string) — Zip Code Extension
+      - `OUT_CLASS` (string) — TBD
+      - `OUT_CNTYNAME` (string) — County where the institution is physically located (abbreviated if the county name exceeds 16 characters).
+      - `OUT_CNTYNUM` (number) — TBD
+      - `OUT_INSAGENT1` (string) — Deposit Insurance Fund (DIF), Bank Insurance Fund (BIF), Savings Association Insurance Fund (SAIF)
+      - `OUT_INSAGENT2` (string) — As a result of the establishment of a single Deposit Insurance Fund (DIF) effective April 1, 2006, the Secondary Insurance fund is no longer applicable. previously both bif and saif bank insurance fund - institutions that are members of the bank insurance fund savings association insurance fund - Institutions that are members of the Savings Association Insurance Fund
+      - `OUT_REGAGENT` (string) — A code indicating the federal regulatory agency that provides primary supervision over an institution. OCC=Office of the Comptroller of Currency; FDIC=Federal Deposit Insurance Corporation; FRB=Federal Reserve Board; NCUA=National Credit Union Association; OTS=Office of Thrift Supervision.
+      - `OUT_TRUST` (string) — Trust Power
+      - `OUT_LATITUDE` (number) — Location Address Latitude
+      - `OUT_LONGITUDE` (number) — Location Address Latitude
+      - `SUR_CHANGECODE` (number) — Activity Event Code
+      - `SUR_CHANGECODE_DESC` (string) — Activity Event Code Description
+      - `SUR_INSTNAME` (string) — The legal name of the institution.
+      - `SUR_CERT` (number) — A unique NUMBER assigned by the FDIC used to identify institutions and for the issuance of insurance certificates.
+      - `SUR_CLCODE` (number) — Numeric code which identifies the major and minor categories of an institution.
+      - `SUR_CHARTER` (number) — A unique number assigned by the Office of the Comptroller of the Currency (OCC) used to identify institutions that it has chartered and regulates (i.e. national banks).
+      - `SUR_CHARTAGENT` (string) — All Chartering Agencies - State and Federal Comptroller of the Currency - Chartering authority for nationally chartered commercial banks and for federally chartered savings associations (The Office of Thrift Supervision (OTS) before 7/21/11) State (includes U.S. Territories) - Chartering authority for institutions that are not chartered by the OCC or OTS
+      - `SUR_FDICREGION` (number) — A numeric value associated with the name of an FDIC supervisory region
+      - `SUR_FDICREGION_DESC` (string) — A description associated with the name of an FDIC supervisory region
+      - `SUR_MADDR` (string) — Street address at which the institution or one of its branches receives mail.
+      - `SUR_MCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `SUR_MSTATE` (string) — Mailing State
+      - `SUR_MSTALP` (string) — Mailing State Abbreviation
+      - `SUR_MZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `SUR_PZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `SUR_CLASS` (string) — TBD
+      - `SUR_CNTYNAME` (string) — County where the institution is physically located (abbreviated if the county name exceeds 16 characters).
+      - `SUR_CNTYNUM` (number) — TBD
+      - `SUR_INSAGENT1` (string) — Deposit Insurance Fund (DIF), Bank Insurance Fund (BIF), Savings Association Insurance Fund (SAIF)
+      - `SUR_INSAGENT2` (string) — As a result of the establishment of a single Deposit Insurance Fund (DIF) effective April 1, 2006, the Secondary Insurance fund is no longer applicable. previously both bif and saif bank insurance fund - institutions that are members of the bank insurance fund savings association insurance fund - Institutions that are members of the Savings Association Insurance Fund
+      - `SUR_PADDR` (string) — Street address at which the institution or one of its branches is physically located.
+      - `SUR_PCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `SUR_PSTALP` (string) — State in which the the headquarters are physically located. The FDIC Act defines state as any State of the United States, the District of Columbia, and any territory of the United States, Puerto Rico, Guam, American Samoa, the Trust Territory of the Pacific Islands, the Virgin Island, and the Northern Mariana Islands.
+      - `SUR_PZIPREST` (string) — Zip Code Extension
+      - `SUR_REGAGENT` (string) — A code indicating the federal regulatory agency that provides primary supervision over an institution. OCC=Office of the Comptroller of Currency; FDIC=Federal Deposit Insurance Corporation; FRB=Federal Reserve Board; NCUA=National Credit Union Association; OTS=Office of Thrift Supervision.
+      - `SUR_TRUST` (string) — Trust Power
+      - `SUR_LATITUDE` (number) — Surviving Location Address Latitude
+      - `SUR_LONGITUDE` (number) — Surviving Location Address Latitude
+      - `FRM_CNTYNUM` (number) — TBD
+      - `FRM_PCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `FRM_REGAGENT` (string) — A code indicating the federal regulatory agency that provides primary supervision over an institution. OCC=Office of the Comptroller of Currency; FDIC=Federal Deposit Insurance Corporation; FRB=Federal Reserve Board; NCUA=National Credit Union Association; OTS=Office of Thrift Supervision.
+      - `FRM_PSTALP` (string) — State in which the the headquarters are physically located. The FDIC Act defines state as any State of the United States, the District of Columbia, and any territory of the United States, Puerto Rico, Guam, American Samoa, the Trust Territory of the Pacific Islands, the Virgin Island, and the Northern Mariana Islands.
+      - `FRM_TRUST` (string) — Trust Power
+      - `FRM_CLCODE` (number) — Numeric code which identifies the major and minor categories of an institution.
+      - `FRM_PADDR` (string) — Street address at which the institution or one of its branches is physically located.
+      - `FRM_CHARTAGENT` (string) — All Chartering Agencies - State and Federal Comptroller of the Currency - Chartering authority for nationally chartered commercial banks and for federally chartered savings associations (The Office of Thrift Supervision (OTS) before 7/21/11) State (includes U.S. Territories) - Chartering authority for institutions that are not chartered by the OCC or OTS
+      - `FRM_CLASS` (string) — TBD
+      - `FRM_PZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `FRM_PZIPREST` (string) — Zip Code Extension
+      - `FRM_INSTNAME` (string) — The legal name of the institution.
+      - `FRM_CNTYNAME` (string) — County where the institution is physically located (abbreviated if the county name exceeds 16 characters).
+      - `FRM_CERT` (number) — A unique NUMBER assigned by the FDIC used to identify institutions and for the issuance of insurance certificates.
+      - `FRM_OFF_CNTYNAME` (string) — County where the institution is physically located (abbreviated if the county name exceeds 16 characters).
+      - `FRM_OFF_CNTYNUM` (number) — TBD
+      - `FRM_OFF_PADDR` (string) — Street address at which the institution or one of its branches is physically located.
+      - `FRM_OFF_PCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `FRM_OFF_PSTALP` (string) — State in which the the headquarters are physically located. The FDIC Act defines state as any State of the United States, the District of Columbia, and any territory of the United States, Puerto Rico, Guam, American Samoa, the Trust Territory of the Pacific Islands, the Virgin Island, and the Northern Mariana Islands.
+      - `FRM_OFF_PZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `FRM_OFF_PZIPREST` (string) — Zip Code Extension
+      - `FRM_OFF_SERVTYPE` (number) — Service Type
+      - `FRM_OFF_SERVTYPE_DESC` (string) — Service Type Description
+      - `FRM_OFF_STATE` (string) — Office State
+      - `FRM_OFF_NAME` (string) — Name of the branch.
+      - `FRM_OFF_NUM` (string) — The branch's corresponding office number.
+      - `FRM_OFF_TRUST` (string) — Trust Power
+      - `FRM_OFF_CLCODE` (number) — Numeric code which identifies the major and minor categories of an institution.
+      - `FRM_OFF_LATITUDE` (number) — Location Address Latitude
+      - `FRM_OFF_LONGITUDE` (number) — Location Address Latitude
+      - `FRM_LATITUDE` (number) — Location Address Latitude
+      - `FRM_LONGITUDE` (number) — Location Address Latitude
+      - `CERT` (number) — A unique NUMBER assigned by the FDIC used to identify institutions and for the issuance of insurance certificates.
+      - `INSTNAME` (string) — The legal name of the institution.
+      - `CHARTAGENT` (string) — All Chartering Agencies - State and Federal Comptroller of the Currency - Chartering authority for nationally chartered commercial banks and for federally chartered savings associations (The Office of Thrift Supervision (OTS) before 7/21/11) State (includes U.S. Territories) - Chartering authority for institutions that are not chartered by the OCC or OTS
+      - `CLCODE` (number) — Numeric code which identifies the major and minor categories of an institution.
+      - `FDICREGION` (number) — A numeric value associated with the name of an FDIC supervisory region
+      - `FDICREGION_DESC` (string) — A description associated with the name of an FDIC supervisory region
+      - `CNTYNAME` (string) — County where the institution is physically located (abbreviated if the county name exceeds 16 characters).
+      - `CNTYNUM` (number) — TBD
+      - `INSAGENT1` (string) — Deposit Insurance Fund (DIF), Bank Insurance Fund (BIF), Savings Association Insurance Fund (SAIF)
+      - `INSAGENT2` (string) — As a result of the establishment of a single Deposit Insurance Fund (DIF) effective April 1, 2006, the Secondary Insurance fund is no longer applicable. previously both bif and saif bank insurance fund - institutions that are members of the bank insurance fund savings association insurance fund - Institutions that are members of the Savings Association Insurance Fund
+      - `MADDR` (string) — Street address at which the institution or one of its branches receives mail.
+      - `MCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `MSTATE` (string) — Mailing State
+      - `MSTALP` (string) — Mailing State
+      - `MZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `MZIPREST` (string) — Zip Code Extension
+      - `PADDR` (string) — Street address at which the institution or one of its branches is physically located.
+      - `PZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `PSTALP` (string) — State in which the the headquarters are physically located. The FDIC Act defines state as any State of the United States, the District of Columbia, and any territory of the United States, Puerto Rico, Guam, American Samoa, the Trust Territory of the Pacific Islands, the Virgin Island, and the Northern Mariana Islands.
+      - `PZIPREST` (string) — Zip Code Extension
+      - `PCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `STATE` (string) — State in which the institution or one of its branches is physically located.
+      - `TRUST` (string) — Trust Power
+      - `REGAGENT` (string) — A code indicating the federal regulatory agency that provides primary supervision over an institution. OCC=Office of the Comptroller of Currency; FDIC=Federal Deposit Insurance Corporation; FRB=Federal Reserve Board; NCUA=National Credit Union Association; OTS=Office of Thrift Supervision.
+      - `SERVTYPE` (number) — Service Type
+      - `SERVTYPE_DESC` (string) — Service Type Description
+      - `OFF_CNTYNAME` (string) — County where the institution is physically located (abbreviated if the county name exceeds 16 characters).
+      - `OFF_NUM` (number) — The branch's corresponding office number.
+      - `OFF_CNTYNUM` (number) — TBD
+      - `OFF_PADDR` (string) — Street address at which the institution or one of its branches is physically located.
+      - `OFF_PSTATE` (string) — Office State
+      - `OFF_PZIP5` (string) — The first three, four, or five digits of the full postal zip code representing physical location of the institution or its branch office.
+      - `OFF_PZIPREST` (string) — Zip Code Extension
+      - `OFF_NAME` (string) — The legal name of the office.
+      - `OFF_PSTALP` (string) — State in which the institution or one of its branches is physically located.
+      - `OFF_PCITY` (string) — City in which an institution's headquarters or one of its branches is physically located. Either the entire name or part of the name of a specific city may be entered to produce an Institution List.
+      - `OFF_SERVTYPE` (number) — Service Type
+      - `OFF_LATITUDE` (number) — Location Address Latitude
+      - `OFF_LONGITUDE` (number) — Location Address Latitude
+      - `OFF_SERVTYPE_DESC` (string) — Service Type Description
+      - `ESTDATE` (string (date-time)) — Office Established Date
+      - `ACQDATE` (string (date-time)) — Office Acquired Date
+      - `FI_EFFDATE` (string (date-time)) — Financial Institution Effective Date
+      - `FI_UNINUM` (number) — FDIC's unique identifier number for holding companies, banks, branches and nondeposit subsidiaries.
+      - `ORG_STAT_FLG` (string) — Organization Status Flag
+      - `LATITUDE` (number) — The latitude of the physical address.
+      - `LONGITUDE` (number) — The longitude of the physical address.
+  - `totals` (object) — Total and subtotal data (additional properties based on fields selected)
+    - `count` (integer) — Total result count
+- **400** — bad input parameter
+
+## Financials
+
+Financial Information
+
+### GET /financials
+
+**Get Financial Information for FDIC Insured Institutions**
+
+Returns financial information for financial institutions
+
+**Parameters**
+
+| Name | In | Type | Required | Description |
+|---|---|---|---|---|
+| `filters` | query | string | No | The filter criteria that refines the records included in the result. Examples: * Filter data by the numeric range `ASSET:[1000 TO 9999]` |
+| `fields` | query | string | No | Comma delimited list of fields with quarterly financial data to return. |
+| `sort_by` | query | string | No | Field name by which to sort returned data. Default: `REPDTE`. |
+| `sort_order` | query | string | No | Indicator if ascending (ASC) or descending (DESC). Default: `ASC`. |
+| `limit` | query | integer | No | The number of records to return. Default is 10 and maximum is 10,000. However, if the request is for more than 1,000 variables, consider making the requests in batches of no more than 500 records at a time to ensure the request is successful. Default: `10`. Minimum: 0. Maximum: 10000. |
+| `offset` | query | integer | No | The offset of page to return. Default: `0`. Minimum: 0. |
+| `agg_by` | query | string | No | The field(s) by which data will be aggregated. |
+| `agg_term_fields` | query | string | No | The field(s) for which aggregations will be counted for each unique term. |
+| `agg_sum_fields` | query | string | No | The field(s) for which aggregations will be summed or aggregated. |
+| `agg_limit` | query | integer | No | The limit on how many aggregated results will be displayed. Minimum: 0. Maximum: 10000. |
+| `format` | query | string | No | The format of the data to return. Allowed values: `json`, `csv`. |
+| `download` | query | string | No | Whether the data should be downloaded as a file. Allowed values: `false`, `true`. |
+| `filename` | query | string | No | The filename to use when downloading data. |
+
+**Responses**
+
+- **200** — Successful Operation
+  Body (`application/json`, object):
+  - `meta` (object)
+    - `total` (integer) — Total query result count
+    - `parameters` (object) — Query parameters supplied
+    - `index` (object)
+      - `name` (string) — name of index used to retrieve data
+      - `createTimestamp` (string (date-time)) — date/time index was created
+  - `data` (array of object)
+    - `data` (object)
+      - `ASSET` (number) — The sum of all assets owned by the institution including cash, loans, securities, bank premises and other assets. This total does not include off-balance-sheet accounts.
+      - `CALLFORM` (number) — TBD
+      - `CB` (string) — FDIC community banks are identified based on criteria defined in the FDIC Community Banking Study. Using detailed balance sheet and geographic data, the study defines communtiy banks in terms of their traditional relationship banking and limited geographic scope of operations
+      - `CERT` (number) — A unique NUMBER assigned by the FDIC used to identify institutions and for the issuance of insurance certificates.
+      - `CERTCONS` (string) — FDIC certificate number of the parent bank or savings institution with which the reported institution’s financial data has been consolidated. Beginning in March 1997, both the Thrift Financial Reports and Call Reports are completed on a fully consolidated basis. Previously, the consolidation of subsidiary depository institutions was prohibited. Now, parent institutions are required to file consolidated reports, while their subsidiary financial institutions are still required to file separate reports. Click on the certificate number to identify the parent bank or thrift.
+      - `CITYHCR` (string) — City in which the headquarters of the institution's regulatory high holder are physically located.
+      - `DENOVO` (string) — A flag used to indicate whether an institution is a new institution (not a recharter). This flag is set quarterly. For instance, if REPDTE is 3/31/98 and DENOVO equals 1, the institution was a denovo during the first quarter of 1998.
+      - `DEP` (number) — The sum of all deposits including demand deposits, money market deposits, other savings deposits, time deposits and deposits in foreign offices.
+      - `DEPDOM` (number) — The sum of all domestic office deposits, including demand deposits, money market deposits, other savings deposits and time deposits.
+      - `EQ` (number) — Total equity capital (includes preferred and common stock, surplus and undivided profits).
+      - `FORM31` (string) — A flag (1=yes,0=no) that indicates whether and institution filed an FFIEC 031 Call Report. Commercial banks with domestic and foreign offices are required to file such a report.
+      - `HCTMULT` (string) — A flag used to indicate whether an institution is a member of a multibank holding company 1=yes, 0=no
+      - `INSBIF` (number) — TBD
+      - `INSDIF` (string) — A flag used to indicate whether an institution is insured under the Deposit Insurance Fund (DIF). As of April 1, 2006 the Bank Insurance Fund (BIF) was merged together with the Savings Institution Insurance Fund (SAIF) to create a single Deposit Insurance Fund (DIF). All FDIC insured BIF and SAIF member institutions that are still active or open are now insured members of DIF. 0 = No, not DIF insured and 1 = Yes, DIF insured. Note that institutions that became inactive prior to April 1006 will also have zero value.
+      - `INSTAG` (string) — An indicator specifying whether an institution is primarily an agricultural lending institution.
+      - `INSTCRCD` (string) — Institutions with total loans greater than 50% of total assets and credit card loans greater than 50% of total loans, including loans that have been securitized and sold.
+      - `INSSAIF` (number) — Institutions who are members of the Savings Association Insurance Fund. As of April 1, 2006 SAIF was merged together with the Bank Insurance Fund (BIF) to create a single Deposit Insurance Fund (DIF). All FDIC insured SAIF member institutions, that are still active or open, are now insured members of DIF.
+      - `MUTUAL` (string) — Banking institutions fall into one of two ownership types, stock or non-stock. An institution which sells stock to raise capital is called a stock institution. It is owned by the shareholders who benefit from profits earned by the institution. A non-stock institution, or mutual institution, is owned and controlled solely by its depositors. A mutual does not issue capital stock.
+      - `NAMEHCR` (string) — Regulatory top holder is assigned by the Federal Reserve Board based on ownership and control percentages. Note: Information on bank holding companies is only as of quarter-end. Regulatory top holder is any company that directly or indirectly owns, controls or has power to vote 25 percent or more of a bank's or direct holding company's shares or controls in any manner the election of a majority of the directors or trustees of a bank or direct holding company or exercises a controlling influence over the management or policies of a bank or direct holding company. Information on Thrift Holding Companies that own Savings Associations but do not own banks is not currently available in the ID System. Source: Federal Reserve Board National Information Center data base.
+      - `NETINC` (number) — Net interest income plus total noninterest income plus realized gains (losses) on securities and extraordinary items, less total noninterest expense, loan loss provisions and income taxes.
+      - `NETINCQ` (number) — Quarterly net interest income plus total noninterest income plus realized gains (losses) on securities and extraordinary items, less total noninterest expense, loan loss provisions and income taxes.
+      - `OFFDOM` (number) — The number of domestic offices (including headquarters) operated by active institutions in the 50 states of the U.S.A.
+      - `OFFFOR` (number) — The number of foreign offices (outside the U.S.) operated by the institution.
+      - `OFFOA` (number) — The number of offices operated by an FDIC-insured institution in all commonwealths and terrirtories of the US, along with those in freely associated states under the Compact of Free Association
+      - `PARCERT` (string) — The PARCERT number identifies the subsidiary institutions parent certificate number. Beginning in March 1997, both the Thrift Financial Reports and Call Reports are completed on a fully consolidated basis. Previously, the consolidation of subsidiary depository institutions was prohibited. Now, parent institutions are required to file consolidated reports, while their subsidiary financial institutions are still required to file separate reports.
+      - `L_REPDTE` (string) — The last day of the financial reporting period selected.
+      - `REPDTE_RAW` (string) — The last day of the financial reporting period selected.
+      - `REPDTE` (string) — The last day of the financial reporting period selected.
+      - `RISDATE` (string (date-time)) — The financial reporting period selected in CCYYMM format.
+      - `ROA` (number) — Net income after taxes and extraordinary items (annualized) as a percent of average total assets.
+      - `ROAPTX` (number) — Annualized pre-tax net income as a percent of average assets. Note: Includes extraordinary items and other adjustments, net of taxes.
+      - `ROAPTXQ` (number) — Quarterly pre-tax net income as a percent of average assets. Note: Includes extraordinary items and other adjustments, net of taxes.
+      - `ROAQ` (number) — Quarterly net income after taxes and extraordinary items as a percent of average total assets.
+      - `ROE` (number) — Annualized net income as a percent of average equity on a consolidated basis. Note: If retained earnings are negative, the ratio is shown as NA.
+      - `ROEQ` (number) — Quarterly net income (including gains or losses on securities and extraordinary items) as a percentage of average total equity capital.
+      - `RSSDHCR` (string) — The unique number assigned by the Federal Reserve Board to the regulatory high holding company of the institution.
+      - `SPECGRP` (number) — An indicator of an institution's primary specialization in terms of asset concentration
+      - `STALPHCR` (string) — State location of the regulatory high holding company (either direct or indirect owner).
+      - `SUBCHAPS` (number) — The Small Business Job Protection Act of 1996 changed the Internal Revenue Code to allow financial institutions to elect Subchapter S corporation status, beginning in 1997. Banks are required to indicate on the Call Report whether there is currently in effect an election to file under Subchapter S. Thrifts have a similar requirement as of March 1998. The most important IRS requirements to elect and maintain Subchapter S status are: There can be no more than 75 eligible shareholders and no more than one class of stock. (In general, shareholders can only be individuals, estates, and certain types of trusts. Certain retirement plans and charitable organizations will be eligible in 1998.) All shareholders must consent. Banks and thrifts converting to Subchapter S status must use the specific charge-off method for tax purposes rather than the reserve method of accounting for bad debts and recapture tax bad debt reserves over a period of six years, if the reserve method had been used prior to conversion. (Note: even though the specific charge-off method is required for tax purposes, an adequate allowance for loan and lease losses must still be maintained on the financial statements and Call Reports.) Banks and thrifts are subject to a built-in gains (BIG) tax, if the aggregate fair market value of assets is greater than their aggregate adjusted bases on the date of conversion to Subchapter S status. [Banks are required to indicate separately on the Call Report in December of each year, the deferred portion of income taxes reported in net income. For Subchapter S banks, some or all of their deferred tax assets and liabilities may be eliminated upon conversion to Subchapter S status; however, deferred taxes related to the BIG tax and the recapture of bad debt reserves must be recognized.]. A Subchapter S corporation is treated as a pass-through entity, similar to a partnership, for federal income tax purposes. It is generally not subject to any federal income taxes at the corporate level. Its taxable income flows through to its shareholders in proportion to their stock ownership, and the shareholders generally pay federal income taxes on their share of this taxable income. This can have the effect of reducing institutions' reported income tax expense and increasing their after-tax earnings.. The election of Subchapter S status may result in an increase in shareholders' personal tax liabilities. Therefore, S corporations typically increase the amount of earnings distributed as dividends to compensate for higher personal taxes.
+      - `TRACT` (string) — Beyond having trust powers granted and exercised, institutions with fiduciary assets accounts, income, or other reportable fiduciary related service
+      - `TRUST` (string) — A flag used to indicate an institution's Trust Powers Granted status. 0 = No Trust Power Granted 1 = Trust Power Granted Where Trust Power has been granted specific codes are: 00 - Trust powers not know 10 - Full trust powers granted 11 - Full trust powers granted, exercised 12 - Full trust powers granted, not exercised 20 - Limited trust powers granted 21 - Limited trust powers granted, exercised 22 - Limited trust powers granted, not exercised 30 - Trust powers not granted 31 - Trust powers not granted, but exercised
+      - `ACEPT` (number)
+      - `ACTIVE` (number)
+      - `BKCLASS` (string) — A classification code assigned by the FDIC based on the institution's charter type (commercial bank or savings institution), charter agent (state or federal), Federal Reserve membership status (Fed member, Fed non-member) and its primary federal regulator (state chartered institutions are subject to both federal and state supervision). N - Commercial bank, national (federal) charter, Fed member, and supervised by the Office of the Comptroller of the Currency (OCC); NM - Commercial bank, state charter, Fed non-member, and supervised by the Federal Deposit Insurance Corporation (FDIC); OI - Insured U.S. branch of a foreign chartered institution (IBA) and supervised by the OCC or FDIC; SB – Federal savings banks, federal charter, supervised by the OCC or before July 21,2011 the Office of Thrift Supervision (OTS); SI - State chartered stock savings banks, supervised by the FDIC; SL - State chartered stock savings and loan associations, supervised by the FDIC or before July 21,2011 the OTS; SM - Commercial bank, state charter, Fed member, and supervised by the Federal Reserve Bank (FRB); NC – Noninsured non-deposit commercial banks and/or trust companies regulated by the OCC, a state, or a territory; NS - Noninsured stock savings bank supervised by a state or territory; CU - state or federally chartered credit unions supervised by the National Credit Union Association (NCUA).
+      - `BKPREM` (number)
+      - `BRO` (number)
+      - `CALLYM` (number)
+      - `CHBAL` (number)
+      - `CHBALI` (number)
+      - `CHRTAGNT` (string)
+      - `CONSERVE` (number)
+      - `CRLNLS` (number)
+      - `CRLNLSQ` (number)
+      - `CUSLI` (number)
+      - `DDT` (number)
+      - `DEPFOR` (number)
+      - `DEPI` (number)
+      - `DEPIFOR` (number)
+      - `DEPIPCCF` (number)
+      - `DEPIPCF` (number)
+      - `DEPNI` (number)
+      - `DEPNIFOR` (number)
+      - `DRLNLS` (number)
+      - `DRLNLSQ` (number)
+      - `EAMINTAN` (number)
+      - `EAMINTQ` (number)
+      - `EDEP` (number)
+      - `EDEPDOM` (number)
+      - `EDEPDOMQ` (number)
+      - `EDEPFOR` (number)
+      - `EDEPFORQ` (number)
+      - `EFHLBADV` (number)
+      - `EFREPP` (number)
+      - `EFREPPQ` (number)
+      - `EINTEXP` (number)
+      - `EINTXQ` (number)
+      - `ELNATR` (number)
+      - `ELNATQ` (number)
+      - `EMTGLS` (number)
+      - `EOTHNINT` (number)
+      - `EOTHNINQ` (number)
+      - `EPREMAGG` (number)
+      - `EPREMAGQ` (number)
+      - `EQCDIV` (number)
+      - `EQCDIVC` (number)
+      - `EQCDIVP` (number)
+      - `EQCDIVQ` (number)
+      - `EQCFCTA` (number)
+      - `EQCONSUB` (number)
+      - `EQCS` (number)
+      - `EQNWCERT` (number)
+      - `EQOTHCC` (number)
+      - `EQPP` (number)
+      - `EQSUR` (number)
+      - `EQUP` (number)
+      - `EQUPTOT` (number)
+      - `ESAL` (number)
+      - `ESALQ` (number)
+      - `ESUBND` (number)
+      - `ETTLOTBO` (number)
+      - `EXTRA` (number)
+      - `EXTRAQ` (number)
+      - `FDICDBS` (number)
+      - `FDICSUPV` (number)
+      - `FED` (number)
+      - `FEDCHRTR` (number)
+      - `FLDOFF` (string)
+      - `FORCHRTR` (number)
+      - `FORMCFR` (number)
+      - `FREPO` (number)
+      - `FREPP` (number)
+      - `FRSMEM` (number)
+      - `HCTONE` (number)
+      - `IBA` (number)
+      - `IBEFTAX` (number)
+      - `ICHBAL` (number)
+      - `ICHBALQ` (number)
+      - `IFREPO` (number)
+      - `IFREPOQ` (number)
+      - `IGLSEC` (number)
+      - `ILNDOM` (number)
+      - `ILNDOMQ` (number)
+      - `ILNFOR` (number)
+      - `ILNFORQ` (number)
+      - `ILS` (number)
+      - `ILSQ` (number)
+      - `INSALL` (number)
+      - `INSCOML` (number)
+      - `INSFDIC` (number)
+      - `INSNONE` (number)
+      - `INSSAVE` (number)
+      - `INSTCOML` (number)
+      - `INSTSAVE` (number)
+      - `INSTTYPE` (string)
+      - `INTAN` (number)
+      - `INTINC` (number)
+      - `INTINQ` (number)
+      - `INVSUB` (number)
+      - `INVSUORE` (number)
+      - `IOTHFEE` (number)
+      - `IOTHII` (number)
+      - `IOTHIIQ` (number)
+      - `IRAKEOGH` (number)
+      - `ISC` (number)
+      - `ISCQ` (number)
+      - `ISERCHG` (number)
+      - `ITAX` (number)
+      - `ITAXQ` (number)
+      - `ITRADE` (number)
+      - `ITRADEQ` (number)
+      - `LIAB` (number)
+      - `LIABEQ` (number)
+      - `LIPMTG` (number)
+      - `LLPFDSTK` (number)
+      - `LNACOTH` (number)
+      - `LNAG` (number)
+      - `LNATRES` (number)
+      - `LNAUTO` (number)
+      - `LNCI` (number)
+      - `LNCON` (number)
+      - `LNCONOT1` (number)
+      - `LNCONOTH` (number)
+      - `LNCRCD` (number)
+      - `LNCRCDRP` (number)
+      - `LNDEP` (number)
+      - `LNFG` (number)
+      - `LNLS` (number)
+      - `LNLSGR` (number)
+      - `LNLSNET` (number)
+      - `LNMUNI` (number)
+      - `LNOTCI` (number)
+      - `LNOTHER` (number)
+      - `LNRE` (number)
+      - `LNREAG` (number)
+      - `LNRECONS` (number)
+      - `LNREDOM` (number)
+      - `LNREFOR` (number)
+      - `LNRELOC` (number)
+      - `LNREMULT` (number)
+      - `LNRENRES` (number)
+      - `LNREPP` (number)
+      - `LNRERES` (number)
+      - `LNRESRE` (number)
+      - `LS` (number)
+      - `MI` (number)
+      - `MTGLS` (number)
+      - `N` (number)
+      - `NALNLS` (number)
+      - `NC` (number)
+      - `NCLNLS` (number)
+      - `NETIMIN` (number)
+      - `NETIMINQ` (number)
+      - `NETINBM` (number)
+      - `NETINBMQ` (number)
+      - `NEWINST` (number)
+      - `NIM` (number)
+      - `NIMQ` (number)
+      - `NM` (number)
+      - `NONII` (number)
+      - `NONIX` (number)
+      - `NONIXQ` (number)
+      - `NS` (number)
+      - `NTLNLS` (number)
+      - `NTLNLSQ` (number)
+      - `NTR` (number)
+      - `NTRIPC` (number)
+      - `NTRMUNI` (number)
+      - `NTRTIME` (number)
+      - `NTRTMLG` (number)
+      - `NTRUSGOV` (number)
+      - `NUMEMP` (number)
+      - `OA` (number)
+      - `OCCDIST` (number)
+      - `OI` (number)
+      - `OLMIN` (number)
+      - `ORE` (number)
+      - `OTHBFHLB` (number)
+      - `OTHBOR` (number)
+      - `P3LNLS` (number)
+      - `P9LNLS` (number)
+      - `QBPRCOML` (number)
+      - `QBPRSAVB` (number)
+      - `QBPRSAVS` (number)
+      - `REGAGNT` (string)
+      - `S10T250B` (number)
+      - `SB` (number)
+      - `SC` (number)
+      - `SCAGE` (number)
+      - `SCDEQ` (number)
+      - `SCDOMO` (number)
+      - `SCEQ` (number)
+      - `SCFDEQ` (number)
+      - `SCFORD` (number)
+      - `SCMTGBK` (number)
+      - `SCMUNI` (number)
+      - `SCMV` (number)
+      - `SCODPC` (number)
+      - `SCRES` (number)
+      - `SCUS` (number)
+      - `SCUSA` (number)
+      - `SCUST` (number)
+      - `SL` (number)
+      - `SM` (number)
+      - `STALP` (string)
+      - `STCHRTR` (number)
+      - `STNAME` (string)
+      - `STNUM` (number)
+      - `SUBLLPF` (number)
+      - `SUBND` (number)
+      - `SZ25` (number)
+      - `SZ100` (number)
+      - `SZ100MP` (number)
+      - `SZ100T3` (number)
+      - `SZ100T5` (number)
+      - `SZ100T1B` (number)
+      - `SZ10BP` (number)
+      - `SZ1BP` (number)
+      - `SZ1BT10B` (number)
+      - `SZ1BT3B` (number)
+      - `SZ1BT5B` (number)
+      - `SZ250BP` (number)
+      - `SZ25T50` (number)
+      - `SZ300T5` (number)
+      - `SZ3BT10B` (number)
+      - `SZ500T1B` (number)
+      - `SZ50T100` (number)
+      - `SZ5BP` (number)
+      - `TRADE` (number)
+      - `TRADEL` (number)
+      - `TRN` (number)
+      - `TRNIPC` (number)
+      - `TRNIPCOC` (number)
+      - `TRNMUNI` (number)
+      - `TRNUSGOV` (number)
+      - `TS` (number)
+      - `TTL` (number)
+      - `TTLOTBOR` (number)
+      - `UNINC` (number)
+      - `USA` (number)
+      - `UYAMTG` (number)
+      - `ABCUBK` (number)
+      - `ABCUOTH` (number)
+      - `ABCXBK` (number)
+      - `ABCXOTH` (number)
+      - `ASCEOTH` (number)
+      - `ASCERES` (number)
+      - `ASDROTH` (number)
+      - `ASDRRES` (number)
+      - `ASSET2` (number)
+      - `ASSET5` (number)
+      - `ASSETFOR` (number)
+      - `ASSTLT` (number)
+      - `ASTEMPM` (number)
+      - `AVASSETJ` (number)
+      - `BROINS` (number)
+      - `CALLYMD` (number)
+      - `CHBALFOR` (number)
+      - `CHBALNI` (number)
+      - `CHCIC` (number)
+      - `CHCOIN` (number)
+      - `CHFLA` (number)
+      - `CHFRB` (number)
+      - `CHITEM` (number)
+      - `CHNUS` (number)
+      - `CHNUSFBK` (number)
+      - `CHUS` (number)
+      - `CHUSFBK` (number)
+      - `CITY` (string)
+      - `COREDEP` (number)
+      - `CRAG` (number)
+      - `CRAGQ` (number)
+      - `CRAGSM` (number)
+      - `CRAGSMQ` (number)
+      - `CRAUTO` (number)
+      - `CRAUTOQ` (number)
+      - `CRCI` (number)
+      - `CRCIQ` (number)
+      - `CRCINUS` (number)
+      - `CRCINUSQ` (number)
+      - `CRCON` (number)
+      - `CRCONQ` (number)
+      - `CRCONOTH` (number)
+      - `CRCONOTQ` (number)
+      - `CRCRCD` (number)
+      - `CRCRCDQ` (number)
+      - `CRDEP` (number)
+      - `CRDEPQ` (number)
+      - `CRDEPNUS` (number)
+      - `CRDEPNUQ` (number)
+      - `CRFORGV` (number)
+      - `CRFORGVQ` (number)
+      - `CRLS` (number)
+      - `CRLSQ` (number)
+      - `CROTHER` (number)
+      - `CROTHQ` (number)
+      - `CRRE` (number)
+      - `CRREQ` (number)
+      - `CRREAG` (number)
+      - `CRREAGQ` (number)
+      - `CRRECNFM` (number)
+      - `CRRECNOT` (number)
+      - `CRRECONQ` (number)
+      - `CRRECONS` (number)
+      - `CRREFOR` (number)
+      - `CRREFORQ` (number)
+      - `CRRELOC` (number)
+      - `CRRELOCQ` (number)
+      - `CRREMULQ` (number)
+      - `CRREMULT` (number)
+      - `CRRENRES` (number)
+      - `CRRENROT` (number)
+      - `CRRENROW` (number)
+      - `CRRENRSQ` (number)
+      - `CRRENUS` (number)
+      - `CRRENUSQ` (number)
+      - `CRRERES` (number)
+      - `CRRERESQ` (number)
+      - `CRRERSF2` (number)
+      - `CRRERS2Q` (number)
+      - `CRRERSFM` (number)
+      - `CRRERSFQ` (number)
+      - `CTDERBEN` (number)
+      - `CTDERGTY` (number)
+      - `DEPBEFEX` (number)
+      - `DEPDASTR` (number)
+      - `DEPFBKF` (number)
+      - `DEPFGOVF` (number)
+      - `DEPIDOM` (number)
+      - `DEPINS` (number)
+      - `DEPLSNB` (number)
+      - `DEPNIDOM` (number)
+      - `DEPUSBKF` (number)
+      - `DEPUSMF` (number)
+      - `DRAG` (number)
+      - `DRAGQ` (number)
+      - `DRAGSM` (number)
+      - `DRAGSMQ` (number)
+      - `DRAUTO` (number)
+      - `DRAUTOQ` (number)
+      - `DRCI` (number)
+      - `DRCIQ` (number)
+      - `DRCINUS` (number)
+      - `DRCINUSQ` (number)
+      - `DRCON` (number)
+      - `DRCONQ` (number)
+      - `DRCONOTH` (number)
+      - `DRCONOTQ` (number)
+      - `DRCRCD` (number)
+      - `DRCRCDQ` (number)
+      - `DRDEP` (number)
+      - `DRDEPQ` (number)
+      - `DRDEPNUS` (number)
+      - `DRDEPNUQ` (number)
+      - `DRFORGV` (number)
+      - `DRFORGVQ` (number)
+      - `DRLS` (number)
+      - `DRLSQ` (number)
+      - `DROTHER` (number)
+      - `DROTHQ` (number)
+      - `DRRE` (number)
+      - `DRREQ` (number)
+      - `DRREAG` (number)
+      - `DRREAGQ` (number)
+      - `DRRECNFM` (number)
+      - `DRRECNOT` (number)
+      - `DRRECONQ` (number)
+      - `DRRECONS` (number)
+      - `DRREFOR` (number)
+      - `DRREFORQ` (number)
+      - `DRRELOC` (number)
+      - `DRRELOCQ` (number)
+      - `DRREMULQ` (number)
+      - `DRREMULT` (number)
+      - `DRRENRES` (number)
+      - `DRRENROT` (number)
+      - `DRRENROW` (number)
+      - `DRRENRSQ` (number)
+      - `DRRENUS` (number)
+      - `DRRENUSQ` (number)
+      - `DRRERES` (number)
+      - `DRRERESQ` (number)
+      - `DRRERSF2` (number)
+      - `DRRERS2Q` (number)
+      - `DRRERSFM` (number)
+      - `DRRERSFQ` (number)
+      - `EDCM` (number)
+      - `EEFFR` (number)
+      - `EFFDATE` (number)
+      - `EINTGW` (number)
+      - `EINTGWQ` (number)
+      - `EINTOTH` (number)
+      - `EINTOTHQ` (number)
+      - `ELNANTR` (number)
+      - `ELNANTRQ` (number)
+      - `ELNATRY` (number)
+      - `ENCEAUTO` (number)
+      - `ENCECI` (number)
+      - `ENCECON` (number)
+      - `ENCEOTH` (number)
+      - `ENCERES` (number)
+      - `EOTHINT` (number)
+      - `EOTHINTQ` (number)
+      - `EQ5` (number)
+      - `EQCBHCTR` (number)
+      - `EQCCOMPI` (number)
+      - `EQCDIVA` (number)
+      - `EQCMRG` (number)
+      - `EQCPREV` (number)
+      - `EQCREST` (number)
+      - `EQCSTKRX` (number)
+      - `EQCSXQ` (number)
+      - `EQCTRSTX` (number)
+      - `EQTOT` (number)
+      - `EQV` (number)
+      - `ERNAST` (number)
+      - `ERNAST5` (number)
+      - `ERNASTR` (number)
+      - `ESTYMD` (number)
+      - `ETTLOTMG` (number)
+      - `FORMTFR` (number)
+      - `FX` (number)
+      - `FXFFC` (number)
+      - `FXNVS` (number)
+      - `FXPOC` (number)
+      - `FXSPOT` (number)
+      - `FXWOC` (number)
+      - `IBEFTXQ` (number)
+      - `IBEFXTR` (number)
+      - `IBEFXTRQ` (number)
+      - `IFIDUC` (number)
+      - `IFIDUCQ` (number)
+      - `IGLCMEX` (number)
+      - `IGLCMEXQ` (number)
+      - `IGLCREX` (number)
+      - `IGLCREXQ` (number)
+      - `IGLEDEX` (number)
+      - `IGLEDEXQ` (number)
+      - `IGLFXEX` (number)
+      - `IGLFXEXQ` (number)
+      - `IGLRTEX` (number)
+      - `IGLRTEXQ` (number)
+      - `IGLSECQ` (number)
+      - `IGLTRAD` (number)
+      - `IGLTRDQ` (number)
+      - `IINSCOM` (number)
+      - `IINSCOMQ` (number)
+      - `IINSOTH` (number)
+      - `IINSOTHQ` (number)
+      - `IINSUND` (number)
+      - `IINSUNDQ` (number)
+      - `IINVFEE` (number)
+      - `IINVFEEQ` (number)
+      - `INSAGNT1` (string)
+      - `INTANGCC` (number)
+      - `INTANGW` (number)
+      - `INTANMSR` (number)
+      - `INTANOTH` (number)
+      - `INTINCY` (number)
+      - `IOTNII` (number)
+      - `IOTNIIQ` (number)
+      - `ISECZ` (number)
+      - `ISECZQ` (number)
+      - `ISERCHGQ` (number)
+      - `ISERFEE` (number)
+      - `ISERFEEQ` (number)
+      - `IVENCAP` (number)
+      - `IVENCAPQ` (number)
+      - `LAG` (number)
+      - `LCI` (number)
+      - `LCON` (number)
+      - `LIABFOR` (number)
+      - `LNAG1` (number)
+      - `LNAG2` (number)
+      - `LNAG3` (number)
+      - `LNAG4` (number)
+      - `LNAG5` (number)
+      - `LNAG22` (number)
+      - `LNAG1N` (number)
+      - `LNAG2N` (number)
+      - `LNAG3N` (number)
+      - `LNAG4N` (number)
+      - `LNAGFOR` (number)
+      - `LNATRESR` (number)
+      - `LNAUTO2` (number)
+      - `LNAUTO5` (number)
+      - `LNCI1` (number)
+      - `LNCI2` (number)
+      - `LNCI3` (number)
+      - `LNCI4` (number)
+      - `LNCI5` (number)
+      - `LNCI22` (number)
+      - `LNCI1N` (number)
+      - `LNCI2N` (number)
+      - `LNCI3N` (number)
+      - `LNCI4N` (number)
+      - `LNCIFOR` (number)
+      - `LNCINUS` (number)
+      - `LNCINUSF` (number)
+      - `LNCOMRE` (number)
+      - `LNCON2` (number)
+      - `LNCON5` (number)
+      - `LNCONFOR` (number)
+      - `LNCONORP` (number)
+      - `LNCONOT2` (number)
+      - `LNCONOT5` (number)
+      - `LNCONRP` (number)
+      - `LNCONTRA` (number)
+      - `LNCRCD2` (number)
+      - `LNCRCD5` (number)
+      - `LNDEPAC` (number)
+      - `LNDEPACD` (number)
+      - `LNDEPCB` (number)
+      - `LNDEPCBF` (number)
+      - `LNDEPFC` (number)
+      - `LNDEPFCF` (number)
+      - `LNDEPFUS` (number)
+      - `LNDEPUS` (number)
+      - `LNDEPUSB` (number)
+      - `LNDEPUSF` (number)
+      - `LNEXAMT` (number)
+      - `LNFGFOR` (number)
+      - `LNLSDEPR` (number)
+      - `LNLSFOR` (number)
+      - `LNLSGR5` (number)
+      - `LNLSGRF` (number)
+      - `LNLSNTV` (number)
+      - `LNLSSALE` (number)
+      - `LNMUNIF` (number)
+      - `LNOT1T3` (number)
+      - `LNOT3LES` (number)
+      - `LNOT3T5` (number)
+      - `LNOT3T12` (number)
+      - `LNOT5T15` (number)
+      - `LNOTCI2` (number)
+      - `LNOTCI5` (number)
+      - `LNOTHERF` (number)
+      - `LNOTOV15` (number)
+      - `LNREAG1` (number)
+      - `LNREAG2` (number)
+      - `LNREAG3` (number)
+      - `LNREAG4` (number)
+      - `LNREAG1N` (number)
+      - `LNREAG2N` (number)
+      - `LNREAG3N` (number)
+      - `LNREAG4N` (number)
+      - `LNRECNFM` (number)
+      - `LNRECNOT` (number)
+      - `LNRENR1` (number)
+      - `LNRENR2` (number)
+      - `LNRENR3` (number)
+      - `LNRENR4` (number)
+      - `LNRENR1N` (number)
+      - `LNRENR2N` (number)
+      - `LNRENR3N` (number)
+      - `LNRENR4N` (number)
+      - `LNRENROT` (number)
+      - `LNRENROW` (number)
+      - `LNRENUS` (number)
+      - `LNRERSF1` (number)
+      - `LNRERSF2` (number)
+      - `LNRERSFM` (number)
+      - `LNRESNCR` (number)
+      - `LNRS1T3` (number)
+      - `LNRS3LES` (number)
+      - `LNRS3T5` (number)
+      - `LNRS3T12` (number)
+      - `LNRS5T15` (number)
+      - `LNRSOV15` (number)
+      - `LNSB` (number)
+      - `LNSBR` (number)
+      - `LNSERV` (number)
+      - `LOCCOM` (number)
+      - `LOCFPSB` (number)
+      - `LOCFPSBK` (number)
+      - `LOCFSB` (number)
+      - `LOCFSBK` (number)
+      - `LOCPSB` (number)
+      - `LOCPSBK` (number)
+      - `LOREGTY` (number)
+      - `LOTH` (number)
+      - `LREAG` (number)
+      - `LRECONS` (number)
+      - `LREMULT` (number)
+      - `LRENRES` (number)
+      - `LRERES` (number)
+      - `LSALNLS` (number)
+      - `LSAOA` (number)
+      - `LSAORE` (number)
+      - `LSASCDBT` (number)
+      - `LSFOR` (number)
+      - `MSA` (number)
+      - `MSRECE` (number)
+      - `MSRESFCL` (number)
+      - `MSRNRECE` (number)
+      - `NAAG` (number)
+      - `NAAGSM` (number)
+      - `NAASSET` (number)
+      - `NAAUTO` (number)
+      - `NACI` (number)
+      - `NACINUS` (number)
+      - `NACON` (number)
+      - `NACONOTH` (number)
+      - `NACRCD` (number)
+      - `NADEP` (number)
+      - `NADEPNUS` (number)
+      - `NAFG` (number)
+      - `NAGTY` (number)
+      - `NAGTYGNM` (number)
+      - `NAGTYPAR` (number)
+      - `NALAG` (number)
+      - `NALCI` (number)
+      - `NALCON` (number)
+      - `NALGTY` (number)
+      - `NALNSALE` (number)
+      - `NALOTH` (number)
+      - `NALREAG` (number)
+      - `NALRECON` (number)
+      - `NALREMUL` (number)
+      - `NALRENRS` (number)
+      - `NALRERES` (number)
+      - `NALS` (number)
+      - `NAME` (string)
+      - `NAMEFULL` (string)
+      - `NAOTHLN` (number)
+      - `NARE` (number)
+      - `NAREAG` (number)
+      - `NARECNFM` (number)
+      - `NARECNOT` (number)
+      - `NARECONS` (number)
+      - `NAREFOR` (number)
+      - `NARELOC` (number)
+      - `NAREMULT` (number)
+      - `NARENRES` (number)
+      - `NARENROT` (number)
+      - `NARENROW` (number)
+      - `NARENUS` (number)
+      - `NARERES` (number)
+      - `NARERSF2` (number)
+      - `NARERSFM` (number)
+      - `NARSCI` (number)
+      - `NARSCONS` (number)
+      - `NARSLNFM` (number)
+      - `NARSLNLS` (number)
+      - `NARSLNLT` (number)
+      - `NARSMULT` (number)
+      - `NARSNRES` (number)
+      - `NARSOTH` (number)
+      - `NASCDEBT` (number)
+      - `NCAUTO` (number)
+      - `NCCI` (number)
+      - `NCCOMRER` (number)
+      - `NCCON` (number)
+      - `NCCONOTH` (number)
+      - `NCCRCD` (number)
+      - `NCGTYPAR` (number)
+      - `NCLNLSR` (number)
+      - `NCRECONR` (number)
+      - `NCRELOCR` (number)
+      - `NCREMULR` (number)
+      - `NCRENRER` (number)
+      - `NCRER` (number)
+      - `NCREREOR` (number)
+      - `NCRERESR` (number)
+      - `NETGNAST` (number)
+      - `NTGLFXAQ` (number)
+      - `NETGNSLN` (number)
+      - `NTGLLNQ` (number)
+      - `NETGNSRE` (number)
+      - `NTGLREQ` (number)
+      - `NETINCA` (number)
+      - `NIMY` (number)
+      - `NOIJ` (number)
+      - `NOIJY` (number)
+      - `NOIJQ` (number)
+      - `NONIIAY` (number)
+      - `NONIIQ` (number)
+      - `NONIXAY` (number)
+      - `NPERFV` (number)
+      - `NTAG` (number)
+      - `NTAGA` (number)
+      - `NTAGQ` (number)
+      - `NTAGSM` (number)
+      - `NTAGSMQ` (number)
+      - `NTAUTO` (number)
+      - `NTAUTOA` (number)
+      - `NTAUTOQ` (number)
+      - `NTAUTOQR` (number)
+      - `NTCI` (number)
+      - `NTCIA` (number)
+      - `NTCINUS` (number)
+      - `NTCINUSQ` (number)
+      - `NTCIQ` (number)
+      - `NTCOMRER` (number)
+      - `NTCON` (number)
+      - `NTCONA` (number)
+      - `NTCONOTA` (number)
+      - `NTCONOTH` (number)
+      - `NTCONOTQ` (number)
+      - `NTCONQ` (number)
+      - `NTCONTQR` (number)
+      - `NTCRCD` (number)
+      - `NTCRCDA` (number)
+      - `NTCRCDQ` (number)
+      - `NTDEP` (number)
+      - `NTDEPNUS` (number)
+      - `NTDEPNUQ` (number)
+      - `NTDEPQ` (number)
+      - `NTFORGV` (number)
+      - `NTFORGVQ` (number)
+      - `NTINCHPP` (number)
+      - `NTINCL` (number)
+      - `NTINCLQ` (number)
+      - `NTLNLSA` (number)
+      - `NTLNLSR` (number)
+      - `NTLS` (number)
+      - `NTLSQ` (number)
+      - `NTOTHER` (number)
+      - `NTOTHQ` (number)
+      - `NTRCOMOT` (number)
+      - `NTRE` (number)
+      - `NTREQ` (number)
+      - `NTREAG` (number)
+      - `NTREAGQ` (number)
+      - `NTRECNFM` (number)
+      - `NTRECNOT` (number)
+      - `NTRECONQ` (number)
+      - `NTRECONS` (number)
+      - `NTRECOSR` (number)
+      - `NTREFOR` (number)
+      - `NTREFORQ` (number)
+      - `NTRELOC` (number)
+      - `NTRELOCQ` (number)
+      - `NTRELOCR` (number)
+      - `NTREMULQ` (number)
+      - `NTREMULR` (number)
+      - `NTREMULT` (number)
+      - `NTRENRES` (number)
+      - `NTRENROT` (number)
+      - `NTRENROW` (number)
+      - `NTRENRSQ` (number)
+      - `NTRENRSR` (number)
+      - `NTRENUS` (number)
+      - `NTRENUSQ` (number)
+      - `NTREOTHR` (number)
+      - `NTRER` (number)
+      - `NTRERES` (number)
+      - `NTRERESQ` (number)
+      - `NTRERESR` (number)
+      - `NTRERSF2` (number)
+      - `NTRERS2Q` (number)
+      - `NTRERSFM` (number)
+      - `NTRERSFQ` (number)
+      - `NTRFC` (number)
+      - `NTRFCFG` (number)
+      - `NTRFG` (number)
+      - `NTRSMMDA` (number)
+      - `NTRSOTH` (number)
+      - `OAIENC` (number)
+      - `OALIFGEN` (number)
+      - `OALIFHYB` (number)
+      - `OALIFINS` (number)
+      - `OALIFSEP` (number)
+      - `OBSDIR` (number)
+      - `OREAG` (number)
+      - `ORECONS` (number)
+      - `OREGNMA` (number)
+      - `OREINV` (number)
+      - `OREMULT` (number)
+      - `ORENRES` (number)
+      - `OREOTH` (number)
+      - `OREOTHF` (number)
+      - `ORERES` (number)
+      - `OTHBORF` (number)
+      - `OTHFFC` (number)
+      - `OTHNVS` (number)
+      - `OTHOFFBS` (number)
+      - `OTHPOC` (number)
+      - `OTHWOC` (number)
+      - `OTSREGNM` (string)
+      - `OWNCRCI` (number)
+      - `OWNCRCRD` (number)
+      - `OWNCRHEL` (number)
+      - `OWNDRCI` (number)
+      - `OWNDRCRD` (number)
+      - `OWNDRHEL` (number)
+      - `OWNLNCI` (number)
+      - `OWNLNCRD` (number)
+      - `OWNLNHEL` (number)
+      - `OWNP3CI` (number)
+      - `OWNP3CRD` (number)
+      - `OWNP3HEL` (number)
+      - `OWNP9CI` (number)
+      - `OWNP9CRD` (number)
+      - `OWNP9HEL` (number)
+      - `OWNSCCI` (number)
+      - `OWNSCCRD` (number)
+      - `OWNSCHEL` (number)
+      - `P3AG` (number)
+      - `P3AGSM` (number)
+      - `P3ASSET` (number)
+      - `P3AUTO` (number)
+      - `P3CI` (number)
+      - `P3CINUS` (number)
+      - `P3CON` (number)
+      - `P3CONOTH` (number)
+      - `P3CRCD` (number)
+      - `P3DEP` (number)
+      - `P3DEPNUS` (number)
+      - `P3FG` (number)
+      - `P3GTY` (number)
+      - `P3GTYGNM` (number)
+      - `P3GTYPAR` (number)
+      - `P3LAG` (number)
+      - `P3LCI` (number)
+      - `P3LCON` (number)
+      - `P3LGTY` (number)
+      - `P3LNSALE` (number)
+      - `P3LOTH` (number)
+      - `P3LREAG` (number)
+      - `P3LRECON` (number)
+      - `P3LREMUL` (number)
+      - `P3LRENRS` (number)
+      - `P3LRERES` (number)
+      - `P3LS` (number)
+      - `P3LTOT` (number)
+      - `P3OTHLN` (number)
+      - `P3RE` (number)
+      - `P3REAG` (number)
+      - `P3RECNFM` (number)
+      - `P3RECNOT` (number)
+      - `P3RECONS` (number)
+      - `P3REFOR` (number)
+      - `P3RELOC` (number)
+      - `P3REMULT` (number)
+      - `P3RENRES` (number)
+      - `P3RENROT` (number)
+      - `P3RENROW` (number)
+      - `P3RENUS` (number)
+      - `P3RERES` (number)
+      - `P3RERSF2` (number)
+      - `P3RERSFM` (number)
+      - `P3RSCI` (number)
+      - `P3RSCONS` (number)
+      - `P3RSLNFM` (number)
+      - `P3RSLNLS` (number)
+      - `P3RSLNLT` (number)
+      - `P3RSMULT` (number)
+      - `P3RSNRES` (number)
+      - `P3RSOTH` (number)
+      - `P3SCDEBT` (number)
+      - `P9AG` (number)
+      - `P9AGSM` (number)
+      - `P9ASSET` (number)
+      - `P9AUTO` (number)
+      - `P9CI` (number)
+      - `P9CINUS` (number)
+      - `P9CONOTH` (number)
+      - `P9CRCD` (number)
+      - `P9DEP` (number)
+      - `P9DEPNUS` (number)
+      - `P9FG` (number)
+      - `P9GTY` (number)
+      - `P9GTYGNM` (number)
+      - `P9GTYPAR` (number)
+      - `P9LAG` (number)
+      - `P9LCI` (number)
+      - `P9LCON` (number)
+      - `P9LGTY` (number)
+      - `P9LNSALE` (number)
+      - `P9LOTH` (number)
+      - `P9LREAG` (number)
+      - `P9LRECON` (number)
+      - `P9LREMUL` (number)
+      - `P9LRENRS` (number)
+      - `P9LRERES` (number)
+      - `P9LS` (number)
+      - `P9LTOT` (number)
+      - `P9OTHLN` (number)
+      - `P9RE` (number)
+      - `P9REAG` (number)
+      - `P9RECNFM` (number)
+      - `P9RECNOT` (number)
+      - `P9RECONS` (number)
+      - `P9REFOR` (number)
+      - `P9RELOC` (number)
+      - `P9REMULT` (number)
+      - `P9RENRES` (number)
+      - `P9RENROT` (number)
+      - `P9RENROW` (number)
+      - `P9RENUS` (number)
+      - `P9RERES` (number)
+      - `P9RERSF2` (number)
+      - `P9RERSFM` (number)
+      - `P9RSCI` (number)
+      - `P9RSCONS` (number)
+      - `P9RSLNFM` (number)
+      - `P9RSLNLS` (number)
+      - `P9RSLNLT` (number)
+      - `P9RSMULT` (number)
+      - `P9RSNRES` (number)
+      - `P9RSOTH` (number)
+      - `P9SCDEBT` (number)
+      - `PARTACQU` (number)
+      - `PARTCONV` (number)
+      - `RB2LNRES` (number)
+      - `RBC1AAJ` (number)
+      - `RBC1RWAJ` (number)
+      - `RBCRWAJ` (number)
+      - `RBCT2` (number)
+      - `RBCT1CER` (number)
+      - `RBCT1J` (number)
+      - `REPOPURF` (number)
+      - `REPOSLDF` (number)
+      - `ROEINJR` (number)
+      - `RSCI` (number)
+      - `RSCONS` (number)
+      - `RSLNLS` (number)
+      - `RSLNLTOT` (number)
+      - `RSLNREFM` (number)
+      - `RSMULT` (number)
+      - `RSNRES` (number)
+      - `RSOTHER` (number)
+      - `RSSDID` (number)
+      - `RT` (number)
+      - `RTFFC` (number)
+      - `RTNVS` (number)
+      - `RTPOC` (number)
+      - `RTWOC` (number)
+      - `RWAJT` (number)
+      - `SCABS` (number)
+      - `SCAF` (number)
+      - `SCAOT` (number)
+      - `SCCMMB` (number)
+      - `SCCMOG` (number)
+      - `SCCMOT` (number)
+      - `SCCMPT` (number)
+      - `SCCOL` (number)
+      - `SCCPTG` (number)
+      - `SCEQFV` (number)
+      - `SCFMN` (number)
+      - `SCGNM` (number)
+      - `SCGTY` (number)
+      - `SCHA` (number)
+      - `SCLENT` (number)
+      - `SCNM1T3` (number)
+      - `SCNM3LES` (number)
+      - `SCNM3T5` (number)
+      - `SCNM3T12` (number)
+      - `SCNM5T15` (number)
+      - `SCNMOV15` (number)
+      - `SCO3YLES` (number)
+      - `SCODOT` (number)
+      - `SCODPI` (number)
+      - `SCOOV3Y` (number)
+      - `SCPLEDGE` (number)
+      - `SCPT1T3` (number)
+      - `SCPT3LES` (number)
+      - `SCPT3T5` (number)
+      - `SCPT3T12` (number)
+      - `SCPT5T15` (number)
+      - `SCPTOV15` (number)
+      - `SCRDEBT` (number)
+      - `SCSFP` (number)
+      - `SCSNHAF` (number)
+      - `SCSPN` (number)
+      - `SZ30AUTO` (number)
+      - `SZ30CI` (number)
+      - `SZ30CON` (number)
+      - `SZ30CRCD` (number)
+      - `SZ30HEL` (number)
+      - `SZ30OTH` (number)
+      - `SZ30RES` (number)
+      - `SZ90AUTO` (number)
+      - `SZ90CI` (number)
+      - `SZ90CON` (number)
+      - `SZ90CRCD` (number)
+      - `SZ90HEL` (number)
+      - `SZ90OTH` (number)
+      - `SZ90RES` (number)
+      - `SZCRAUTO` (number)
+      - `SZCRCDFE` (number)
+      - `SZCRCI` (number)
+      - `SZCRCON` (number)
+      - `SZCRCRCD` (number)
+      - `SZCRHEL` (number)
+      - `SZCROTH` (number)
+      - `SZCRRES` (number)
+      - `SZDRAUTO` (number)
+      - `SZDRCI` (number)
+      - `SZDRCON` (number)
+      - `SZDRCRCD` (number)
+      - `SZDRHEL` (number)
+      - `SZDROTH` (number)
+      - `SZDRRES` (number)
+      - `SZISLAUT` (number)
+      - `SZISLCCD` (number)
+      - `SZISLCI` (number)
+      - `SZISLCON` (number)
+      - `SZISLHEL` (number)
+      - `SZISLOTH` (number)
+      - `SZISLRES` (number)
+      - `SZLAUTO` (number)
+      - `SZLNCI` (number)
+      - `SZLNCON` (number)
+      - `SZLNCRCD` (number)
+      - `SZLNHEL` (number)
+      - `SZLNOTH` (number)
+      - `SZLNRES` (number)
+      - `SZUCAUTO` (number)
+      - `SZUCCI` (number)
+      - `SZUCCON` (number)
+      - `SZUCCRCD` (number)
+      - `SZUCHEL` (number)
+      - `SZUCOTH` (number)
+      - `SZUCRES` (number)
+      - `TCAMA` (number)
+      - `TCAMANUM` (number)
+      - `TCANMA` (number)
+      - `TCANMNUM` (number)
+      - `TCANUM` (number)
+      - `TCANUMD` (number)
+      - `TCAPAO` (number)
+      - `TCAPAOD` (number)
+      - `TCATNUM` (number)
+      - `TCDEMV` (number)
+      - `TCDENUM` (number)
+      - `TCIEMV` (number)
+      - `TCIENUM` (number)
+      - `TCMBMV` (number)
+      - `TCMBNUM` (number)
+      - `TCSBMV` (number)
+      - `TCSBNUM` (number)
+      - `TCSNMA` (number)
+      - `TCSNMNUM` (number)
+      - `TCSOMV` (number)
+      - `TCSONUM` (number)
+      - `TCSTMV` (number)
+      - `TCSTNUM` (number)
+      - `TCTBMV` (number)
+      - `TCTBNUM` (number)
+      - `TCTOTMV` (number)
+      - `TCTOTNUM` (number)
+      - `TEBMA` (number)
+      - `TEBMANUM` (number)
+      - `TEBNMA` (number)
+      - `TEBNMNUM` (number)
+      - `TECMA` (number)
+      - `TECMANUM` (number)
+      - `TECNMA` (number)
+      - `TECNMNUM` (number)
+      - `TECPS` (number)
+      - `TEEQF` (number)
+      - `TEI` (number)
+      - `TEMATOT` (number)
+      - `TEMISC` (number)
+      - `TEMMF` (number)
+      - `TENI` (number)
+      - `TEOTHB` (number)
+      - `TEOTHF` (number)
+      - `TERE` (number)
+      - `TEREMTG` (number)
+      - `TESCMUN` (number)
+      - `TESCUS` (number)
+      - `TESTO` (number)
+      - `TETOT` (number)
+      - `TETRF` (number)
+      - `TEUF` (number)
+      - `TFEMA` (number)
+      - `TFEMANUM` (number)
+      - `TFENMA` (number)
+      - `TFENMNUM` (number)
+      - `TICA` (number)
+      - `TICS` (number)
+      - `TIEB` (number)
+      - `TIEC` (number)
+      - `TIFE` (number)
+      - `TIMA` (number)
+      - `TIMMA` (number)
+      - `TIMMANUM` (number)
+      - `TIMNMA` (number)
+      - `TIMNMNUM` (number)
+      - `TINTRA` (number)
+      - `TIOF` (number)
+      - `TIOR` (number)
+      - `TIP` (number)
+      - `TIR` (number)
+      - `TITOTF` (number)
+      - `TMAF` (number)
+      - `TMAFNUM` (number)
+      - `TMASMF` (number)
+      - `TMASMFN` (number)
+      - `TNI` (number)
+      - `TNL` (number)
+      - `TNMAF` (number)
+      - `TNMNUMF` (number)
+      - `TOCPS` (number)
+      - `TOEQF` (number)
+      - `TOFMA` (number)
+      - `TOFMANUM` (number)
+      - `TOFNMA` (number)
+      - `TOFNMNUM` (number)
+      - `TOI` (number)
+      - `TOMATOT` (number)
+      - `TOMISC` (number)
+      - `TOMMF` (number)
+      - `TONI` (number)
+      - `TOOTHB` (number)
+      - `TOOTHF` (number)
+      - `TORE` (number)
+      - `TOREMTG` (number)
+      - `TORMA` (number)
+      - `TORMANUM` (number)
+      - `TORNMA` (number)
+      - `TORNMNUM` (number)
+      - `TOSCMUN` (number)
+      - `TOSCUS` (number)
+      - `TOSTO` (number)
+      - `TOTRF` (number)
+      - `TOUF` (number)
+      - `TPICPS` (number)
+      - `TPIEQF` (number)
+      - `TPII` (number)
+      - `TPIMATOT` (number)
+      - `TPIMISC` (number)
+      - `TPIMMF` (number)
+      - `TPINI` (number)
+      - `TPIOTHB` (number)
+      - `TPIOTHF` (number)
+      - `TPIRE` (number)
+      - `TPIREMTG` (number)
+      - `TPISCMUN` (number)
+      - `TPISCUS` (number)
+      - `TPISTO` (number)
+      - `TPITRF` (number)
+      - `TPIUF` (number)
+      - `TPMA` (number)
+      - `TPMANUM` (number)
+      - `TPNMA` (number)
+      - `TPNMNUM` (number)
+      - `TREXER` (number)
+      - `TRFOR` (number)
+      - `TRHMA` (number)
+      - `TRHMANUM` (number)
+      - `TRHNMA` (number)
+      - `TRHNMNUM` (number)
+      - `TRLREVAL` (number)
+      - `TRNCBO` (number)
+      - `TRNFC` (number)
+      - `TRNFCFG` (number)
+      - `TRNFG` (number)
+      - `TRPOWER` (number)
+      - `TRREVALD` (number)
+      - `TRREVALF` (number)
+      - `TTMA` (number)
+      - `TTNANUM` (number)
+      - `TTNMA` (number)
+      - `TTNMNUM` (number)
+      - `UC` (number)
+      - `UCCOMRE` (number)
+      - `UCCOMRES` (number)
+      - `UCCOMREU` (number)
+      - `UCCRCD` (number)
+      - `UCLN` (number)
+      - `UCLOC` (number)
+      - `UCOTHER` (number)
+      - `UCOVER1` (number)
+      - `UCSC` (number)
+      - `UCSZAUTO` (number)
+      - `UCSZCI` (number)
+      - `UCSZCON` (number)
+      - `UCSZCRCD` (number)
+      - `UCSZHEL` (number)
+      - `UCSZOTH` (number)
+      - `UCSZRES` (number)
+      - `UNINCFOR` (number)
+      - `VOLIAB` (number)
+      - `ZIP` (number)
+      - `LIPNMTG` (number)
+      - `UYANMTG` (number)
+      - `ILNLS` (number)
+  - `totals` (object) — Total and subtotal data (additional properties based on fields selected)
+    - `count` (integer) — Total result count
+- **400** — bad input parameter

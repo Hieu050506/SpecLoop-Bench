@@ -1,0 +1,53 @@
+id: realworld-conduit
+name: RealWorld Conduit API
+group: A
+description: 'API backend của dự án RealWorld (Conduit – mạng xã hội bài viết): 19
+  operation, có tài liệu viết tay thật (endpoints, định dạng phản hồi, xử lý lỗi)
+  và đặc tả chính thức OAS 3.1 (đã hạ về 3.0.3). Cần chọn một backend tham chiếu để
+  chạy.'
+source:
+  spec_url: https://github.com/gothinkster/realworld/blob/ebbcdeb/specs/api/openapi.yml
+  spec_file: source/openapi_original.yml
+  license: MIT
+  homepage: https://github.com/gothinkster/realworld
+  docs_url: https://docs.realworld.show
+  retrieved_at: '2026-10-27'
+  normalization:
+  - hạ cấp OpenAPI 3.1.0 -> 3.0.3 (type null -> nullable, exclusive* số -> boolean,
+    const -> enum, examples -> example)
+  - 'servers[0].url: ''https://api.realworld.show/api'' -> ''http://localhost:3000/api'''
+environment:
+  type: local-docker
+  base_url: http://localhost:3000/api
+  test_scope: full
+  auth:
+    type: apiKey
+    in: header
+    name: Authorization
+    format: Token <jwt>
+    env_var: CONDUIT_TOKEN
+  rate_limit_rps: 5
+  connectivity_checked: false
+  probe:
+    method: GET
+    path: /tags
+    params: {}
+  run: Chọn một backend tham chiếu trong https://codebase.show/projects/realworld
+    (ví dụ bản Node/Express hoặc FastAPI), chạy ở cổng 3000, prefix /api
+docs:
+  original: docs/original.md
+  rendered: docs/rendered.md
+  ablated: docs/ablated.md
+  make_ablated: true
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (nhập ban đầu)
+notes: Lấy token bằng POST /users/login rồi đặt CONDUIT_TOKEN='Token <jwt>'.

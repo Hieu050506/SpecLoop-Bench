@@ -1,0 +1,166 @@
+{"id": "72b3fbad4c00", "category": "constraint", "op": "GET /v2/all", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v2/all|query:fields|fields|type"}
+{"id": "0f523d23a16a", "category": "constraint", "op": "GET /v2/alpha/{}", "location": "path:alphacode", "name": "alphacode", "keyword": "required", "value": true, "key": "constraint|GET /v2/alpha/{}|path:alphacode|alphacode|required"}
+{"id": "34bdf6b81c00", "category": "constraint", "op": "GET /v2/alpha/{}", "location": "path:alphacode", "name": "alphacode", "keyword": "type", "value": "string", "key": "constraint|GET /v2/alpha/{}|path:alphacode|alphacode|type"}
+{"id": "7497c2864bda", "category": "constraint", "op": "GET /v2/alpha/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v2/alpha/{}|query:fields|fields|type"}
+{"id": "fe8e5e274312", "category": "constraint", "op": "GET /v2/alpha", "location": "query:codes", "name": "codes", "keyword": "required", "value": true, "key": "constraint|GET /v2/alpha|query:codes|codes|required"}
+{"id": "13b212e230fe", "category": "constraint", "op": "GET /v2/alpha", "location": "query:codes", "name": "codes", "keyword": "type", "value": "string", "key": "constraint|GET /v2/alpha|query:codes|codes|type"}
+{"id": "4498c037fca7", "category": "constraint", "op": "GET /v2/alpha", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v2/alpha|query:fields|fields|type"}
+{"id": "a3ae2177edd9", "category": "constraint", "op": "GET /v2/callingcode/{}", "location": "path:callingcode", "name": "callingcode", "keyword": "required", "value": true, "key": "constraint|GET /v2/callingcode/{}|path:callingcode|callingcode|required"}
+{"id": "9a0a655f5693", "category": "constraint", "op": "GET /v2/callingcode/{}", "location": "path:callingcode", "name": "callingcode", "keyword": "type", "value": "string", "key": "constraint|GET /v2/callingcode/{}|path:callingcode|callingcode|type"}
+{"id": "1d095ca12778", "category": "constraint", "op": "GET /v2/callingcode/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v2/callingcode/{}|query:fields|fields|type"}
+{"id": "82c12aa4336e", "category": "constraint", "op": "GET /v2/capital/{}", "location": "path:capital", "name": "capital", "keyword": "required", "value": true, "key": "constraint|GET /v2/capital/{}|path:capital|capital|required"}
+{"id": "01cbdc7ea14b", "category": "constraint", "op": "GET /v2/capital/{}", "location": "path:capital", "name": "capital", "keyword": "type", "value": "string", "key": "constraint|GET /v2/capital/{}|path:capital|capital|type"}
+{"id": "c31dc04a9180", "category": "constraint", "op": "GET /v2/capital/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v2/capital/{}|query:fields|fields|type"}
+{"id": "320047426784", "category": "constraint", "op": "GET /v2/currency/{}", "location": "path:currency", "name": "currency", "keyword": "required", "value": true, "key": "constraint|GET /v2/currency/{}|path:currency|currency|required"}
+{"id": "571152dfcee7", "category": "constraint", "op": "GET /v2/currency/{}", "location": "path:currency", "name": "currency", "keyword": "type", "value": "string", "key": "constraint|GET /v2/currency/{}|path:currency|currency|type"}
+{"id": "da802162dbc6", "category": "constraint", "op": "GET /v2/currency/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v2/currency/{}|query:fields|fields|type"}
+{"id": "4aae80176adb", "category": "constraint", "op": "GET /v2/lang/{}", "location": "path:lang", "name": "lang", "keyword": "required", "value": true, "key": "constraint|GET /v2/lang/{}|path:lang|lang|required"}
+{"id": "e1539f8232da", "category": "constraint", "op": "GET /v2/lang/{}", "location": "path:lang", "name": "lang", "keyword": "type", "value": "string", "key": "constraint|GET /v2/lang/{}|path:lang|lang|type"}
+{"id": "6e0fa73b0954", "category": "constraint", "op": "GET /v2/lang/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v2/lang/{}|query:fields|fields|type"}
+{"id": "e3b0c6c65041", "category": "constraint", "op": "GET /v2/name/{}", "location": "path:name", "name": "name", "keyword": "required", "value": true, "key": "constraint|GET /v2/name/{}|path:name|name|required"}
+{"id": "4b4895d6bf25", "category": "constraint", "op": "GET /v2/name/{}", "location": "path:name", "name": "name", "keyword": "type", "value": "string", "key": "constraint|GET /v2/name/{}|path:name|name|type"}
+{"id": "d245846469c0", "category": "constraint", "op": "GET /v2/name/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v2/name/{}|query:fields|fields|type"}
+{"id": "42719f10f9ed", "category": "constraint", "op": "GET /v2/name/{}", "location": "query:fullText", "name": "fullText", "keyword": "type", "value": "boolean", "key": "constraint|GET /v2/name/{}|query:fullText|fullText|type"}
+{"id": "ddd2e89027a0", "category": "constraint", "op": "GET /v2/region/{}", "location": "path:region", "name": "region", "keyword": "required", "value": true, "key": "constraint|GET /v2/region/{}|path:region|region|required"}
+{"id": "57b9386daf0c", "category": "constraint", "op": "GET /v2/region/{}", "location": "path:region", "name": "region", "keyword": "type", "value": "string", "key": "constraint|GET /v2/region/{}|path:region|region|type"}
+{"id": "b6403a18c0a6", "category": "constraint", "op": "GET /v2/region/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v2/region/{}|query:fields|fields|type"}
+{"id": "452e3ae75d3a", "category": "constraint", "op": "GET /v2/regionalbloc/{}", "location": "path:regionalbloc", "name": "regionalbloc", "keyword": "required", "value": true, "key": "constraint|GET /v2/regionalbloc/{}|path:regionalbloc|regionalbloc|required"}
+{"id": "b5e4dc1c182c", "category": "constraint", "op": "GET /v2/regionalbloc/{}", "location": "path:regionalbloc", "name": "regionalbloc", "keyword": "type", "value": "string", "key": "constraint|GET /v2/regionalbloc/{}|path:regionalbloc|regionalbloc|type"}
+{"id": "338b258653ea", "category": "constraint", "op": "GET /v2/regionalbloc/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v2/regionalbloc/{}|query:fields|fields|type"}
+{"id": "6a4899d6b798", "category": "constraint", "op": "GET /v3.1/region/{}", "location": "path:region", "name": "region", "keyword": "required", "value": true, "key": "constraint|GET /v3.1/region/{}|path:region|region|required"}
+{"id": "5d0cb1d630e9", "category": "constraint", "op": "GET /v3.1/region/{}", "location": "path:region", "name": "region", "keyword": "type", "value": "string", "key": "constraint|GET /v3.1/region/{}|path:region|region|type"}
+{"id": "0b31d88cd8fd", "category": "constraint", "op": "GET /v3.1/region/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3.1/region/{}|query:fields|fields|type"}
+{"id": "19c36c786fa7", "category": "constraint", "op": "GET /v3/all", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3/all|query:fields|fields|type"}
+{"id": "9520118909cd", "category": "constraint", "op": "GET /v3/alpha/{}", "location": "path:alphacode", "name": "alphacode", "keyword": "required", "value": true, "key": "constraint|GET /v3/alpha/{}|path:alphacode|alphacode|required"}
+{"id": "69325275d870", "category": "constraint", "op": "GET /v3/alpha/{}", "location": "path:alphacode", "name": "alphacode", "keyword": "type", "value": "string", "key": "constraint|GET /v3/alpha/{}|path:alphacode|alphacode|type"}
+{"id": "0d2e02a349b6", "category": "constraint", "op": "GET /v3/alpha/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3/alpha/{}|query:fields|fields|type"}
+{"id": "e1247996bdbe", "category": "constraint", "op": "GET /v3/alpha", "location": "query:codes", "name": "codes", "keyword": "required", "value": true, "key": "constraint|GET /v3/alpha|query:codes|codes|required"}
+{"id": "b8eb83471f0e", "category": "constraint", "op": "GET /v3/alpha", "location": "query:codes", "name": "codes", "keyword": "type", "value": "string", "key": "constraint|GET /v3/alpha|query:codes|codes|type"}
+{"id": "839785b4ded0", "category": "constraint", "op": "GET /v3/alpha", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3/alpha|query:fields|fields|type"}
+{"id": "687f36a05425", "category": "constraint", "op": "GET /v3/capital/{}", "location": "path:capital", "name": "capital", "keyword": "required", "value": true, "key": "constraint|GET /v3/capital/{}|path:capital|capital|required"}
+{"id": "ae247682ba85", "category": "constraint", "op": "GET /v3/capital/{}", "location": "path:capital", "name": "capital", "keyword": "type", "value": "string", "key": "constraint|GET /v3/capital/{}|path:capital|capital|type"}
+{"id": "f1ab0936595f", "category": "constraint", "op": "GET /v3/capital/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3/capital/{}|query:fields|fields|type"}
+{"id": "23edd3da64b8", "category": "constraint", "op": "GET /v3/currency/{}", "location": "path:currency", "name": "currency", "keyword": "required", "value": true, "key": "constraint|GET /v3/currency/{}|path:currency|currency|required"}
+{"id": "b0c001574eda", "category": "constraint", "op": "GET /v3/currency/{}", "location": "path:currency", "name": "currency", "keyword": "type", "value": "string", "key": "constraint|GET /v3/currency/{}|path:currency|currency|type"}
+{"id": "89292b0fe861", "category": "constraint", "op": "GET /v3/currency/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3/currency/{}|query:fields|fields|type"}
+{"id": "b80a23cc079d", "category": "constraint", "op": "GET /v3/demonym/{}", "location": "path:demonym", "name": "demonym", "keyword": "required", "value": true, "key": "constraint|GET /v3/demonym/{}|path:demonym|demonym|required"}
+{"id": "85bfaaeb544e", "category": "constraint", "op": "GET /v3/demonym/{}", "location": "path:demonym", "name": "demonym", "keyword": "type", "value": "string", "key": "constraint|GET /v3/demonym/{}|path:demonym|demonym|type"}
+{"id": "dc5d8194b0ac", "category": "constraint", "op": "GET /v3/demonym/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3/demonym/{}|query:fields|fields|type"}
+{"id": "014e684b0411", "category": "constraint", "op": "GET /v3/lang/{}", "location": "path:lang", "name": "lang", "keyword": "required", "value": true, "key": "constraint|GET /v3/lang/{}|path:lang|lang|required"}
+{"id": "f7a3aebb4533", "category": "constraint", "op": "GET /v3/lang/{}", "location": "path:lang", "name": "lang", "keyword": "type", "value": "string", "key": "constraint|GET /v3/lang/{}|path:lang|lang|type"}
+{"id": "ec1c4c1dec25", "category": "constraint", "op": "GET /v3/lang/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3/lang/{}|query:fields|fields|type"}
+{"id": "cda49c85ad82", "category": "constraint", "op": "GET /v3/name/{}", "location": "path:name", "name": "name", "keyword": "required", "value": true, "key": "constraint|GET /v3/name/{}|path:name|name|required"}
+{"id": "56780391b0b6", "category": "constraint", "op": "GET /v3/name/{}", "location": "path:name", "name": "name", "keyword": "type", "value": "string", "key": "constraint|GET /v3/name/{}|path:name|name|type"}
+{"id": "767c8f8789ad", "category": "constraint", "op": "GET /v3/name/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3/name/{}|query:fields|fields|type"}
+{"id": "ae43e880641c", "category": "constraint", "op": "GET /v3/name/{}", "location": "query:fullText", "name": "fullText", "keyword": "type", "value": "boolean", "key": "constraint|GET /v3/name/{}|query:fullText|fullText|type"}
+{"id": "3a19af6d123a", "category": "constraint", "op": "GET /v3/subregion/{}", "location": "path:subregion", "name": "subregion", "keyword": "required", "value": true, "key": "constraint|GET /v3/subregion/{}|path:subregion|subregion|required"}
+{"id": "b94043bceb81", "category": "constraint", "op": "GET /v3/subregion/{}", "location": "path:subregion", "name": "subregion", "keyword": "type", "value": "string", "key": "constraint|GET /v3/subregion/{}|path:subregion|subregion|type"}
+{"id": "ebe78fb4214c", "category": "constraint", "op": "GET /v3/subregion/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3/subregion/{}|query:fields|fields|type"}
+{"id": "6e2456fbf2f1", "category": "constraint", "op": "GET /v3/translation/{}", "location": "path:translation", "name": "translation", "keyword": "required", "value": true, "key": "constraint|GET /v3/translation/{}|path:translation|translation|required"}
+{"id": "a098e101eeb7", "category": "constraint", "op": "GET /v3/translation/{}", "location": "path:translation", "name": "translation", "keyword": "type", "value": "string", "key": "constraint|GET /v3/translation/{}|path:translation|translation|type"}
+{"id": "311019d820ce", "category": "constraint", "op": "GET /v3/translation/{}", "location": "query:fields", "name": "fields", "keyword": "type", "value": "string", "key": "constraint|GET /v3/translation/{}|query:fields|fields|type"}
+{"id": "9256f6e99aa7", "category": "endpoint", "op": "GET /v2/all", "location": null, "name": null, "raw_path": "/v2/all", "key": "endpoint|GET /v2/all|||"}
+{"id": "76a8f75b57a6", "category": "endpoint", "op": "GET /v2/alpha/{}", "location": null, "name": null, "raw_path": "/v2/alpha/{alphacode}", "key": "endpoint|GET /v2/alpha/{}|||"}
+{"id": "2f7e81bcc5b0", "category": "endpoint", "op": "GET /v2/alpha", "location": null, "name": null, "raw_path": "/v2/alpha", "key": "endpoint|GET /v2/alpha|||"}
+{"id": "354c520331dc", "category": "endpoint", "op": "GET /v2/callingcode/{}", "location": null, "name": null, "raw_path": "/v2/callingcode/{callingcode}", "key": "endpoint|GET /v2/callingcode/{}|||"}
+{"id": "23d9252ddc2a", "category": "endpoint", "op": "GET /v2/capital/{}", "location": null, "name": null, "raw_path": "/v2/capital/{capital}", "key": "endpoint|GET /v2/capital/{}|||"}
+{"id": "932a1aad92e9", "category": "endpoint", "op": "GET /v2/currency/{}", "location": null, "name": null, "raw_path": "/v2/currency/{currency}", "key": "endpoint|GET /v2/currency/{}|||"}
+{"id": "4abb6bc83aed", "category": "endpoint", "op": "GET /v2/lang/{}", "location": null, "name": null, "raw_path": "/v2/lang/{lang}", "key": "endpoint|GET /v2/lang/{}|||"}
+{"id": "98e0ff01ea1c", "category": "endpoint", "op": "GET /v2/name/{}", "location": null, "name": null, "raw_path": "/v2/name/{name}", "key": "endpoint|GET /v2/name/{}|||"}
+{"id": "cab35fa4b38a", "category": "endpoint", "op": "GET /v2/region/{}", "location": null, "name": null, "raw_path": "/v2/region/{region}", "key": "endpoint|GET /v2/region/{}|||"}
+{"id": "696fd1597ace", "category": "endpoint", "op": "GET /v2/regionalbloc/{}", "location": null, "name": null, "raw_path": "/v2/regionalbloc/{regionalbloc}", "key": "endpoint|GET /v2/regionalbloc/{}|||"}
+{"id": "e6273a68ecd0", "category": "endpoint", "op": "GET /v3.1/region/{}", "location": null, "name": null, "raw_path": "/v3.1/region/{region}", "key": "endpoint|GET /v3.1/region/{}|||"}
+{"id": "c0278118e372", "category": "endpoint", "op": "GET /v3/all", "location": null, "name": null, "raw_path": "/v3/all", "key": "endpoint|GET /v3/all|||"}
+{"id": "d0563c1761ac", "category": "endpoint", "op": "GET /v3/alpha/{}", "location": null, "name": null, "raw_path": "/v3/alpha/{alphacode}", "key": "endpoint|GET /v3/alpha/{}|||"}
+{"id": "319d30f53fee", "category": "endpoint", "op": "GET /v3/alpha", "location": null, "name": null, "raw_path": "/v3/alpha", "key": "endpoint|GET /v3/alpha|||"}
+{"id": "82e4580011e0", "category": "endpoint", "op": "GET /v3/capital/{}", "location": null, "name": null, "raw_path": "/v3/capital/{capital}", "key": "endpoint|GET /v3/capital/{}|||"}
+{"id": "8b2907060bad", "category": "endpoint", "op": "GET /v3/currency/{}", "location": null, "name": null, "raw_path": "/v3/currency/{currency}", "key": "endpoint|GET /v3/currency/{}|||"}
+{"id": "002a6001d73b", "category": "endpoint", "op": "GET /v3/demonym/{}", "location": null, "name": null, "raw_path": "/v3/demonym/{demonym}", "key": "endpoint|GET /v3/demonym/{}|||"}
+{"id": "90a4b88022dd", "category": "endpoint", "op": "GET /v3/lang/{}", "location": null, "name": null, "raw_path": "/v3/lang/{lang}", "key": "endpoint|GET /v3/lang/{}|||"}
+{"id": "36d9e2063942", "category": "endpoint", "op": "GET /v3/name/{}", "location": null, "name": null, "raw_path": "/v3/name/{name}", "key": "endpoint|GET /v3/name/{}|||"}
+{"id": "34fd84955407", "category": "endpoint", "op": "GET /v3/subregion/{}", "location": null, "name": null, "raw_path": "/v3/subregion/{subregion}", "key": "endpoint|GET /v3/subregion/{}|||"}
+{"id": "d427352884d6", "category": "endpoint", "op": "GET /v3/translation/{}", "location": null, "name": null, "raw_path": "/v3/translation/{translation}", "key": "endpoint|GET /v3/translation/{}|||"}
+{"id": "14c8bb341440", "category": "parameter", "op": "GET /v2/all", "location": "query", "name": "fields", "key": "parameter|GET /v2/all|query|fields|"}
+{"id": "6a0df6b236c7", "category": "parameter", "op": "GET /v2/alpha/{}", "location": "path", "name": "alphacode", "key": "parameter|GET /v2/alpha/{}|path|alphacode|"}
+{"id": "5be377238e76", "category": "parameter", "op": "GET /v2/alpha/{}", "location": "query", "name": "fields", "key": "parameter|GET /v2/alpha/{}|query|fields|"}
+{"id": "e3bc6793f3de", "category": "parameter", "op": "GET /v2/alpha", "location": "query", "name": "codes", "key": "parameter|GET /v2/alpha|query|codes|"}
+{"id": "7c46793a2722", "category": "parameter", "op": "GET /v2/alpha", "location": "query", "name": "fields", "key": "parameter|GET /v2/alpha|query|fields|"}
+{"id": "849a41f52f4f", "category": "parameter", "op": "GET /v2/callingcode/{}", "location": "path", "name": "callingcode", "key": "parameter|GET /v2/callingcode/{}|path|callingcode|"}
+{"id": "a3763d1ec773", "category": "parameter", "op": "GET /v2/callingcode/{}", "location": "query", "name": "fields", "key": "parameter|GET /v2/callingcode/{}|query|fields|"}
+{"id": "15b0c40b4419", "category": "parameter", "op": "GET /v2/capital/{}", "location": "path", "name": "capital", "key": "parameter|GET /v2/capital/{}|path|capital|"}
+{"id": "4be0c3ae6ed9", "category": "parameter", "op": "GET /v2/capital/{}", "location": "query", "name": "fields", "key": "parameter|GET /v2/capital/{}|query|fields|"}
+{"id": "3a94be1d8a72", "category": "parameter", "op": "GET /v2/currency/{}", "location": "path", "name": "currency", "key": "parameter|GET /v2/currency/{}|path|currency|"}
+{"id": "b304d3fcb63e", "category": "parameter", "op": "GET /v2/currency/{}", "location": "query", "name": "fields", "key": "parameter|GET /v2/currency/{}|query|fields|"}
+{"id": "5564fe0c4af8", "category": "parameter", "op": "GET /v2/lang/{}", "location": "path", "name": "lang", "key": "parameter|GET /v2/lang/{}|path|lang|"}
+{"id": "1606a207e365", "category": "parameter", "op": "GET /v2/lang/{}", "location": "query", "name": "fields", "key": "parameter|GET /v2/lang/{}|query|fields|"}
+{"id": "8a268a7c57d1", "category": "parameter", "op": "GET /v2/name/{}", "location": "path", "name": "name", "key": "parameter|GET /v2/name/{}|path|name|"}
+{"id": "fac7286a3c93", "category": "parameter", "op": "GET /v2/name/{}", "location": "query", "name": "fields", "key": "parameter|GET /v2/name/{}|query|fields|"}
+{"id": "f1e5de82f8ba", "category": "parameter", "op": "GET /v2/name/{}", "location": "query", "name": "fullText", "key": "parameter|GET /v2/name/{}|query|fullText|"}
+{"id": "0372e089c322", "category": "parameter", "op": "GET /v2/region/{}", "location": "path", "name": "region", "key": "parameter|GET /v2/region/{}|path|region|"}
+{"id": "c0da1a5893d7", "category": "parameter", "op": "GET /v2/region/{}", "location": "query", "name": "fields", "key": "parameter|GET /v2/region/{}|query|fields|"}
+{"id": "bc15fe83bf08", "category": "parameter", "op": "GET /v2/regionalbloc/{}", "location": "path", "name": "regionalbloc", "key": "parameter|GET /v2/regionalbloc/{}|path|regionalbloc|"}
+{"id": "bed8c000c6eb", "category": "parameter", "op": "GET /v2/regionalbloc/{}", "location": "query", "name": "fields", "key": "parameter|GET /v2/regionalbloc/{}|query|fields|"}
+{"id": "3c7a2e8c80e4", "category": "parameter", "op": "GET /v3.1/region/{}", "location": "path", "name": "region", "key": "parameter|GET /v3.1/region/{}|path|region|"}
+{"id": "b96fef25667b", "category": "parameter", "op": "GET /v3.1/region/{}", "location": "query", "name": "fields", "key": "parameter|GET /v3.1/region/{}|query|fields|"}
+{"id": "5f717567ecae", "category": "parameter", "op": "GET /v3/all", "location": "query", "name": "fields", "key": "parameter|GET /v3/all|query|fields|"}
+{"id": "ab43ff8ad6e7", "category": "parameter", "op": "GET /v3/alpha/{}", "location": "path", "name": "alphacode", "key": "parameter|GET /v3/alpha/{}|path|alphacode|"}
+{"id": "62719fe573ef", "category": "parameter", "op": "GET /v3/alpha/{}", "location": "query", "name": "fields", "key": "parameter|GET /v3/alpha/{}|query|fields|"}
+{"id": "bd85a5a1c5af", "category": "parameter", "op": "GET /v3/alpha", "location": "query", "name": "codes", "key": "parameter|GET /v3/alpha|query|codes|"}
+{"id": "4ad849f12c6d", "category": "parameter", "op": "GET /v3/alpha", "location": "query", "name": "fields", "key": "parameter|GET /v3/alpha|query|fields|"}
+{"id": "9277c9b09fb7", "category": "parameter", "op": "GET /v3/capital/{}", "location": "path", "name": "capital", "key": "parameter|GET /v3/capital/{}|path|capital|"}
+{"id": "efaab1cd49b9", "category": "parameter", "op": "GET /v3/capital/{}", "location": "query", "name": "fields", "key": "parameter|GET /v3/capital/{}|query|fields|"}
+{"id": "b3be6009fd8c", "category": "parameter", "op": "GET /v3/currency/{}", "location": "path", "name": "currency", "key": "parameter|GET /v3/currency/{}|path|currency|"}
+{"id": "52e1174481ce", "category": "parameter", "op": "GET /v3/currency/{}", "location": "query", "name": "fields", "key": "parameter|GET /v3/currency/{}|query|fields|"}
+{"id": "247b25b9d101", "category": "parameter", "op": "GET /v3/demonym/{}", "location": "path", "name": "demonym", "key": "parameter|GET /v3/demonym/{}|path|demonym|"}
+{"id": "6da2df6dd29e", "category": "parameter", "op": "GET /v3/demonym/{}", "location": "query", "name": "fields", "key": "parameter|GET /v3/demonym/{}|query|fields|"}
+{"id": "1a228be756fc", "category": "parameter", "op": "GET /v3/lang/{}", "location": "path", "name": "lang", "key": "parameter|GET /v3/lang/{}|path|lang|"}
+{"id": "9fb12a7fc475", "category": "parameter", "op": "GET /v3/lang/{}", "location": "query", "name": "fields", "key": "parameter|GET /v3/lang/{}|query|fields|"}
+{"id": "179fe5dbe971", "category": "parameter", "op": "GET /v3/name/{}", "location": "path", "name": "name", "key": "parameter|GET /v3/name/{}|path|name|"}
+{"id": "2ca3de5524c2", "category": "parameter", "op": "GET /v3/name/{}", "location": "query", "name": "fields", "key": "parameter|GET /v3/name/{}|query|fields|"}
+{"id": "0516a230ff5b", "category": "parameter", "op": "GET /v3/name/{}", "location": "query", "name": "fullText", "key": "parameter|GET /v3/name/{}|query|fullText|"}
+{"id": "62b403b50ff9", "category": "parameter", "op": "GET /v3/subregion/{}", "location": "path", "name": "subregion", "key": "parameter|GET /v3/subregion/{}|path|subregion|"}
+{"id": "1f7aa7e5aaf9", "category": "parameter", "op": "GET /v3/subregion/{}", "location": "query", "name": "fields", "key": "parameter|GET /v3/subregion/{}|query|fields|"}
+{"id": "fd4b0e7ed817", "category": "parameter", "op": "GET /v3/translation/{}", "location": "path", "name": "translation", "key": "parameter|GET /v3/translation/{}|path|translation|"}
+{"id": "28726759e8d0", "category": "parameter", "op": "GET /v3/translation/{}", "location": "query", "name": "fields", "key": "parameter|GET /v3/translation/{}|query|fields|"}
+{"id": "23a44728d45b", "category": "response", "op": "GET /v2/all", "location": "200", "name": null, "key": "response|GET /v2/all|200||"}
+{"id": "114fe7415aae", "category": "response", "op": "GET /v2/all", "location": "default", "name": null, "key": "response|GET /v2/all|default||"}
+{"id": "8b2332849d12", "category": "response", "op": "GET /v2/alpha/{}", "location": "200", "name": null, "key": "response|GET /v2/alpha/{}|200||"}
+{"id": "b30fb69b5b35", "category": "response", "op": "GET /v2/alpha/{}", "location": "default", "name": null, "key": "response|GET /v2/alpha/{}|default||"}
+{"id": "4aa445bb6150", "category": "response", "op": "GET /v2/alpha", "location": "200", "name": null, "key": "response|GET /v2/alpha|200||"}
+{"id": "1529d865b7db", "category": "response", "op": "GET /v2/alpha", "location": "default", "name": null, "key": "response|GET /v2/alpha|default||"}
+{"id": "cfff6333da0e", "category": "response", "op": "GET /v2/callingcode/{}", "location": "200", "name": null, "key": "response|GET /v2/callingcode/{}|200||"}
+{"id": "f00dafcd7374", "category": "response", "op": "GET /v2/callingcode/{}", "location": "default", "name": null, "key": "response|GET /v2/callingcode/{}|default||"}
+{"id": "d143e334380d", "category": "response", "op": "GET /v2/capital/{}", "location": "200", "name": null, "key": "response|GET /v2/capital/{}|200||"}
+{"id": "51ebdb31e4d0", "category": "response", "op": "GET /v2/capital/{}", "location": "default", "name": null, "key": "response|GET /v2/capital/{}|default||"}
+{"id": "40b3fb85c448", "category": "response", "op": "GET /v2/currency/{}", "location": "200", "name": null, "key": "response|GET /v2/currency/{}|200||"}
+{"id": "3acb4b57a5c0", "category": "response", "op": "GET /v2/currency/{}", "location": "default", "name": null, "key": "response|GET /v2/currency/{}|default||"}
+{"id": "5db0548ce515", "category": "response", "op": "GET /v2/lang/{}", "location": "200", "name": null, "key": "response|GET /v2/lang/{}|200||"}
+{"id": "0ab9bc57ccf4", "category": "response", "op": "GET /v2/lang/{}", "location": "default", "name": null, "key": "response|GET /v2/lang/{}|default||"}
+{"id": "8185bd830769", "category": "response", "op": "GET /v2/name/{}", "location": "200", "name": null, "key": "response|GET /v2/name/{}|200||"}
+{"id": "3ad589f67434", "category": "response", "op": "GET /v2/name/{}", "location": "default", "name": null, "key": "response|GET /v2/name/{}|default||"}
+{"id": "7d96e4e59b68", "category": "response", "op": "GET /v2/region/{}", "location": "200", "name": null, "key": "response|GET /v2/region/{}|200||"}
+{"id": "fbc6db457131", "category": "response", "op": "GET /v2/region/{}", "location": "default", "name": null, "key": "response|GET /v2/region/{}|default||"}
+{"id": "53f56de973e3", "category": "response", "op": "GET /v2/regionalbloc/{}", "location": "200", "name": null, "key": "response|GET /v2/regionalbloc/{}|200||"}
+{"id": "1a9adcc2f990", "category": "response", "op": "GET /v2/regionalbloc/{}", "location": "default", "name": null, "key": "response|GET /v2/regionalbloc/{}|default||"}
+{"id": "1b25d11f1974", "category": "response", "op": "GET /v3.1/region/{}", "location": "200", "name": null, "key": "response|GET /v3.1/region/{}|200||"}
+{"id": "32e26446d4ae", "category": "response", "op": "GET /v3.1/region/{}", "location": "default", "name": null, "key": "response|GET /v3.1/region/{}|default||"}
+{"id": "40919dd967c5", "category": "response", "op": "GET /v3/all", "location": "200", "name": null, "key": "response|GET /v3/all|200||"}
+{"id": "bf3c40964169", "category": "response", "op": "GET /v3/all", "location": "default", "name": null, "key": "response|GET /v3/all|default||"}
+{"id": "ff6b0a43d2f2", "category": "response", "op": "GET /v3/alpha/{}", "location": "200", "name": null, "key": "response|GET /v3/alpha/{}|200||"}
+{"id": "0d4a2831412e", "category": "response", "op": "GET /v3/alpha/{}", "location": "default", "name": null, "key": "response|GET /v3/alpha/{}|default||"}
+{"id": "48ce2d9c913f", "category": "response", "op": "GET /v3/alpha", "location": "200", "name": null, "key": "response|GET /v3/alpha|200||"}
+{"id": "85d42d9232dd", "category": "response", "op": "GET /v3/alpha", "location": "default", "name": null, "key": "response|GET /v3/alpha|default||"}
+{"id": "55b363ba4ff5", "category": "response", "op": "GET /v3/capital/{}", "location": "200", "name": null, "key": "response|GET /v3/capital/{}|200||"}
+{"id": "42e174fca34d", "category": "response", "op": "GET /v3/capital/{}", "location": "default", "name": null, "key": "response|GET /v3/capital/{}|default||"}
+{"id": "55ef963f8ead", "category": "response", "op": "GET /v3/currency/{}", "location": "200", "name": null, "key": "response|GET /v3/currency/{}|200||"}
+{"id": "a6d6dbed9933", "category": "response", "op": "GET /v3/currency/{}", "location": "default", "name": null, "key": "response|GET /v3/currency/{}|default||"}
+{"id": "c94ee3faa887", "category": "response", "op": "GET /v3/demonym/{}", "location": "200", "name": null, "key": "response|GET /v3/demonym/{}|200||"}
+{"id": "73a340ddf1f9", "category": "response", "op": "GET /v3/demonym/{}", "location": "default", "name": null, "key": "response|GET /v3/demonym/{}|default||"}
+{"id": "77fbf8991fa1", "category": "response", "op": "GET /v3/lang/{}", "location": "200", "name": null, "key": "response|GET /v3/lang/{}|200||"}
+{"id": "5f6a591a2109", "category": "response", "op": "GET /v3/lang/{}", "location": "default", "name": null, "key": "response|GET /v3/lang/{}|default||"}
+{"id": "df50ae15462a", "category": "response", "op": "GET /v3/name/{}", "location": "200", "name": null, "key": "response|GET /v3/name/{}|200||"}
+{"id": "9cde4b3bdb00", "category": "response", "op": "GET /v3/name/{}", "location": "default", "name": null, "key": "response|GET /v3/name/{}|default||"}
+{"id": "029dbbd7fc69", "category": "response", "op": "GET /v3/subregion/{}", "location": "200", "name": null, "key": "response|GET /v3/subregion/{}|200||"}
+{"id": "299d2442e5af", "category": "response", "op": "GET /v3/subregion/{}", "location": "default", "name": null, "key": "response|GET /v3/subregion/{}|default||"}
+{"id": "b99aa6134545", "category": "response", "op": "GET /v3/translation/{}", "location": "200", "name": null, "key": "response|GET /v3/translation/{}|200||"}
+{"id": "0ff77413b580", "category": "response", "op": "GET /v3/translation/{}", "location": "default", "name": null, "key": "response|GET /v3/translation/{}|default||"}

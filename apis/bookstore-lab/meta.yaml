@@ -1,0 +1,40 @@
+id: bookstore-lab
+name: Bookstore-Lab
+group: A
+description: >-
+  API thư viện sách do nhóm tự xây dựng (FastAPI) làm môi trường thực nghiệm có kiểm soát: 8 operation,
+  tài liệu viết tay, 13 sai lệch tài liệu – cài đặt được cài cắm có chủ đích (D0–D9) và 10 ràng buộc
+  đối chứng khớp tài liệu. Có đầy đủ GT tài liệu và GT hành vi chính xác.
+source:
+  spec_url: null
+  spec_file: ground_truth/openapi.yaml
+  license: MIT (sản phẩm của đề tài)
+  homepage: null
+  docs_url: docs/original.md
+  retrieved_at: '2026-10-27'
+  normalization: []
+environment:
+  type: local-docker
+  base_url: http://localhost:8000/v1
+  test_scope: full
+  auth: {type: none}
+  rate_limit_rps: 5
+  reset: "POST /__admin/reset, header X-Admin-Token: reset-me (khôi phục dữ liệu mẫu giữa các lượt chạy)"
+  run: "cd apis/bookstore-lab/sut && docker build -t bookstore-lab . && docker run -p 8000:8000 bookstore-lab"
+  connectivity_checked: true
+  probe: {method: GET, path: /books, params: {sort: title}}
+docs:
+  original: docs/original.md
+  rendered: docs/rendered.md
+  ablated: docs/ablated.md
+  make_ablated: true
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: ground_truth/behavior_openapi.yaml
+  behavior_status: exact
+  discrepancies: ground_truth/discrepancies.json
+  verified_by: [sut/test_behavior.py]
+  notes: GT hành vi được kiểm chứng tự động bằng 19 test (pytest).
+rq_scope: [RQ1, RQ2, RQ3]
+added_by: nhóm đề tài
+notes: Không công bố công khai trước khi chạy thực nghiệm để hạn chế data contamination.

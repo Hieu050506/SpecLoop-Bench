@@ -1,0 +1,36 @@
+# Mẫu meta.yaml – sao chép thư mục _template thành apis/<id>/ rồi điền các trường.
+# Cách nhanh hơn: dùng tools/add_api.py (tự sinh meta.yaml).
+id: my-api                     # trùng tên thư mục; chữ thường, số, gạch nối
+name: My API
+group: B                       # A: tự triển khai/có kiểm soát | B: công khai
+description: Mô tả ngắn (lĩnh vực, số operation, điểm đáng chú ý về ràng buộc)
+source:
+  spec_url: https://...        # nơi lấy đặc tả gốc (ghim commit nếu là GitHub)
+  spec_file: source/openapi_original.yaml
+  license: ...                 # giấy phép/điều khoản sử dụng của đặc tả và tài liệu
+  homepage: https://...
+  docs_url: https://...        # trang tài liệu cho người đọc
+  retrieved_at: 'YYYY-MM-DD'
+  normalization: []            # ghi lại mọi thay đổi khi chuẩn hóa về 3.0.3
+environment:
+  type: public                 # local-docker | public | offline
+  base_url: https://...
+  test_scope: read-only        # full | read-only | none
+  auth: {type: none}           # hoặc {type: apiKey, in: query, name: apikey, env_var: MY_API_KEY}
+  rate_limit_rps: 1
+  connectivity_checked: false
+  probe: {method: GET, path: /health, params: {}}
+docs:
+  original: docs/original.md   # tài liệu gốc viết cho con người (null nếu không có)
+  rendered: docs/rendered.md   # do build_dataset.py sinh
+  ablated: null                # docs/ablated.md nếu make_ablated: true
+  make_ablated: false
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null               # ground_truth/behavior_openapi.yaml khi đã xác minh hành vi
+  behavior_status: pending     # pending | partial | exact
+  verified_by: []
+  notes: ''
+rq_scope: [RQ1, RQ2, RQ3]
+added_by: Họ tên người thêm
+notes: ''

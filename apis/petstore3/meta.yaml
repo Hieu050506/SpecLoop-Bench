@@ -1,0 +1,49 @@
+id: petstore3
+name: Swagger Petstore v3
+group: A
+description: 'API mẫu kinh điển của Swagger (thú cưng, cửa hàng, người dùng): 19 operation,
+  đặc tả chính thức OAS 3.0; chạy cục bộ bằng Docker. Tài liệu chính thức là trang
+  Swagger UI sinh từ đặc tả nên chỉ có bản render.'
+source:
+  spec_url: https://raw.githubusercontent.com/swagger-api/swagger-petstore/master/src/main/resources/openapi.yaml
+  spec_file: source/openapi_original.yaml
+  license: Apache-2.0
+  homepage: https://github.com/swagger-api/swagger-petstore
+  docs_url: https://petstore3.swagger.io
+  retrieved_at: '2026-10-27'
+  normalization:
+  - đổi nhãn phiên bản 3.0.4 -> 3.0.3 (tương thích ngữ nghĩa)
+  - 'servers[0].url: ''https://petstore3.swagger.io/api/v3'' -> ''http://localhost:8080/api/v3'''
+environment:
+  type: local-docker
+  base_url: http://localhost:8080/api/v3
+  test_scope: full
+  auth:
+    type: none
+    note: Máy chủ mẫu không bắt buộc api_key/OAuth2 cho hầu hết operation
+  rate_limit_rps: 5
+  connectivity_checked: false
+  probe:
+    method: GET
+    path: /pet/findByStatus
+    params:
+      status: available
+  run: docker run -d -p 8080:8080 swaggerapi/petstore3:unstable
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: docs/ablated.md
+  make_ablated: true
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (nhập ban đầu)
+notes: Máy chủ mẫu có một số hành vi khác đặc tả (đã được cộng đồng ghi nhận) – phù
+  hợp để thử phát hiện sai lệch thật.

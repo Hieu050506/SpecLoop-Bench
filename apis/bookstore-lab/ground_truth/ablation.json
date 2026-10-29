@@ -1,0 +1,31 @@
+{
+ "seed": 2945704587,
+ "ratio": 0.4,
+ "n_candidates": 24,
+ "n_hidden": 10,
+ "hidden_keys": [
+  "constraint|DELETE /v1/orders/{}|path:order_id|order_id|minimum",
+  "constraint|GET /v1/authors/{}|path:author_id|author_id|minimum",
+  "constraint|GET /v1/books|query:page|page|minimum",
+  "constraint|GET /v1/books|query:sort|sort|enum",
+  "constraint|GET /v1/orders/{}|path:order_id|order_id|minimum",
+  "constraint|POST /v1/books|body:genre|genre|enum",
+  "constraint|POST /v1/books|body:isbn|isbn|pattern",
+  "constraint|POST /v1/books|body:price|price|required",
+  "constraint|POST /v1/orders|body:quantity|quantity|maximum",
+  "constraint|POST /v1/orders|body:quantity|quantity|minimum"
+ ],
+ "hidden_fact_ids": [
+  "972aebc33c22",
+  "c5a606b3148b",
+  "159cdaccb521",
+  "ebd2aa6c554a",
+  "162f588b78a9",
+  "ce7698a3e580",
+  "8f87b2c9d1e0",
+  "6471dee2ca57",
+  "098cd5f626e7",
+  "9db865092a62"
+ ],
+ "note": "Các ràng buộc này bị ẩn trong docs/ablated.md (kể cả câu mô tả có nhắc tới giá trị). Dùng để đo 'constraint recovery' nhờ phản hồi kiểm thử."
+}

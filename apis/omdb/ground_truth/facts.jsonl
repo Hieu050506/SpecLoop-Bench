@@ -1,0 +1,112 @@
+{"id": "4a4eb11a7559", "category": "constraint", "op": "GET /", "location": "operation", "name": "x-dependencies", "keyword": "dependency", "value": "OnlyOne(i OR t, s);", "key": "constraint|GET /|operation|x-dependencies|dependency"}
+{"id": "77b4a0dec46a", "category": "constraint", "op": "GET /", "location": "query:callback", "name": "callback", "keyword": "type", "value": "string", "key": "constraint|GET /|query:callback|callback|type"}
+{"id": "23652c92bda8", "category": "constraint", "op": "GET /", "location": "query:i", "name": "i", "keyword": "type", "value": "string", "key": "constraint|GET /|query:i|i|type"}
+{"id": "a3ae3443c6a9", "category": "constraint", "op": "GET /", "location": "query:page", "name": "page", "keyword": "type", "value": "integer", "key": "constraint|GET /|query:page|page|type"}
+{"id": "fa286d7c4c89", "category": "constraint", "op": "GET /", "location": "query:plot", "name": "plot", "keyword": "enum", "value": ["full", "short"], "key": "constraint|GET /|query:plot|plot|enum"}
+{"id": "e4679f09293c", "category": "constraint", "op": "GET /", "location": "query:plot", "name": "plot", "keyword": "type", "value": "string", "key": "constraint|GET /|query:plot|plot|type"}
+{"id": "2efbbc017d03", "category": "constraint", "op": "GET /", "location": "query:r", "name": "r", "keyword": "enum", "value": ["json", "xml"], "key": "constraint|GET /|query:r|r|enum"}
+{"id": "3297d309baf1", "category": "constraint", "op": "GET /", "location": "query:r", "name": "r", "keyword": "type", "value": "string", "key": "constraint|GET /|query:r|r|type"}
+{"id": "2764ddfcc1e5", "category": "constraint", "op": "GET /", "location": "query:s", "name": "s", "keyword": "type", "value": "string", "key": "constraint|GET /|query:s|s|type"}
+{"id": "0fd9770bb05e", "category": "constraint", "op": "GET /", "location": "query:type", "name": "type", "keyword": "enum", "value": ["episode", "movie", "series"], "key": "constraint|GET /|query:type|type|enum"}
+{"id": "60d68dc84b35", "category": "constraint", "op": "GET /", "location": "query:type", "name": "type", "keyword": "type", "value": "string", "key": "constraint|GET /|query:type|type|type"}
+{"id": "48867cdec516", "category": "constraint", "op": "GET /", "location": "query:t", "name": "t", "keyword": "type", "value": "string", "key": "constraint|GET /|query:t|t|type"}
+{"id": "36333d0d63a3", "category": "constraint", "op": "GET /", "location": "query:y", "name": "y", "keyword": "type", "value": "integer", "key": "constraint|GET /|query:y|y|type"}
+{"id": "1b3aa3d698ed", "category": "constraint", "op": "GET /", "location": "resp200:Actors", "name": "Actors", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Actors|Actors|type"}
+{"id": "0242630aafed", "category": "constraint", "op": "GET /", "location": "resp200:Awards", "name": "Awards", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Awards|Awards|type"}
+{"id": "d18891dcb995", "category": "constraint", "op": "GET /", "location": "resp200:BoxOffice", "name": "BoxOffice", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:BoxOffice|BoxOffice|type"}
+{"id": "eb93b6505fb6", "category": "constraint", "op": "GET /", "location": "resp200:Country", "name": "Country", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Country|Country|type"}
+{"id": "86fd0de53429", "category": "constraint", "op": "GET /", "location": "resp200:DVD", "name": "DVD", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:DVD|DVD|type"}
+{"id": "305f676f9876", "category": "constraint", "op": "GET /", "location": "resp200:Director", "name": "Director", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Director|Director|type"}
+{"id": "786eff5e6ad9", "category": "constraint", "op": "GET /", "location": "resp200:Episode", "name": "Episode", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Episode|Episode|type"}
+{"id": "7a11d5ccbc91", "category": "constraint", "op": "GET /", "location": "resp200:Error", "name": "Error", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Error|Error|type"}
+{"id": "03b85c6cc03f", "category": "constraint", "op": "GET /", "location": "resp200:Genre", "name": "Genre", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Genre|Genre|type"}
+{"id": "dd776f5db5f2", "category": "constraint", "op": "GET /", "location": "resp200:Language", "name": "Language", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Language|Language|type"}
+{"id": "2ee2faf51a3e", "category": "constraint", "op": "GET /", "location": "resp200:Metascore", "name": "Metascore", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Metascore|Metascore|type"}
+{"id": "fade7b939c63", "category": "constraint", "op": "GET /", "location": "resp200:Plot", "name": "Plot", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Plot|Plot|type"}
+{"id": "5e647cbbb6f9", "category": "constraint", "op": "GET /", "location": "resp200:Poster", "name": "Poster", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Poster|Poster|type"}
+{"id": "76f643c529f6", "category": "constraint", "op": "GET /", "location": "resp200:Production", "name": "Production", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Production|Production|type"}
+{"id": "965264e7fdb8", "category": "constraint", "op": "GET /", "location": "resp200:Rated", "name": "Rated", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Rated|Rated|type"}
+{"id": "f84b512585b3", "category": "constraint", "op": "GET /", "location": "resp200:Ratings[].Source", "name": "Ratings[].Source", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Ratings[].Source|Ratings[].Source|type"}
+{"id": "5384c62fe6f0", "category": "constraint", "op": "GET /", "location": "resp200:Ratings[].Value", "name": "Ratings[].Value", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Ratings[].Value|Ratings[].Value|type"}
+{"id": "174cd7ba8672", "category": "constraint", "op": "GET /", "location": "resp200:Ratings", "name": "Ratings", "keyword": "type", "value": "array", "key": "constraint|GET /|resp200:Ratings|Ratings|type"}
+{"id": "a3493af13b7d", "category": "constraint", "op": "GET /", "location": "resp200:Released", "name": "Released", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Released|Released|type"}
+{"id": "ffbd22ebe990", "category": "constraint", "op": "GET /", "location": "resp200:Response", "name": "Response", "keyword": "enum", "value": ["false", "true"], "key": "constraint|GET /|resp200:Response|Response|enum"}
+{"id": "8ed7d5701e03", "category": "constraint", "op": "GET /", "location": "resp200:Response", "name": "Response", "keyword": "required", "value": true, "key": "constraint|GET /|resp200:Response|Response|required"}
+{"id": "791f6f0ff656", "category": "constraint", "op": "GET /", "location": "resp200:Response", "name": "Response", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Response|Response|type"}
+{"id": "0439c6a575eb", "category": "constraint", "op": "GET /", "location": "resp200:Runtime", "name": "Runtime", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Runtime|Runtime|type"}
+{"id": "f802f40a0b87", "category": "constraint", "op": "GET /", "location": "resp200:Search[].Poster", "name": "Search[].Poster", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Search[].Poster|Search[].Poster|type"}
+{"id": "f9c67195548f", "category": "constraint", "op": "GET /", "location": "resp200:Search[].Title", "name": "Search[].Title", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Search[].Title|Search[].Title|type"}
+{"id": "e5fa06b12fb5", "category": "constraint", "op": "GET /", "location": "resp200:Search[].Type", "name": "Search[].Type", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Search[].Type|Search[].Type|type"}
+{"id": "93364bc50a3f", "category": "constraint", "op": "GET /", "location": "resp200:Search[].Year", "name": "Search[].Year", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Search[].Year|Search[].Year|type"}
+{"id": "09e6d6b79110", "category": "constraint", "op": "GET /", "location": "resp200:Search[].imdbID", "name": "Search[].imdbID", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Search[].imdbID|Search[].imdbID|type"}
+{"id": "575502cb8ed0", "category": "constraint", "op": "GET /", "location": "resp200:Search", "name": "Search", "keyword": "type", "value": "array", "key": "constraint|GET /|resp200:Search|Search|type"}
+{"id": "5270c12a930e", "category": "constraint", "op": "GET /", "location": "resp200:Season", "name": "Season", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Season|Season|type"}
+{"id": "2e8876dfd387", "category": "constraint", "op": "GET /", "location": "resp200:Title", "name": "Title", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Title|Title|type"}
+{"id": "fecf3a9d37a3", "category": "constraint", "op": "GET /", "location": "resp200:Type", "name": "Type", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Type|Type|type"}
+{"id": "507dc6283420", "category": "constraint", "op": "GET /", "location": "resp200:Website", "name": "Website", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Website|Website|type"}
+{"id": "9c353c77c84a", "category": "constraint", "op": "GET /", "location": "resp200:Writer", "name": "Writer", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Writer|Writer|type"}
+{"id": "220714fddb63", "category": "constraint", "op": "GET /", "location": "resp200:Year", "name": "Year", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:Year|Year|type"}
+{"id": "f080e47701dd", "category": "constraint", "op": "GET /", "location": "resp200:imdbID", "name": "imdbID", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:imdbID|imdbID|type"}
+{"id": "a8674f41fc6c", "category": "constraint", "op": "GET /", "location": "resp200:imdbRating", "name": "imdbRating", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:imdbRating|imdbRating|type"}
+{"id": "f59c32c80422", "category": "constraint", "op": "GET /", "location": "resp200:imdbVotes", "name": "imdbVotes", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:imdbVotes|imdbVotes|type"}
+{"id": "8615cbb9e3da", "category": "constraint", "op": "GET /", "location": "resp200:seriesID", "name": "seriesID", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:seriesID|seriesID|type"}
+{"id": "474f7ff5a413", "category": "constraint", "op": "GET /", "location": "resp200:totalResults", "name": "totalResults", "keyword": "type", "value": "integer", "key": "constraint|GET /|resp200:totalResults|totalResults|type"}
+{"id": "62be7ced0603", "category": "constraint", "op": "GET /", "location": "resp200:totalSeasons", "name": "totalSeasons", "keyword": "type", "value": "string", "key": "constraint|GET /|resp200:totalSeasons|totalSeasons|type"}
+{"id": "c96435501391", "category": "constraint", "op": "GET /", "location": "resp401:Error", "name": "Error", "keyword": "required", "value": true, "key": "constraint|GET /|resp401:Error|Error|required"}
+{"id": "dd6223631629", "category": "constraint", "op": "GET /", "location": "resp401:Error", "name": "Error", "keyword": "type", "value": "string", "key": "constraint|GET /|resp401:Error|Error|type"}
+{"id": "982612867179", "category": "constraint", "op": "GET /", "location": "resp401:Response", "name": "Response", "keyword": "enum", "value": ["false"], "key": "constraint|GET /|resp401:Response|Response|enum"}
+{"id": "fcf295578c45", "category": "constraint", "op": "GET /", "location": "resp401:Response", "name": "Response", "keyword": "required", "value": true, "key": "constraint|GET /|resp401:Response|Response|required"}
+{"id": "65636bf72d16", "category": "constraint", "op": "GET /", "location": "resp401:Response", "name": "Response", "keyword": "type", "value": "string", "key": "constraint|GET /|resp401:Response|Response|type"}
+{"id": "ba095ad1f1c8", "category": "endpoint", "op": "GET /", "location": null, "name": null, "raw_path": "/", "key": "endpoint|GET /|||"}
+{"id": "0a804a4be52a", "category": "parameter", "op": "GET /", "location": "query", "name": "callback", "key": "parameter|GET /|query|callback|"}
+{"id": "deb928b87ffa", "category": "parameter", "op": "GET /", "location": "query", "name": "i", "key": "parameter|GET /|query|i|"}
+{"id": "61e81057c396", "category": "parameter", "op": "GET /", "location": "query", "name": "page", "key": "parameter|GET /|query|page|"}
+{"id": "32bd6c1b4e08", "category": "parameter", "op": "GET /", "location": "query", "name": "plot", "key": "parameter|GET /|query|plot|"}
+{"id": "cd926057361d", "category": "parameter", "op": "GET /", "location": "query", "name": "r", "key": "parameter|GET /|query|r|"}
+{"id": "2a87075dfa5b", "category": "parameter", "op": "GET /", "location": "query", "name": "s", "key": "parameter|GET /|query|s|"}
+{"id": "489115b5a0e5", "category": "parameter", "op": "GET /", "location": "query", "name": "type", "key": "parameter|GET /|query|type|"}
+{"id": "19f7a0e3f2e0", "category": "parameter", "op": "GET /", "location": "query", "name": "t", "key": "parameter|GET /|query|t|"}
+{"id": "95055903f009", "category": "parameter", "op": "GET /", "location": "query", "name": "y", "key": "parameter|GET /|query|y|"}
+{"id": "e4bc5fd84599", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Actors", "key": "response_field|GET /|resp200|Actors|"}
+{"id": "a195491792f7", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Awards", "key": "response_field|GET /|resp200|Awards|"}
+{"id": "a3341cb5c6fe", "category": "response_field", "op": "GET /", "location": "resp200", "name": "BoxOffice", "key": "response_field|GET /|resp200|BoxOffice|"}
+{"id": "3681d063e3c5", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Country", "key": "response_field|GET /|resp200|Country|"}
+{"id": "a0730a4b74d2", "category": "response_field", "op": "GET /", "location": "resp200", "name": "DVD", "key": "response_field|GET /|resp200|DVD|"}
+{"id": "a51ab74ddfb7", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Director", "key": "response_field|GET /|resp200|Director|"}
+{"id": "c1e23e122645", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Episode", "key": "response_field|GET /|resp200|Episode|"}
+{"id": "9018c44f8237", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Error", "key": "response_field|GET /|resp200|Error|"}
+{"id": "d1c8cd4f0b0c", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Genre", "key": "response_field|GET /|resp200|Genre|"}
+{"id": "4c799dc794d8", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Language", "key": "response_field|GET /|resp200|Language|"}
+{"id": "acea22e7e8b9", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Metascore", "key": "response_field|GET /|resp200|Metascore|"}
+{"id": "6e49ef9a224e", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Plot", "key": "response_field|GET /|resp200|Plot|"}
+{"id": "1c7080914975", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Poster", "key": "response_field|GET /|resp200|Poster|"}
+{"id": "42ce45eb8cbd", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Production", "key": "response_field|GET /|resp200|Production|"}
+{"id": "a09adf672c67", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Rated", "key": "response_field|GET /|resp200|Rated|"}
+{"id": "cefb30e55510", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Ratings[].Source", "key": "response_field|GET /|resp200|Ratings[].Source|"}
+{"id": "8c79d6558d87", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Ratings[].Value", "key": "response_field|GET /|resp200|Ratings[].Value|"}
+{"id": "dc32f44558de", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Ratings", "key": "response_field|GET /|resp200|Ratings|"}
+{"id": "a353b4c4e2cd", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Released", "key": "response_field|GET /|resp200|Released|"}
+{"id": "9f9dd2772d67", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Response", "key": "response_field|GET /|resp200|Response|"}
+{"id": "6890bdb0efaf", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Runtime", "key": "response_field|GET /|resp200|Runtime|"}
+{"id": "0e4514809638", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Search[].Poster", "key": "response_field|GET /|resp200|Search[].Poster|"}
+{"id": "0a7ec9bc1ec4", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Search[].Title", "key": "response_field|GET /|resp200|Search[].Title|"}
+{"id": "1e97fa1090e5", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Search[].Type", "key": "response_field|GET /|resp200|Search[].Type|"}
+{"id": "70fa91a17917", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Search[].Year", "key": "response_field|GET /|resp200|Search[].Year|"}
+{"id": "8c904f651e2b", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Search[].imdbID", "key": "response_field|GET /|resp200|Search[].imdbID|"}
+{"id": "a74c5fc98a94", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Search", "key": "response_field|GET /|resp200|Search|"}
+{"id": "cb6cd9e392eb", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Season", "key": "response_field|GET /|resp200|Season|"}
+{"id": "8f71054e2222", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Title", "key": "response_field|GET /|resp200|Title|"}
+{"id": "5f660040c932", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Type", "key": "response_field|GET /|resp200|Type|"}
+{"id": "e9ab4b544e36", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Website", "key": "response_field|GET /|resp200|Website|"}
+{"id": "15dc947b6399", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Writer", "key": "response_field|GET /|resp200|Writer|"}
+{"id": "bc09fd0ed51b", "category": "response_field", "op": "GET /", "location": "resp200", "name": "Year", "key": "response_field|GET /|resp200|Year|"}
+{"id": "a034128eeb5c", "category": "response_field", "op": "GET /", "location": "resp200", "name": "imdbID", "key": "response_field|GET /|resp200|imdbID|"}
+{"id": "ae4e8a15c2f9", "category": "response_field", "op": "GET /", "location": "resp200", "name": "imdbRating", "key": "response_field|GET /|resp200|imdbRating|"}
+{"id": "7088eafd7878", "category": "response_field", "op": "GET /", "location": "resp200", "name": "imdbVotes", "key": "response_field|GET /|resp200|imdbVotes|"}
+{"id": "66f721d355ae", "category": "response_field", "op": "GET /", "location": "resp200", "name": "seriesID", "key": "response_field|GET /|resp200|seriesID|"}
+{"id": "f4a5f635ab36", "category": "response_field", "op": "GET /", "location": "resp200", "name": "totalResults", "key": "response_field|GET /|resp200|totalResults|"}
+{"id": "46235eb5747c", "category": "response_field", "op": "GET /", "location": "resp200", "name": "totalSeasons", "key": "response_field|GET /|resp200|totalSeasons|"}
+{"id": "0edefd569b55", "category": "response_field", "op": "GET /", "location": "resp401", "name": "Error", "key": "response_field|GET /|resp401|Error|"}
+{"id": "401c6476dcf3", "category": "response_field", "op": "GET /", "location": "resp401", "name": "Response", "key": "response_field|GET /|resp401|Response|"}
+{"id": "537e11214d37", "category": "response", "op": "GET /", "location": "200", "name": null, "key": "response|GET /|200||"}
+{"id": "da61dc32612b", "category": "response", "op": "GET /", "location": "401", "name": null, "key": "response|GET /|401||"}

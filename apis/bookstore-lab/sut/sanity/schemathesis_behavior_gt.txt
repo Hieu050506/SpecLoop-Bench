@@ -1,0 +1,116 @@
+Schemathesis v4.32.5
+━━━━━━━━━━━━━━━━━━━━
+
+ ✅  Loaded specification from ground_truth/behavior_openapi.yaml (in 0.27s)
+
+     Base URL:         http://localhost:8000/v1
+     Specification:    Open API 3.0.3
+     Operations:       8 selected / 8 total
+
+ ✅  API capabilities:
+
+     Supports NULL byte in headers:                            ✘
+     Accepts backslash and control characters in URL paths:    ✓
+
+ ⏭   Examples (in 0.01s)
+
+     ⏭  8 skipped
+
+ ❌  Coverage (in 0.96s)
+
+     ✅ 7 passed  ❌ 1 failed
+
+ ❌  Fuzzing (in 22.89s)
+
+     ✅ 5 passed  ❌ 3 failed
+
+ ❌  Stateful (in 21.07s)
+
+     Scenarios:    730
+     API Links:    16 covered / 16 selected / 16 total
+
+     ✅ 714 passed  ❌ 16 failed
+
+=================================== FAILURES ===================================
+_________________________________ GET /authors _________________________________
+1. Test Case ID: CsLZIU
+
+- ST101 Server error
+
+- ST103 Undocumented status code
+
+    Received: 500
+    Documented: 200, 400
+
+[500] Internal Server Error:
+
+    `Internal Server Error`
+
+Reproduce with:
+
+    curl -X GET 'http://localhost:8000/v1/authors?page=-535'
+
+    st replay CsLZIU
+
+_________________________________ POST /books __________________________________
+1. Test Case ID: ljeqK2
+
+- ST202 Schema-valid request rejected
+
+    Valid data should have been accepted
+    Expected: 2xx, 3xx, 401, 403, 404, 409, 429, 5xx
+    Hint: The request body contains 1 additional property not defined in the schema (`򧰥𳳩`). The server appears to reject properties the schema allows. Declare `additionalProperties: false` if extras are not accepted, or make the server ignore unknown fields.
+
+[400] Bad Request:
+
+    `{"error":"author_id does not refer to an existing author","field":"author_id"}`
+
+Reproduce with:
+
+    curl -X POST -H 'Content-Type: application/json' -d '{"\uda5f\udc25\ud88f\udce9": [], "genre": "history", "author_id": "[Filtered]", "title": "\u009c\b\u0097", "price": 1.1222363282550074e+16, "isbn": "9780000000031"}' http://localhost:8000/v1/books
+
+    st replay ljeqK2
+
+_________________________________ POST /orders _________________________________
+1. Test Case ID: 2kuyqv
+
+- ST202 Schema-valid request rejected
+
+    Valid data should have been accepted
+    Expected: 2xx, 3xx, 401, 403, 404, 409, 429, 5xx
+
+[400] Bad Request:
+
+    `{"error":"voucher_type is required when coupon_code is provided","field":"voucher_type"}`
+
+Reproduce with:
+
+    curl -X POST -H 'Content-Type: application/json' -d '{"book_id": 1, "quantity": 1, "coupon_code": ""}' http://localhost:8000/v1/orders
+
+    st replay 2kuyqv
+
+=================================== SUMMARY ====================================
+
+API Operations:
+  Selected: 8/8
+  Tested: 8
+
+Test Phases:
+  ⏭  Examples
+  ❌ Coverage
+  ❌ Fuzzing
+  ❌ Stateful
+
+Failures:
+  ❌ ST101 Server error: 1
+  ❌ ST202 Schema-valid request rejected: 2
+  ❌ ST103 Undocumented status code: 1
+
+For more information, run `st explain <code>` for ST101, ST103, ST202.
+
+Test cases:
+  6830 generated, 3 found 4 unique failures
+
+Seed: 7
+
+============================= 4 failures in 45.02s =============================

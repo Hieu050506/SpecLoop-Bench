@@ -1,0 +1,11 @@
+id,name,group,environment,test_scope,auth,operations,parameters,request_fields,responses,response_fields,constraints,constraints_no_type,facts_total,doc_original_words,doc_rendered_words,ablated_hidden,behavior_gt,behavior_facts,seeded_discrepancies,rq_scope
+bookstore-lab,Bookstore-Lab,A,local-docker,full,none,8,10,11,15,60,179,98,285,771,854,10,exact,306,13,"RQ1,RQ2,RQ3"
+fdic,FDIC BankFind Suite API,B,public,read-only,none,6,73,0,12,1859,2027,104,3977,0,27210,0,pending,0,0,"RQ1,RQ2,RQ3"
+genome-nexus,Genome Nexus API,B,public,read-only,none,23,34,10,23,1634,2250,572,3984,0,16603,0,pending,0,0,"RQ1,RQ2,RQ3"
+language-tool,LanguageTool HTTP API,B,public,read-only,none,2,0,11,2,3,20,6,39,0,482,0,pending,0,0,"RQ1,RQ2,RQ3"
+ohsome,ohsome API,B,public,read-only,none,122,1488,0,1098,2592,6342,2262,11642,0,73476,0,pending,0,0,"RQ1,RQ2,RQ3"
+omdb,OMDb API,B,public,read-only,apiKey,1,9,0,2,41,59,9,112,0,358,0,pending,0,0,"RQ1,RQ2,RQ3"
+petstore3,Swagger Petstore v3,A,local-docker,full,none,19,17,50,64,99,265,98,521,0,2025,4,pending,0,0,"RQ1,RQ2,RQ3"
+realworld-conduit,RealWorld Conduit API,A,local-docker,full,apiKey,19,19,25,70,216,569,309,924,957,2789,8,pending,0,0,"RQ1,RQ2,RQ3"
+rest-countries,REST Countries API (v2/v3 – bản lưu trữ),B,offline,none,none,21,42,0,42,0,61,19,166,0,1559,0,pending,0,0,RQ1
+TOTAL,,,,,,221,1692,107,1328,6504,11772,3477,21650,1728,125356,22,,306,13,

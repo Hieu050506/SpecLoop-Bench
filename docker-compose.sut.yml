@@ -1,0 +1,12 @@
+# Các API chạy cục bộ để kiểm thử (nhóm A).  Chạy:  docker compose -f docker-compose.sut.yml up -d
+services:
+  bookstore-lab:
+    build: ./apis/bookstore-lab/sut
+    ports: ["8000:8000"]
+    environment:
+      BOOKSTORE_ADMIN_TOKEN: reset-me
+  petstore3:
+    image: swaggerapi/petstore3:unstable
+    ports: ["8080:8080"]
+  # realworld-conduit: chọn một backend tham chiếu (xem apis/realworld-conduit/meta.yaml) và thêm vào đây,
+  # cổng 3000, đường dẫn gốc /api.
