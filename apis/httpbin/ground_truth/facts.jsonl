@@ -1,0 +1,373 @@
+{"id": "55e76d8791af", "category": "constraint", "op": "DELETE /anything/{}", "location": "path:anything", "name": "anything", "keyword": "required", "value": true, "key": "constraint|DELETE /anything/{}|path:anything|anything|required"}
+{"id": "5814002a66dc", "category": "constraint", "op": "DELETE /anything/{}", "location": "path:anything", "name": "anything", "keyword": "type", "value": "string", "key": "constraint|DELETE /anything/{}|path:anything|anything|type"}
+{"id": "f672342a58c6", "category": "constraint", "op": "DELETE /delay/{}", "location": "path:delay", "name": "delay", "keyword": "required", "value": true, "key": "constraint|DELETE /delay/{}|path:delay|delay|required"}
+{"id": "961bd114307a", "category": "constraint", "op": "DELETE /delay/{}", "location": "path:delay", "name": "delay", "keyword": "type", "value": "integer", "key": "constraint|DELETE /delay/{}|path:delay|delay|type"}
+{"id": "99838d4a3f09", "category": "constraint", "op": "DELETE /status/{}", "location": "path:codes", "name": "codes", "keyword": "required", "value": true, "key": "constraint|DELETE /status/{}|path:codes|codes|required"}
+{"id": "329838d6481e", "category": "constraint", "op": "GET /absolute-redirect/{}", "location": "path:n", "name": "n", "keyword": "required", "value": true, "key": "constraint|GET /absolute-redirect/{}|path:n|n|required"}
+{"id": "7dce43f6ae27", "category": "constraint", "op": "GET /absolute-redirect/{}", "location": "path:n", "name": "n", "keyword": "type", "value": "integer", "key": "constraint|GET /absolute-redirect/{}|path:n|n|type"}
+{"id": "c433b533b2ba", "category": "constraint", "op": "GET /anything/{}", "location": "path:anything", "name": "anything", "keyword": "required", "value": true, "key": "constraint|GET /anything/{}|path:anything|anything|required"}
+{"id": "4be5492fc711", "category": "constraint", "op": "GET /anything/{}", "location": "path:anything", "name": "anything", "keyword": "type", "value": "string", "key": "constraint|GET /anything/{}|path:anything|anything|type"}
+{"id": "30beb4a4b050", "category": "constraint", "op": "GET /base64/{}", "location": "path:value", "name": "value", "keyword": "default", "value": "SFRUUEJJTiBpcyBhd2Vzb21l", "key": "constraint|GET /base64/{}|path:value|value|default"}
+{"id": "fc8b2a369e2c", "category": "constraint", "op": "GET /base64/{}", "location": "path:value", "name": "value", "keyword": "required", "value": true, "key": "constraint|GET /base64/{}|path:value|value|required"}
+{"id": "197f9c007219", "category": "constraint", "op": "GET /base64/{}", "location": "path:value", "name": "value", "keyword": "type", "value": "string", "key": "constraint|GET /base64/{}|path:value|value|type"}
+{"id": "9ffd0ecfca02", "category": "constraint", "op": "GET /basic-auth/{}/{}", "location": "path:passwd", "name": "passwd", "keyword": "required", "value": true, "key": "constraint|GET /basic-auth/{}/{}|path:passwd|passwd|required"}
+{"id": "9834e7a74aff", "category": "constraint", "op": "GET /basic-auth/{}/{}", "location": "path:passwd", "name": "passwd", "keyword": "type", "value": "string", "key": "constraint|GET /basic-auth/{}/{}|path:passwd|passwd|type"}
+{"id": "a200dd83be63", "category": "constraint", "op": "GET /basic-auth/{}/{}", "location": "path:user", "name": "user", "keyword": "required", "value": true, "key": "constraint|GET /basic-auth/{}/{}|path:user|user|required"}
+{"id": "2d1f3f93600d", "category": "constraint", "op": "GET /basic-auth/{}/{}", "location": "path:user", "name": "user", "keyword": "type", "value": "string", "key": "constraint|GET /basic-auth/{}/{}|path:user|user|type"}
+{"id": "91054dbac9cb", "category": "constraint", "op": "GET /bearer", "location": "header:Authorization", "name": "Authorization", "keyword": "type", "value": "string", "key": "constraint|GET /bearer|header:Authorization|Authorization|type"}
+{"id": "eeed683fd1a4", "category": "constraint", "op": "GET /bytes/{}", "location": "path:n", "name": "n", "keyword": "required", "value": true, "key": "constraint|GET /bytes/{}|path:n|n|required"}
+{"id": "07bc1ac1be68", "category": "constraint", "op": "GET /bytes/{}", "location": "path:n", "name": "n", "keyword": "type", "value": "integer", "key": "constraint|GET /bytes/{}|path:n|n|type"}
+{"id": "6b610bf682e3", "category": "constraint", "op": "GET /cache/{}", "location": "path:value", "name": "value", "keyword": "required", "value": true, "key": "constraint|GET /cache/{}|path:value|value|required"}
+{"id": "701cb77acd65", "category": "constraint", "op": "GET /cache/{}", "location": "path:value", "name": "value", "keyword": "type", "value": "integer", "key": "constraint|GET /cache/{}|path:value|value|type"}
+{"id": "c125a1a7e2cb", "category": "constraint", "op": "GET /cookies/delete", "location": "query:freeform", "name": "freeform", "keyword": "type", "value": "object", "key": "constraint|GET /cookies/delete|query:freeform|freeform|type"}
+{"id": "55d66035ce7a", "category": "constraint", "op": "GET /cookies/set/{}/{}", "location": "path:name", "name": "name", "keyword": "required", "value": true, "key": "constraint|GET /cookies/set/{}/{}|path:name|name|required"}
+{"id": "51561d3a3ef4", "category": "constraint", "op": "GET /cookies/set/{}/{}", "location": "path:name", "name": "name", "keyword": "type", "value": "string", "key": "constraint|GET /cookies/set/{}/{}|path:name|name|type"}
+{"id": "6c1f5fa2fad5", "category": "constraint", "op": "GET /cookies/set/{}/{}", "location": "path:value", "name": "value", "keyword": "required", "value": true, "key": "constraint|GET /cookies/set/{}/{}|path:value|value|required"}
+{"id": "8cf0954cae08", "category": "constraint", "op": "GET /cookies/set/{}/{}", "location": "path:value", "name": "value", "keyword": "type", "value": "string", "key": "constraint|GET /cookies/set/{}/{}|path:value|value|type"}
+{"id": "96762e4de077", "category": "constraint", "op": "GET /cookies/set", "location": "query:freeform", "name": "freeform", "keyword": "type", "value": "object", "key": "constraint|GET /cookies/set|query:freeform|freeform|type"}
+{"id": "67ed112aba2f", "category": "constraint", "op": "GET /delay/{}", "location": "path:delay", "name": "delay", "keyword": "required", "value": true, "key": "constraint|GET /delay/{}|path:delay|delay|required"}
+{"id": "b6e4a47738db", "category": "constraint", "op": "GET /delay/{}", "location": "path:delay", "name": "delay", "keyword": "type", "value": "integer", "key": "constraint|GET /delay/{}|path:delay|delay|type"}
+{"id": "648f427841f4", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:algorithm", "name": "algorithm", "keyword": "default", "value": "MD5", "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:algorithm|algorithm|default"}
+{"id": "8a0d2ed32e15", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:algorithm", "name": "algorithm", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:algorithm|algorithm|required"}
+{"id": "6fdb7fb38dcc", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:algorithm", "name": "algorithm", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:algorithm|algorithm|type"}
+{"id": "c0f634c41666", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:passwd", "name": "passwd", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:passwd|passwd|required"}
+{"id": "ef42aedb7adf", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:passwd", "name": "passwd", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:passwd|passwd|type"}
+{"id": "b3b135bba714", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:qop", "name": "qop", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:qop|qop|required"}
+{"id": "2e7844bcb4c6", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:qop", "name": "qop", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:qop|qop|type"}
+{"id": "95d0e3038a0b", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:stale_after", "name": "stale_after", "keyword": "default", "value": "never", "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:stale_after|stale_after|default"}
+{"id": "243bfda4512b", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:stale_after", "name": "stale_after", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:stale_after|stale_after|required"}
+{"id": "ada2655a96e8", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:stale_after", "name": "stale_after", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:stale_after|stale_after|type"}
+{"id": "a09356380ace", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:user", "name": "user", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:user|user|required"}
+{"id": "150373b97556", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path:user", "name": "user", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}/{}/{}|path:user|user|type"}
+{"id": "05c5321ee07d", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path:algorithm", "name": "algorithm", "keyword": "default", "value": "MD5", "key": "constraint|GET /digest-auth/{}/{}/{}/{}|path:algorithm|algorithm|default"}
+{"id": "60404a25abf1", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path:algorithm", "name": "algorithm", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}/{}|path:algorithm|algorithm|required"}
+{"id": "dcddb27ad437", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path:algorithm", "name": "algorithm", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}/{}|path:algorithm|algorithm|type"}
+{"id": "b9d44d5b04f7", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path:passwd", "name": "passwd", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}/{}|path:passwd|passwd|required"}
+{"id": "6922abba0fce", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path:passwd", "name": "passwd", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}/{}|path:passwd|passwd|type"}
+{"id": "0e6f36f1ea86", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path:qop", "name": "qop", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}/{}|path:qop|qop|required"}
+{"id": "dbb195f316b5", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path:qop", "name": "qop", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}/{}|path:qop|qop|type"}
+{"id": "bd364e5e1486", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path:user", "name": "user", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}/{}|path:user|user|required"}
+{"id": "e33a6a1995b2", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path:user", "name": "user", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}/{}|path:user|user|type"}
+{"id": "91df6927e625", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}", "location": "path:passwd", "name": "passwd", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}|path:passwd|passwd|required"}
+{"id": "0ca02006014e", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}", "location": "path:passwd", "name": "passwd", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}|path:passwd|passwd|type"}
+{"id": "151f707ba0ec", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}", "location": "path:qop", "name": "qop", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}|path:qop|qop|required"}
+{"id": "fdb857b5bdba", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}", "location": "path:qop", "name": "qop", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}|path:qop|qop|type"}
+{"id": "e36783c6f815", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}", "location": "path:user", "name": "user", "keyword": "required", "value": true, "key": "constraint|GET /digest-auth/{}/{}/{}|path:user|user|required"}
+{"id": "0ac934dce2e0", "category": "constraint", "op": "GET /digest-auth/{}/{}/{}", "location": "path:user", "name": "user", "keyword": "type", "value": "string", "key": "constraint|GET /digest-auth/{}/{}/{}|path:user|user|type"}
+{"id": "fcff809d08d6", "category": "constraint", "op": "GET /drip", "location": "query:code", "name": "code", "keyword": "default", "value": 200, "key": "constraint|GET /drip|query:code|code|default"}
+{"id": "e286b3627e72", "category": "constraint", "op": "GET /drip", "location": "query:code", "name": "code", "keyword": "type", "value": "integer", "key": "constraint|GET /drip|query:code|code|type"}
+{"id": "0bc9fbf6e3ad", "category": "constraint", "op": "GET /drip", "location": "query:delay", "name": "delay", "keyword": "default", "value": 2, "key": "constraint|GET /drip|query:delay|delay|default"}
+{"id": "b45a598bdc64", "category": "constraint", "op": "GET /drip", "location": "query:delay", "name": "delay", "keyword": "type", "value": "number", "key": "constraint|GET /drip|query:delay|delay|type"}
+{"id": "7ad1d4f61e57", "category": "constraint", "op": "GET /drip", "location": "query:duration", "name": "duration", "keyword": "default", "value": 2, "key": "constraint|GET /drip|query:duration|duration|default"}
+{"id": "74a1ceb27521", "category": "constraint", "op": "GET /drip", "location": "query:duration", "name": "duration", "keyword": "type", "value": "number", "key": "constraint|GET /drip|query:duration|duration|type"}
+{"id": "2ec7c74358e6", "category": "constraint", "op": "GET /drip", "location": "query:numbytes", "name": "numbytes", "keyword": "default", "value": 10, "key": "constraint|GET /drip|query:numbytes|numbytes|default"}
+{"id": "c305827efac4", "category": "constraint", "op": "GET /drip", "location": "query:numbytes", "name": "numbytes", "keyword": "type", "value": "integer", "key": "constraint|GET /drip|query:numbytes|numbytes|type"}
+{"id": "015716351947", "category": "constraint", "op": "GET /etag/{}", "location": "path:etag", "name": "etag", "keyword": "required", "value": true, "key": "constraint|GET /etag/{}|path:etag|etag|required"}
+{"id": "4aa0c3073021", "category": "constraint", "op": "GET /etag/{}", "location": "path:etag", "name": "etag", "keyword": "type", "value": "string", "key": "constraint|GET /etag/{}|path:etag|etag|type"}
+{"id": "1a076670edbf", "category": "constraint", "op": "GET /hidden-basic-auth/{}/{}", "location": "path:passwd", "name": "passwd", "keyword": "required", "value": true, "key": "constraint|GET /hidden-basic-auth/{}/{}|path:passwd|passwd|required"}
+{"id": "055dea293475", "category": "constraint", "op": "GET /hidden-basic-auth/{}/{}", "location": "path:passwd", "name": "passwd", "keyword": "type", "value": "string", "key": "constraint|GET /hidden-basic-auth/{}/{}|path:passwd|passwd|type"}
+{"id": "ffcc3b14a691", "category": "constraint", "op": "GET /hidden-basic-auth/{}/{}", "location": "path:user", "name": "user", "keyword": "required", "value": true, "key": "constraint|GET /hidden-basic-auth/{}/{}|path:user|user|required"}
+{"id": "6a0fec5c3d1f", "category": "constraint", "op": "GET /hidden-basic-auth/{}/{}", "location": "path:user", "name": "user", "keyword": "type", "value": "string", "key": "constraint|GET /hidden-basic-auth/{}/{}|path:user|user|type"}
+{"id": "fc1c606272d5", "category": "constraint", "op": "GET /links/{}/{}", "location": "path:n", "name": "n", "keyword": "required", "value": true, "key": "constraint|GET /links/{}/{}|path:n|n|required"}
+{"id": "256629fea3f4", "category": "constraint", "op": "GET /links/{}/{}", "location": "path:n", "name": "n", "keyword": "type", "value": "integer", "key": "constraint|GET /links/{}/{}|path:n|n|type"}
+{"id": "f4bab2ab7b26", "category": "constraint", "op": "GET /links/{}/{}", "location": "path:offset", "name": "offset", "keyword": "required", "value": true, "key": "constraint|GET /links/{}/{}|path:offset|offset|required"}
+{"id": "29d383703142", "category": "constraint", "op": "GET /links/{}/{}", "location": "path:offset", "name": "offset", "keyword": "type", "value": "integer", "key": "constraint|GET /links/{}/{}|path:offset|offset|type"}
+{"id": "f68bbd745586", "category": "constraint", "op": "GET /range/{}", "location": "path:numbytes", "name": "numbytes", "keyword": "required", "value": true, "key": "constraint|GET /range/{}|path:numbytes|numbytes|required"}
+{"id": "93792f2451e8", "category": "constraint", "op": "GET /range/{}", "location": "path:numbytes", "name": "numbytes", "keyword": "type", "value": "integer", "key": "constraint|GET /range/{}|path:numbytes|numbytes|type"}
+{"id": "f6e3946041cc", "category": "constraint", "op": "GET /redirect-to", "location": "query:status_code", "name": "status_code", "keyword": "type", "value": "integer", "key": "constraint|GET /redirect-to|query:status_code|status_code|type"}
+{"id": "1fff456500e2", "category": "constraint", "op": "GET /redirect-to", "location": "query:url", "name": "url", "keyword": "required", "value": true, "key": "constraint|GET /redirect-to|query:url|url|required"}
+{"id": "ffcbbef5fda1", "category": "constraint", "op": "GET /redirect-to", "location": "query:url", "name": "url", "keyword": "type", "value": "string", "key": "constraint|GET /redirect-to|query:url|url|type"}
+{"id": "ef46b88e88f8", "category": "constraint", "op": "GET /redirect/{}", "location": "path:n", "name": "n", "keyword": "required", "value": true, "key": "constraint|GET /redirect/{}|path:n|n|required"}
+{"id": "2b90a4f9ea81", "category": "constraint", "op": "GET /redirect/{}", "location": "path:n", "name": "n", "keyword": "type", "value": "integer", "key": "constraint|GET /redirect/{}|path:n|n|type"}
+{"id": "7871b46aada9", "category": "constraint", "op": "GET /relative-redirect/{}", "location": "path:n", "name": "n", "keyword": "required", "value": true, "key": "constraint|GET /relative-redirect/{}|path:n|n|required"}
+{"id": "52e98d4827cd", "category": "constraint", "op": "GET /relative-redirect/{}", "location": "path:n", "name": "n", "keyword": "type", "value": "integer", "key": "constraint|GET /relative-redirect/{}|path:n|n|type"}
+{"id": "139bd82a1031", "category": "constraint", "op": "GET /response-headers", "location": "query:freeform", "name": "freeform", "keyword": "type", "value": "object", "key": "constraint|GET /response-headers|query:freeform|freeform|type"}
+{"id": "d937eafff7c1", "category": "constraint", "op": "GET /status/{}", "location": "path:codes", "name": "codes", "keyword": "required", "value": true, "key": "constraint|GET /status/{}|path:codes|codes|required"}
+{"id": "3897f3f249c1", "category": "constraint", "op": "GET /stream-bytes/{}", "location": "path:n", "name": "n", "keyword": "required", "value": true, "key": "constraint|GET /stream-bytes/{}|path:n|n|required"}
+{"id": "eed7ea5911b7", "category": "constraint", "op": "GET /stream-bytes/{}", "location": "path:n", "name": "n", "keyword": "type", "value": "integer", "key": "constraint|GET /stream-bytes/{}|path:n|n|type"}
+{"id": "050ce0c61147", "category": "constraint", "op": "GET /stream/{}", "location": "path:n", "name": "n", "keyword": "required", "value": true, "key": "constraint|GET /stream/{}|path:n|n|required"}
+{"id": "195b0dede049", "category": "constraint", "op": "GET /stream/{}", "location": "path:n", "name": "n", "keyword": "type", "value": "integer", "key": "constraint|GET /stream/{}|path:n|n|type"}
+{"id": "275c1fdce052", "category": "constraint", "op": "PATCH /anything/{}", "location": "path:anything", "name": "anything", "keyword": "required", "value": true, "key": "constraint|PATCH /anything/{}|path:anything|anything|required"}
+{"id": "fd3ca7873f80", "category": "constraint", "op": "PATCH /anything/{}", "location": "path:anything", "name": "anything", "keyword": "type", "value": "string", "key": "constraint|PATCH /anything/{}|path:anything|anything|type"}
+{"id": "172006ef7c18", "category": "constraint", "op": "PATCH /delay/{}", "location": "path:delay", "name": "delay", "keyword": "required", "value": true, "key": "constraint|PATCH /delay/{}|path:delay|delay|required"}
+{"id": "47c8b1b75ef6", "category": "constraint", "op": "PATCH /delay/{}", "location": "path:delay", "name": "delay", "keyword": "type", "value": "integer", "key": "constraint|PATCH /delay/{}|path:delay|delay|type"}
+{"id": "5a733bdf2db7", "category": "constraint", "op": "PATCH /status/{}", "location": "path:codes", "name": "codes", "keyword": "required", "value": true, "key": "constraint|PATCH /status/{}|path:codes|codes|required"}
+{"id": "46d747808691", "category": "constraint", "op": "POST /anything/{}", "location": "path:anything", "name": "anything", "keyword": "required", "value": true, "key": "constraint|POST /anything/{}|path:anything|anything|required"}
+{"id": "af107b6ddfc3", "category": "constraint", "op": "POST /anything/{}", "location": "path:anything", "name": "anything", "keyword": "type", "value": "string", "key": "constraint|POST /anything/{}|path:anything|anything|type"}
+{"id": "da586d14ed58", "category": "constraint", "op": "POST /delay/{}", "location": "path:delay", "name": "delay", "keyword": "required", "value": true, "key": "constraint|POST /delay/{}|path:delay|delay|required"}
+{"id": "1dbafe66b791", "category": "constraint", "op": "POST /delay/{}", "location": "path:delay", "name": "delay", "keyword": "type", "value": "integer", "key": "constraint|POST /delay/{}|path:delay|delay|type"}
+{"id": "04b1cf629a77", "category": "constraint", "op": "POST /redirect-to", "location": "body:status_code", "name": "status_code", "keyword": "type", "value": "integer", "key": "constraint|POST /redirect-to|body:status_code|status_code|type"}
+{"id": "896ac074a745", "category": "constraint", "op": "POST /redirect-to", "location": "body:url", "name": "url", "keyword": "required", "value": true, "key": "constraint|POST /redirect-to|body:url|url|required"}
+{"id": "81878c3c9edd", "category": "constraint", "op": "POST /redirect-to", "location": "body:url", "name": "url", "keyword": "type", "value": "string", "key": "constraint|POST /redirect-to|body:url|url|type"}
+{"id": "5b525f3cf0cc", "category": "constraint", "op": "POST /response-headers", "location": "query:freeform", "name": "freeform", "keyword": "type", "value": "object", "key": "constraint|POST /response-headers|query:freeform|freeform|type"}
+{"id": "647a5ca67be0", "category": "constraint", "op": "POST /status/{}", "location": "path:codes", "name": "codes", "keyword": "required", "value": true, "key": "constraint|POST /status/{}|path:codes|codes|required"}
+{"id": "e58436ea6713", "category": "constraint", "op": "PUT /anything/{}", "location": "path:anything", "name": "anything", "keyword": "required", "value": true, "key": "constraint|PUT /anything/{}|path:anything|anything|required"}
+{"id": "2f94f5e5e67d", "category": "constraint", "op": "PUT /anything/{}", "location": "path:anything", "name": "anything", "keyword": "type", "value": "string", "key": "constraint|PUT /anything/{}|path:anything|anything|type"}
+{"id": "f66f2775b558", "category": "constraint", "op": "PUT /delay/{}", "location": "path:delay", "name": "delay", "keyword": "required", "value": true, "key": "constraint|PUT /delay/{}|path:delay|delay|required"}
+{"id": "50ff7a53a4af", "category": "constraint", "op": "PUT /delay/{}", "location": "path:delay", "name": "delay", "keyword": "type", "value": "integer", "key": "constraint|PUT /delay/{}|path:delay|delay|type"}
+{"id": "97defd786d8e", "category": "constraint", "op": "PUT /redirect-to", "location": "body:status_code", "name": "status_code", "keyword": "type", "value": "integer", "key": "constraint|PUT /redirect-to|body:status_code|status_code|type"}
+{"id": "9af5d34cd65c", "category": "constraint", "op": "PUT /redirect-to", "location": "body:url", "name": "url", "keyword": "required", "value": true, "key": "constraint|PUT /redirect-to|body:url|url|required"}
+{"id": "35f202895c12", "category": "constraint", "op": "PUT /redirect-to", "location": "body:url", "name": "url", "keyword": "type", "value": "string", "key": "constraint|PUT /redirect-to|body:url|url|type"}
+{"id": "4a8f7d966fb2", "category": "constraint", "op": "PUT /status/{}", "location": "path:codes", "name": "codes", "keyword": "required", "value": true, "key": "constraint|PUT /status/{}|path:codes|codes|required"}
+{"id": "2e76b91430f4", "category": "constraint", "op": "TRACE /anything/{}", "location": "path:anything", "name": "anything", "keyword": "required", "value": true, "key": "constraint|TRACE /anything/{}|path:anything|anything|required"}
+{"id": "1705c76ceec8", "category": "constraint", "op": "TRACE /anything/{}", "location": "path:anything", "name": "anything", "keyword": "type", "value": "string", "key": "constraint|TRACE /anything/{}|path:anything|anything|type"}
+{"id": "402ae43daa1f", "category": "constraint", "op": "TRACE /delay/{}", "location": "path:delay", "name": "delay", "keyword": "required", "value": true, "key": "constraint|TRACE /delay/{}|path:delay|delay|required"}
+{"id": "5ae86d5847cc", "category": "constraint", "op": "TRACE /delay/{}", "location": "path:delay", "name": "delay", "keyword": "type", "value": "integer", "key": "constraint|TRACE /delay/{}|path:delay|delay|type"}
+{"id": "ebec5aab18a9", "category": "constraint", "op": "TRACE /status/{}", "location": "path:codes", "name": "codes", "keyword": "required", "value": true, "key": "constraint|TRACE /status/{}|path:codes|codes|required"}
+{"id": "082646e77389", "category": "endpoint", "op": "DELETE /anything/{}", "location": null, "name": null, "raw_path": "/anything/{anything}", "key": "endpoint|DELETE /anything/{}|||"}
+{"id": "88e1deb66bfe", "category": "endpoint", "op": "DELETE /anything", "location": null, "name": null, "raw_path": "/anything", "key": "endpoint|DELETE /anything|||"}
+{"id": "e5c924457227", "category": "endpoint", "op": "DELETE /delay/{}", "location": null, "name": null, "raw_path": "/delay/{delay}", "key": "endpoint|DELETE /delay/{}|||"}
+{"id": "c862022c0d0d", "category": "endpoint", "op": "DELETE /delete", "location": null, "name": null, "raw_path": "/delete", "key": "endpoint|DELETE /delete|||"}
+{"id": "a590f75260be", "category": "endpoint", "op": "DELETE /redirect-to", "location": null, "name": null, "raw_path": "/redirect-to", "key": "endpoint|DELETE /redirect-to|||"}
+{"id": "bd996671000a", "category": "endpoint", "op": "DELETE /status/{}", "location": null, "name": null, "raw_path": "/status/{codes}", "key": "endpoint|DELETE /status/{}|||"}
+{"id": "011a83da94ab", "category": "endpoint", "op": "GET /absolute-redirect/{}", "location": null, "name": null, "raw_path": "/absolute-redirect/{n}", "key": "endpoint|GET /absolute-redirect/{}|||"}
+{"id": "769dc9dae60d", "category": "endpoint", "op": "GET /anything/{}", "location": null, "name": null, "raw_path": "/anything/{anything}", "key": "endpoint|GET /anything/{}|||"}
+{"id": "585f8d490b52", "category": "endpoint", "op": "GET /anything", "location": null, "name": null, "raw_path": "/anything", "key": "endpoint|GET /anything|||"}
+{"id": "166ec0721535", "category": "endpoint", "op": "GET /base64/{}", "location": null, "name": null, "raw_path": "/base64/{value}", "key": "endpoint|GET /base64/{}|||"}
+{"id": "01284b3d3612", "category": "endpoint", "op": "GET /basic-auth/{}/{}", "location": null, "name": null, "raw_path": "/basic-auth/{user}/{passwd}", "key": "endpoint|GET /basic-auth/{}/{}|||"}
+{"id": "dcef4f85a261", "category": "endpoint", "op": "GET /bearer", "location": null, "name": null, "raw_path": "/bearer", "key": "endpoint|GET /bearer|||"}
+{"id": "1d88d4da4692", "category": "endpoint", "op": "GET /brotli", "location": null, "name": null, "raw_path": "/brotli", "key": "endpoint|GET /brotli|||"}
+{"id": "992e800cbfc2", "category": "endpoint", "op": "GET /bytes/{}", "location": null, "name": null, "raw_path": "/bytes/{n}", "key": "endpoint|GET /bytes/{}|||"}
+{"id": "16b881f7e3ac", "category": "endpoint", "op": "GET /cache/{}", "location": null, "name": null, "raw_path": "/cache/{value}", "key": "endpoint|GET /cache/{}|||"}
+{"id": "f7c63d62560b", "category": "endpoint", "op": "GET /cache", "location": null, "name": null, "raw_path": "/cache", "key": "endpoint|GET /cache|||"}
+{"id": "75381517ff8e", "category": "endpoint", "op": "GET /cookies/delete", "location": null, "name": null, "raw_path": "/cookies/delete", "key": "endpoint|GET /cookies/delete|||"}
+{"id": "5843fe28aba5", "category": "endpoint", "op": "GET /cookies/set/{}/{}", "location": null, "name": null, "raw_path": "/cookies/set/{name}/{value}", "key": "endpoint|GET /cookies/set/{}/{}|||"}
+{"id": "fd9936524d1f", "category": "endpoint", "op": "GET /cookies/set", "location": null, "name": null, "raw_path": "/cookies/set", "key": "endpoint|GET /cookies/set|||"}
+{"id": "547dbb9ee358", "category": "endpoint", "op": "GET /cookies", "location": null, "name": null, "raw_path": "/cookies", "key": "endpoint|GET /cookies|||"}
+{"id": "097cb35fedc8", "category": "endpoint", "op": "GET /deflate", "location": null, "name": null, "raw_path": "/deflate", "key": "endpoint|GET /deflate|||"}
+{"id": "cf93c20ba353", "category": "endpoint", "op": "GET /delay/{}", "location": null, "name": null, "raw_path": "/delay/{delay}", "key": "endpoint|GET /delay/{}|||"}
+{"id": "fcb56b4c0ad9", "category": "endpoint", "op": "GET /deny", "location": null, "name": null, "raw_path": "/deny", "key": "endpoint|GET /deny|||"}
+{"id": "d6dd6bc44010", "category": "endpoint", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": null, "name": null, "raw_path": "/digest-auth/{qop}/{user}/{passwd}/{algorithm}/{stale_after}", "key": "endpoint|GET /digest-auth/{}/{}/{}/{}/{}|||"}
+{"id": "88d2253c6368", "category": "endpoint", "op": "GET /digest-auth/{}/{}/{}/{}", "location": null, "name": null, "raw_path": "/digest-auth/{qop}/{user}/{passwd}/{algorithm}", "key": "endpoint|GET /digest-auth/{}/{}/{}/{}|||"}
+{"id": "9fff0ad9f316", "category": "endpoint", "op": "GET /digest-auth/{}/{}/{}", "location": null, "name": null, "raw_path": "/digest-auth/{qop}/{user}/{passwd}", "key": "endpoint|GET /digest-auth/{}/{}/{}|||"}
+{"id": "0c3a47444d7b", "category": "endpoint", "op": "GET /drip", "location": null, "name": null, "raw_path": "/drip", "key": "endpoint|GET /drip|||"}
+{"id": "954eb8bc88c9", "category": "endpoint", "op": "GET /encoding/utf8", "location": null, "name": null, "raw_path": "/encoding/utf8", "key": "endpoint|GET /encoding/utf8|||"}
+{"id": "5e6732a455c7", "category": "endpoint", "op": "GET /etag/{}", "location": null, "name": null, "raw_path": "/etag/{etag}", "key": "endpoint|GET /etag/{}|||"}
+{"id": "b183beaa8f89", "category": "endpoint", "op": "GET /get", "location": null, "name": null, "raw_path": "/get", "key": "endpoint|GET /get|||"}
+{"id": "584cda9bfc62", "category": "endpoint", "op": "GET /gzip", "location": null, "name": null, "raw_path": "/gzip", "key": "endpoint|GET /gzip|||"}
+{"id": "5c48cddf32fc", "category": "endpoint", "op": "GET /headers", "location": null, "name": null, "raw_path": "/headers", "key": "endpoint|GET /headers|||"}
+{"id": "ddacc7f24388", "category": "endpoint", "op": "GET /hidden-basic-auth/{}/{}", "location": null, "name": null, "raw_path": "/hidden-basic-auth/{user}/{passwd}", "key": "endpoint|GET /hidden-basic-auth/{}/{}|||"}
+{"id": "b482475c754f", "category": "endpoint", "op": "GET /html", "location": null, "name": null, "raw_path": "/html", "key": "endpoint|GET /html|||"}
+{"id": "0f47ca1e9fe4", "category": "endpoint", "op": "GET /image/jpeg", "location": null, "name": null, "raw_path": "/image/jpeg", "key": "endpoint|GET /image/jpeg|||"}
+{"id": "a37226254285", "category": "endpoint", "op": "GET /image/png", "location": null, "name": null, "raw_path": "/image/png", "key": "endpoint|GET /image/png|||"}
+{"id": "879c4cbf71c4", "category": "endpoint", "op": "GET /image/svg", "location": null, "name": null, "raw_path": "/image/svg", "key": "endpoint|GET /image/svg|||"}
+{"id": "33db6928a83e", "category": "endpoint", "op": "GET /image/webp", "location": null, "name": null, "raw_path": "/image/webp", "key": "endpoint|GET /image/webp|||"}
+{"id": "704dfe9d7443", "category": "endpoint", "op": "GET /image", "location": null, "name": null, "raw_path": "/image", "key": "endpoint|GET /image|||"}
+{"id": "000d0e855742", "category": "endpoint", "op": "GET /ip", "location": null, "name": null, "raw_path": "/ip", "key": "endpoint|GET /ip|||"}
+{"id": "344ee945d21b", "category": "endpoint", "op": "GET /json", "location": null, "name": null, "raw_path": "/json", "key": "endpoint|GET /json|||"}
+{"id": "1211ed14aff7", "category": "endpoint", "op": "GET /links/{}/{}", "location": null, "name": null, "raw_path": "/links/{n}/{offset}", "key": "endpoint|GET /links/{}/{}|||"}
+{"id": "0c36b2abed50", "category": "endpoint", "op": "GET /range/{}", "location": null, "name": null, "raw_path": "/range/{numbytes}", "key": "endpoint|GET /range/{}|||"}
+{"id": "cc744bf3a033", "category": "endpoint", "op": "GET /redirect-to", "location": null, "name": null, "raw_path": "/redirect-to", "key": "endpoint|GET /redirect-to|||"}
+{"id": "bef4b630dfe4", "category": "endpoint", "op": "GET /redirect/{}", "location": null, "name": null, "raw_path": "/redirect/{n}", "key": "endpoint|GET /redirect/{}|||"}
+{"id": "b32e510dbc23", "category": "endpoint", "op": "GET /relative-redirect/{}", "location": null, "name": null, "raw_path": "/relative-redirect/{n}", "key": "endpoint|GET /relative-redirect/{}|||"}
+{"id": "000e1ad37f64", "category": "endpoint", "op": "GET /response-headers", "location": null, "name": null, "raw_path": "/response-headers", "key": "endpoint|GET /response-headers|||"}
+{"id": "d02ed3e4692f", "category": "endpoint", "op": "GET /robots.txt", "location": null, "name": null, "raw_path": "/robots.txt", "key": "endpoint|GET /robots.txt|||"}
+{"id": "49ac6c309a7a", "category": "endpoint", "op": "GET /status/{}", "location": null, "name": null, "raw_path": "/status/{codes}", "key": "endpoint|GET /status/{}|||"}
+{"id": "0c6e12c99c5d", "category": "endpoint", "op": "GET /stream-bytes/{}", "location": null, "name": null, "raw_path": "/stream-bytes/{n}", "key": "endpoint|GET /stream-bytes/{}|||"}
+{"id": "92b3ad8bc856", "category": "endpoint", "op": "GET /stream/{}", "location": null, "name": null, "raw_path": "/stream/{n}", "key": "endpoint|GET /stream/{}|||"}
+{"id": "225fd8bdc7d1", "category": "endpoint", "op": "GET /user-agent", "location": null, "name": null, "raw_path": "/user-agent", "key": "endpoint|GET /user-agent|||"}
+{"id": "6b11f8fe8421", "category": "endpoint", "op": "GET /uuid", "location": null, "name": null, "raw_path": "/uuid", "key": "endpoint|GET /uuid|||"}
+{"id": "8cee91ad564a", "category": "endpoint", "op": "GET /xml", "location": null, "name": null, "raw_path": "/xml", "key": "endpoint|GET /xml|||"}
+{"id": "77d01e4983ab", "category": "endpoint", "op": "PATCH /anything/{}", "location": null, "name": null, "raw_path": "/anything/{anything}", "key": "endpoint|PATCH /anything/{}|||"}
+{"id": "22788bc0b0ef", "category": "endpoint", "op": "PATCH /anything", "location": null, "name": null, "raw_path": "/anything", "key": "endpoint|PATCH /anything|||"}
+{"id": "d7552d67475e", "category": "endpoint", "op": "PATCH /delay/{}", "location": null, "name": null, "raw_path": "/delay/{delay}", "key": "endpoint|PATCH /delay/{}|||"}
+{"id": "4f45d6c055fb", "category": "endpoint", "op": "PATCH /patch", "location": null, "name": null, "raw_path": "/patch", "key": "endpoint|PATCH /patch|||"}
+{"id": "8b9abf78aff6", "category": "endpoint", "op": "PATCH /redirect-to", "location": null, "name": null, "raw_path": "/redirect-to", "key": "endpoint|PATCH /redirect-to|||"}
+{"id": "1cc568d3dc94", "category": "endpoint", "op": "PATCH /status/{}", "location": null, "name": null, "raw_path": "/status/{codes}", "key": "endpoint|PATCH /status/{}|||"}
+{"id": "d94d7bb844c6", "category": "endpoint", "op": "POST /anything/{}", "location": null, "name": null, "raw_path": "/anything/{anything}", "key": "endpoint|POST /anything/{}|||"}
+{"id": "97b9bc0d5fb0", "category": "endpoint", "op": "POST /anything", "location": null, "name": null, "raw_path": "/anything", "key": "endpoint|POST /anything|||"}
+{"id": "dc322c36a452", "category": "endpoint", "op": "POST /delay/{}", "location": null, "name": null, "raw_path": "/delay/{delay}", "key": "endpoint|POST /delay/{}|||"}
+{"id": "78a36bb297f3", "category": "endpoint", "op": "POST /post", "location": null, "name": null, "raw_path": "/post", "key": "endpoint|POST /post|||"}
+{"id": "567cff4f4aae", "category": "endpoint", "op": "POST /redirect-to", "location": null, "name": null, "raw_path": "/redirect-to", "key": "endpoint|POST /redirect-to|||"}
+{"id": "dc69ae81aba3", "category": "endpoint", "op": "POST /response-headers", "location": null, "name": null, "raw_path": "/response-headers", "key": "endpoint|POST /response-headers|||"}
+{"id": "84c582f5cf66", "category": "endpoint", "op": "POST /status/{}", "location": null, "name": null, "raw_path": "/status/{codes}", "key": "endpoint|POST /status/{}|||"}
+{"id": "0f3f045b45a0", "category": "endpoint", "op": "PUT /anything/{}", "location": null, "name": null, "raw_path": "/anything/{anything}", "key": "endpoint|PUT /anything/{}|||"}
+{"id": "73d81240cb53", "category": "endpoint", "op": "PUT /anything", "location": null, "name": null, "raw_path": "/anything", "key": "endpoint|PUT /anything|||"}
+{"id": "98b68c9bd9c2", "category": "endpoint", "op": "PUT /delay/{}", "location": null, "name": null, "raw_path": "/delay/{delay}", "key": "endpoint|PUT /delay/{}|||"}
+{"id": "c3554702ecbc", "category": "endpoint", "op": "PUT /put", "location": null, "name": null, "raw_path": "/put", "key": "endpoint|PUT /put|||"}
+{"id": "96ec524dd84b", "category": "endpoint", "op": "PUT /redirect-to", "location": null, "name": null, "raw_path": "/redirect-to", "key": "endpoint|PUT /redirect-to|||"}
+{"id": "887bbae0b021", "category": "endpoint", "op": "PUT /status/{}", "location": null, "name": null, "raw_path": "/status/{codes}", "key": "endpoint|PUT /status/{}|||"}
+{"id": "7f2db9b463cd", "category": "endpoint", "op": "TRACE /anything/{}", "location": null, "name": null, "raw_path": "/anything/{anything}", "key": "endpoint|TRACE /anything/{}|||"}
+{"id": "91d3c163dd2b", "category": "endpoint", "op": "TRACE /anything", "location": null, "name": null, "raw_path": "/anything", "key": "endpoint|TRACE /anything|||"}
+{"id": "99d49d03e6a2", "category": "endpoint", "op": "TRACE /delay/{}", "location": null, "name": null, "raw_path": "/delay/{delay}", "key": "endpoint|TRACE /delay/{}|||"}
+{"id": "43b7d30b4e8c", "category": "endpoint", "op": "TRACE /redirect-to", "location": null, "name": null, "raw_path": "/redirect-to", "key": "endpoint|TRACE /redirect-to|||"}
+{"id": "5fccfb814e08", "category": "endpoint", "op": "TRACE /status/{}", "location": null, "name": null, "raw_path": "/status/{codes}", "key": "endpoint|TRACE /status/{}|||"}
+{"id": "8c87780c4915", "category": "parameter", "op": "DELETE /anything/{}", "location": "path", "name": "anything", "key": "parameter|DELETE /anything/{}|path|anything|"}
+{"id": "2bf93de7e3dd", "category": "parameter", "op": "DELETE /delay/{}", "location": "path", "name": "delay", "key": "parameter|DELETE /delay/{}|path|delay|"}
+{"id": "56d29b2467c9", "category": "parameter", "op": "DELETE /status/{}", "location": "path", "name": "codes", "key": "parameter|DELETE /status/{}|path|codes|"}
+{"id": "8f4e63175a78", "category": "parameter", "op": "GET /absolute-redirect/{}", "location": "path", "name": "n", "key": "parameter|GET /absolute-redirect/{}|path|n|"}
+{"id": "ac196641d601", "category": "parameter", "op": "GET /anything/{}", "location": "path", "name": "anything", "key": "parameter|GET /anything/{}|path|anything|"}
+{"id": "ac26959b4f58", "category": "parameter", "op": "GET /base64/{}", "location": "path", "name": "value", "key": "parameter|GET /base64/{}|path|value|"}
+{"id": "49eaa3f86210", "category": "parameter", "op": "GET /basic-auth/{}/{}", "location": "path", "name": "passwd", "key": "parameter|GET /basic-auth/{}/{}|path|passwd|"}
+{"id": "fec0e8d368e9", "category": "parameter", "op": "GET /basic-auth/{}/{}", "location": "path", "name": "user", "key": "parameter|GET /basic-auth/{}/{}|path|user|"}
+{"id": "421d16eea384", "category": "parameter", "op": "GET /bearer", "location": "header", "name": "Authorization", "key": "parameter|GET /bearer|header|Authorization|"}
+{"id": "4e550922157e", "category": "parameter", "op": "GET /bytes/{}", "location": "path", "name": "n", "key": "parameter|GET /bytes/{}|path|n|"}
+{"id": "1af5feab1cff", "category": "parameter", "op": "GET /cache/{}", "location": "path", "name": "value", "key": "parameter|GET /cache/{}|path|value|"}
+{"id": "5d71dc8c5d43", "category": "parameter", "op": "GET /cache", "location": "header", "name": "If-Modified-Since", "key": "parameter|GET /cache|header|If-Modified-Since|"}
+{"id": "7878782f2380", "category": "parameter", "op": "GET /cache", "location": "header", "name": "If-None-Match", "key": "parameter|GET /cache|header|If-None-Match|"}
+{"id": "f6d7892fbea8", "category": "parameter", "op": "GET /cookies/delete", "location": "query", "name": "freeform", "key": "parameter|GET /cookies/delete|query|freeform|"}
+{"id": "4f07471b7d9f", "category": "parameter", "op": "GET /cookies/set/{}/{}", "location": "path", "name": "name", "key": "parameter|GET /cookies/set/{}/{}|path|name|"}
+{"id": "817c528a60ba", "category": "parameter", "op": "GET /cookies/set/{}/{}", "location": "path", "name": "value", "key": "parameter|GET /cookies/set/{}/{}|path|value|"}
+{"id": "f832d3f7f80b", "category": "parameter", "op": "GET /cookies/set", "location": "query", "name": "freeform", "key": "parameter|GET /cookies/set|query|freeform|"}
+{"id": "51c64682c7c5", "category": "parameter", "op": "GET /delay/{}", "location": "path", "name": "delay", "key": "parameter|GET /delay/{}|path|delay|"}
+{"id": "06fa9ad72b59", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path", "name": "algorithm", "key": "parameter|GET /digest-auth/{}/{}/{}/{}/{}|path|algorithm|"}
+{"id": "356f0512ae1e", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path", "name": "passwd", "key": "parameter|GET /digest-auth/{}/{}/{}/{}/{}|path|passwd|"}
+{"id": "394ab59d3852", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path", "name": "qop", "key": "parameter|GET /digest-auth/{}/{}/{}/{}/{}|path|qop|"}
+{"id": "04d69991ef09", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path", "name": "stale_after", "key": "parameter|GET /digest-auth/{}/{}/{}/{}/{}|path|stale_after|"}
+{"id": "76f1423fc34e", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "path", "name": "user", "key": "parameter|GET /digest-auth/{}/{}/{}/{}/{}|path|user|"}
+{"id": "0fcbf7f5213f", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path", "name": "algorithm", "key": "parameter|GET /digest-auth/{}/{}/{}/{}|path|algorithm|"}
+{"id": "0dbe42419723", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path", "name": "passwd", "key": "parameter|GET /digest-auth/{}/{}/{}/{}|path|passwd|"}
+{"id": "11289a796dbf", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path", "name": "qop", "key": "parameter|GET /digest-auth/{}/{}/{}/{}|path|qop|"}
+{"id": "8e46b88801eb", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "path", "name": "user", "key": "parameter|GET /digest-auth/{}/{}/{}/{}|path|user|"}
+{"id": "a49b96808674", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}", "location": "path", "name": "passwd", "key": "parameter|GET /digest-auth/{}/{}/{}|path|passwd|"}
+{"id": "9ca09a812414", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}", "location": "path", "name": "qop", "key": "parameter|GET /digest-auth/{}/{}/{}|path|qop|"}
+{"id": "081c6da7d138", "category": "parameter", "op": "GET /digest-auth/{}/{}/{}", "location": "path", "name": "user", "key": "parameter|GET /digest-auth/{}/{}/{}|path|user|"}
+{"id": "7544d8cfb470", "category": "parameter", "op": "GET /drip", "location": "query", "name": "code", "key": "parameter|GET /drip|query|code|"}
+{"id": "469db97031bf", "category": "parameter", "op": "GET /drip", "location": "query", "name": "delay", "key": "parameter|GET /drip|query|delay|"}
+{"id": "334690b13ce4", "category": "parameter", "op": "GET /drip", "location": "query", "name": "duration", "key": "parameter|GET /drip|query|duration|"}
+{"id": "679b7f14d64d", "category": "parameter", "op": "GET /drip", "location": "query", "name": "numbytes", "key": "parameter|GET /drip|query|numbytes|"}
+{"id": "5fbc0901a78e", "category": "parameter", "op": "GET /etag/{}", "location": "header", "name": "If-Match", "key": "parameter|GET /etag/{}|header|If-Match|"}
+{"id": "d751ba06e07c", "category": "parameter", "op": "GET /etag/{}", "location": "header", "name": "If-None-Match", "key": "parameter|GET /etag/{}|header|If-None-Match|"}
+{"id": "ac054c0ab790", "category": "parameter", "op": "GET /etag/{}", "location": "path", "name": "etag", "key": "parameter|GET /etag/{}|path|etag|"}
+{"id": "0018de970377", "category": "parameter", "op": "GET /hidden-basic-auth/{}/{}", "location": "path", "name": "passwd", "key": "parameter|GET /hidden-basic-auth/{}/{}|path|passwd|"}
+{"id": "15b6c855a894", "category": "parameter", "op": "GET /hidden-basic-auth/{}/{}", "location": "path", "name": "user", "key": "parameter|GET /hidden-basic-auth/{}/{}|path|user|"}
+{"id": "4301ee1b3d5e", "category": "parameter", "op": "GET /links/{}/{}", "location": "path", "name": "n", "key": "parameter|GET /links/{}/{}|path|n|"}
+{"id": "0b9a8bc2371a", "category": "parameter", "op": "GET /links/{}/{}", "location": "path", "name": "offset", "key": "parameter|GET /links/{}/{}|path|offset|"}
+{"id": "8bb602e06dea", "category": "parameter", "op": "GET /range/{}", "location": "path", "name": "numbytes", "key": "parameter|GET /range/{}|path|numbytes|"}
+{"id": "1677e0af7468", "category": "parameter", "op": "GET /redirect-to", "location": "query", "name": "status_code", "key": "parameter|GET /redirect-to|query|status_code|"}
+{"id": "e6e5733ab28c", "category": "parameter", "op": "GET /redirect-to", "location": "query", "name": "url", "key": "parameter|GET /redirect-to|query|url|"}
+{"id": "5871791efb61", "category": "parameter", "op": "GET /redirect/{}", "location": "path", "name": "n", "key": "parameter|GET /redirect/{}|path|n|"}
+{"id": "4afcdbb1ed38", "category": "parameter", "op": "GET /relative-redirect/{}", "location": "path", "name": "n", "key": "parameter|GET /relative-redirect/{}|path|n|"}
+{"id": "eb6c21d5ff71", "category": "parameter", "op": "GET /response-headers", "location": "query", "name": "freeform", "key": "parameter|GET /response-headers|query|freeform|"}
+{"id": "17132703901d", "category": "parameter", "op": "GET /status/{}", "location": "path", "name": "codes", "key": "parameter|GET /status/{}|path|codes|"}
+{"id": "27a694f8c197", "category": "parameter", "op": "GET /stream-bytes/{}", "location": "path", "name": "n", "key": "parameter|GET /stream-bytes/{}|path|n|"}
+{"id": "2e6fdef2b918", "category": "parameter", "op": "GET /stream/{}", "location": "path", "name": "n", "key": "parameter|GET /stream/{}|path|n|"}
+{"id": "34d32cfffd10", "category": "parameter", "op": "PATCH /anything/{}", "location": "path", "name": "anything", "key": "parameter|PATCH /anything/{}|path|anything|"}
+{"id": "cc21dab96ce5", "category": "parameter", "op": "PATCH /delay/{}", "location": "path", "name": "delay", "key": "parameter|PATCH /delay/{}|path|delay|"}
+{"id": "c690fbbd02a7", "category": "parameter", "op": "PATCH /status/{}", "location": "path", "name": "codes", "key": "parameter|PATCH /status/{}|path|codes|"}
+{"id": "5972c01ad23a", "category": "parameter", "op": "POST /anything/{}", "location": "path", "name": "anything", "key": "parameter|POST /anything/{}|path|anything|"}
+{"id": "9cdcf729497d", "category": "parameter", "op": "POST /delay/{}", "location": "path", "name": "delay", "key": "parameter|POST /delay/{}|path|delay|"}
+{"id": "791378f6f44b", "category": "parameter", "op": "POST /response-headers", "location": "query", "name": "freeform", "key": "parameter|POST /response-headers|query|freeform|"}
+{"id": "ecb057d60ab2", "category": "parameter", "op": "POST /status/{}", "location": "path", "name": "codes", "key": "parameter|POST /status/{}|path|codes|"}
+{"id": "1878239e8915", "category": "parameter", "op": "PUT /anything/{}", "location": "path", "name": "anything", "key": "parameter|PUT /anything/{}|path|anything|"}
+{"id": "0337b0222d28", "category": "parameter", "op": "PUT /delay/{}", "location": "path", "name": "delay", "key": "parameter|PUT /delay/{}|path|delay|"}
+{"id": "b20edfa86b25", "category": "parameter", "op": "PUT /status/{}", "location": "path", "name": "codes", "key": "parameter|PUT /status/{}|path|codes|"}
+{"id": "66592002d8f8", "category": "parameter", "op": "TRACE /anything/{}", "location": "path", "name": "anything", "key": "parameter|TRACE /anything/{}|path|anything|"}
+{"id": "f0811bb3ba87", "category": "parameter", "op": "TRACE /delay/{}", "location": "path", "name": "delay", "key": "parameter|TRACE /delay/{}|path|delay|"}
+{"id": "987d4d2593fe", "category": "parameter", "op": "TRACE /status/{}", "location": "path", "name": "codes", "key": "parameter|TRACE /status/{}|path|codes|"}
+{"id": "4f0487e6ccaf", "category": "request_body", "op": "POST /redirect-to", "location": "body", "name": "application/x-www-form-urlencoded", "key": "request_body|POST /redirect-to|body|application/x-www-form-urlencoded|"}
+{"id": "fa3194228021", "category": "request_body", "op": "PUT /redirect-to", "location": "body", "name": "application/x-www-form-urlencoded", "key": "request_body|PUT /redirect-to|body|application/x-www-form-urlencoded|"}
+{"id": "db400d36978e", "category": "request_field", "op": "POST /redirect-to", "location": "body", "name": "status_code", "key": "request_field|POST /redirect-to|body|status_code|"}
+{"id": "e4c906f2b2bc", "category": "request_field", "op": "POST /redirect-to", "location": "body", "name": "url", "key": "request_field|POST /redirect-to|body|url|"}
+{"id": "83c955572d8a", "category": "request_field", "op": "PUT /redirect-to", "location": "body", "name": "status_code", "key": "request_field|PUT /redirect-to|body|status_code|"}
+{"id": "d1a0cf5cbdd1", "category": "request_field", "op": "PUT /redirect-to", "location": "body", "name": "url", "key": "request_field|PUT /redirect-to|body|url|"}
+{"id": "94536fb1c08b", "category": "response", "op": "DELETE /anything/{}", "location": "200", "name": null, "key": "response|DELETE /anything/{}|200||"}
+{"id": "221b31495da9", "category": "response", "op": "DELETE /anything", "location": "200", "name": null, "key": "response|DELETE /anything|200||"}
+{"id": "e178d6d43c79", "category": "response", "op": "DELETE /delay/{}", "location": "200", "name": null, "key": "response|DELETE /delay/{}|200||"}
+{"id": "b94568af2e49", "category": "response", "op": "DELETE /delete", "location": "200", "name": null, "key": "response|DELETE /delete|200||"}
+{"id": "44f6368dc894", "category": "response", "op": "DELETE /redirect-to", "location": "302", "name": null, "key": "response|DELETE /redirect-to|302||"}
+{"id": "6b943856885d", "category": "response", "op": "DELETE /status/{}", "location": "100", "name": null, "key": "response|DELETE /status/{}|100||"}
+{"id": "a8ee26749605", "category": "response", "op": "DELETE /status/{}", "location": "200", "name": null, "key": "response|DELETE /status/{}|200||"}
+{"id": "ea1d15cd252a", "category": "response", "op": "DELETE /status/{}", "location": "300", "name": null, "key": "response|DELETE /status/{}|300||"}
+{"id": "01d342451656", "category": "response", "op": "DELETE /status/{}", "location": "400", "name": null, "key": "response|DELETE /status/{}|400||"}
+{"id": "77f578fc6dc0", "category": "response", "op": "DELETE /status/{}", "location": "500", "name": null, "key": "response|DELETE /status/{}|500||"}
+{"id": "acf5091db619", "category": "response", "op": "GET /absolute-redirect/{}", "location": "302", "name": null, "key": "response|GET /absolute-redirect/{}|302||"}
+{"id": "dadb7d849f90", "category": "response", "op": "GET /anything/{}", "location": "200", "name": null, "key": "response|GET /anything/{}|200||"}
+{"id": "63fddd740059", "category": "response", "op": "GET /anything", "location": "200", "name": null, "key": "response|GET /anything|200||"}
+{"id": "dc4f067912ad", "category": "response", "op": "GET /base64/{}", "location": "200", "name": null, "key": "response|GET /base64/{}|200||"}
+{"id": "06bc119c3a6a", "category": "response", "op": "GET /basic-auth/{}/{}", "location": "200", "name": null, "key": "response|GET /basic-auth/{}/{}|200||"}
+{"id": "32ab4589c38f", "category": "response", "op": "GET /basic-auth/{}/{}", "location": "401", "name": null, "key": "response|GET /basic-auth/{}/{}|401||"}
+{"id": "e04665a5df03", "category": "response", "op": "GET /bearer", "location": "200", "name": null, "key": "response|GET /bearer|200||"}
+{"id": "b3a72f7b2041", "category": "response", "op": "GET /bearer", "location": "401", "name": null, "key": "response|GET /bearer|401||"}
+{"id": "867cba7626b8", "category": "response", "op": "GET /brotli", "location": "200", "name": null, "key": "response|GET /brotli|200||"}
+{"id": "4dc75712ac0f", "category": "response", "op": "GET /bytes/{}", "location": "200", "name": null, "key": "response|GET /bytes/{}|200||"}
+{"id": "7670b7e8db8b", "category": "response", "op": "GET /cache/{}", "location": "200", "name": null, "key": "response|GET /cache/{}|200||"}
+{"id": "80fea3d71c57", "category": "response", "op": "GET /cache", "location": "200", "name": null, "key": "response|GET /cache|200||"}
+{"id": "61eeae838077", "category": "response", "op": "GET /cache", "location": "304", "name": null, "key": "response|GET /cache|304||"}
+{"id": "6b501dce8d20", "category": "response", "op": "GET /cookies/delete", "location": "200", "name": null, "key": "response|GET /cookies/delete|200||"}
+{"id": "fca2bc2e4c47", "category": "response", "op": "GET /cookies/set/{}/{}", "location": "200", "name": null, "key": "response|GET /cookies/set/{}/{}|200||"}
+{"id": "e1e57404e2da", "category": "response", "op": "GET /cookies/set", "location": "200", "name": null, "key": "response|GET /cookies/set|200||"}
+{"id": "fcdf7d25e8d6", "category": "response", "op": "GET /cookies", "location": "200", "name": null, "key": "response|GET /cookies|200||"}
+{"id": "7c1b8e35f0ee", "category": "response", "op": "GET /deflate", "location": "200", "name": null, "key": "response|GET /deflate|200||"}
+{"id": "6f41fe3ad8de", "category": "response", "op": "GET /delay/{}", "location": "200", "name": null, "key": "response|GET /delay/{}|200||"}
+{"id": "908e4eff1492", "category": "response", "op": "GET /deny", "location": "200", "name": null, "key": "response|GET /deny|200||"}
+{"id": "c3e88635e2fc", "category": "response", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "200", "name": null, "key": "response|GET /digest-auth/{}/{}/{}/{}/{}|200||"}
+{"id": "66e3afa699ea", "category": "response", "op": "GET /digest-auth/{}/{}/{}/{}/{}", "location": "401", "name": null, "key": "response|GET /digest-auth/{}/{}/{}/{}/{}|401||"}
+{"id": "99eabedcf223", "category": "response", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "200", "name": null, "key": "response|GET /digest-auth/{}/{}/{}/{}|200||"}
+{"id": "d2ddc372d261", "category": "response", "op": "GET /digest-auth/{}/{}/{}/{}", "location": "401", "name": null, "key": "response|GET /digest-auth/{}/{}/{}/{}|401||"}
+{"id": "ad47b3aca01b", "category": "response", "op": "GET /digest-auth/{}/{}/{}", "location": "200", "name": null, "key": "response|GET /digest-auth/{}/{}/{}|200||"}
+{"id": "ec484e12dcad", "category": "response", "op": "GET /digest-auth/{}/{}/{}", "location": "401", "name": null, "key": "response|GET /digest-auth/{}/{}/{}|401||"}
+{"id": "37a9c9dfa181", "category": "response", "op": "GET /drip", "location": "200", "name": null, "key": "response|GET /drip|200||"}
+{"id": "d7e6fc5dea0b", "category": "response", "op": "GET /encoding/utf8", "location": "200", "name": null, "key": "response|GET /encoding/utf8|200||"}
+{"id": "d772d0a914a6", "category": "response", "op": "GET /etag/{}", "location": "200", "name": null, "key": "response|GET /etag/{}|200||"}
+{"id": "f89850efb287", "category": "response", "op": "GET /etag/{}", "location": "412", "name": null, "key": "response|GET /etag/{}|412||"}
+{"id": "46cc4a9ce59e", "category": "response", "op": "GET /get", "location": "200", "name": null, "key": "response|GET /get|200||"}
+{"id": "db0b7c09abcc", "category": "response", "op": "GET /gzip", "location": "200", "name": null, "key": "response|GET /gzip|200||"}
+{"id": "7e07791b4aef", "category": "response", "op": "GET /headers", "location": "200", "name": null, "key": "response|GET /headers|200||"}
+{"id": "30f5d5c5e3c7", "category": "response", "op": "GET /hidden-basic-auth/{}/{}", "location": "200", "name": null, "key": "response|GET /hidden-basic-auth/{}/{}|200||"}
+{"id": "188d5369762f", "category": "response", "op": "GET /hidden-basic-auth/{}/{}", "location": "404", "name": null, "key": "response|GET /hidden-basic-auth/{}/{}|404||"}
+{"id": "5e534323b46b", "category": "response", "op": "GET /html", "location": "200", "name": null, "key": "response|GET /html|200||"}
+{"id": "1430820e8aab", "category": "response", "op": "GET /image/jpeg", "location": "200", "name": null, "key": "response|GET /image/jpeg|200||"}
+{"id": "9a0988d0d4ea", "category": "response", "op": "GET /image/png", "location": "200", "name": null, "key": "response|GET /image/png|200||"}
+{"id": "732c466f973e", "category": "response", "op": "GET /image/svg", "location": "200", "name": null, "key": "response|GET /image/svg|200||"}
+{"id": "803cfa89f63f", "category": "response", "op": "GET /image/webp", "location": "200", "name": null, "key": "response|GET /image/webp|200||"}
+{"id": "b000d2a8ed3c", "category": "response", "op": "GET /image", "location": "200", "name": null, "key": "response|GET /image|200||"}
+{"id": "8117d9a564ce", "category": "response", "op": "GET /ip", "location": "200", "name": null, "key": "response|GET /ip|200||"}
+{"id": "b8fa6079e0de", "category": "response", "op": "GET /json", "location": "200", "name": null, "key": "response|GET /json|200||"}
+{"id": "ae3306d2095d", "category": "response", "op": "GET /links/{}/{}", "location": "200", "name": null, "key": "response|GET /links/{}/{}|200||"}
+{"id": "24cd46f75221", "category": "response", "op": "GET /range/{}", "location": "200", "name": null, "key": "response|GET /range/{}|200||"}
+{"id": "1c5d27b66f20", "category": "response", "op": "GET /redirect-to", "location": "302", "name": null, "key": "response|GET /redirect-to|302||"}
+{"id": "88352bcca62f", "category": "response", "op": "GET /redirect/{}", "location": "302", "name": null, "key": "response|GET /redirect/{}|302||"}
+{"id": "0185f939dca4", "category": "response", "op": "GET /relative-redirect/{}", "location": "302", "name": null, "key": "response|GET /relative-redirect/{}|302||"}
+{"id": "85c830d8d76a", "category": "response", "op": "GET /response-headers", "location": "200", "name": null, "key": "response|GET /response-headers|200||"}
+{"id": "1229325a965e", "category": "response", "op": "GET /robots.txt", "location": "200", "name": null, "key": "response|GET /robots.txt|200||"}
+{"id": "9f598ebd0cf2", "category": "response", "op": "GET /status/{}", "location": "100", "name": null, "key": "response|GET /status/{}|100||"}
+{"id": "246c135b2633", "category": "response", "op": "GET /status/{}", "location": "200", "name": null, "key": "response|GET /status/{}|200||"}
+{"id": "6a22c778ad87", "category": "response", "op": "GET /status/{}", "location": "300", "name": null, "key": "response|GET /status/{}|300||"}
+{"id": "1b8de30ac515", "category": "response", "op": "GET /status/{}", "location": "400", "name": null, "key": "response|GET /status/{}|400||"}
+{"id": "e96ab6b33863", "category": "response", "op": "GET /status/{}", "location": "500", "name": null, "key": "response|GET /status/{}|500||"}
+{"id": "496477921438", "category": "response", "op": "GET /stream-bytes/{}", "location": "200", "name": null, "key": "response|GET /stream-bytes/{}|200||"}
+{"id": "88e4e215c8d3", "category": "response", "op": "GET /stream/{}", "location": "200", "name": null, "key": "response|GET /stream/{}|200||"}
+{"id": "880562eb4bf4", "category": "response", "op": "GET /user-agent", "location": "200", "name": null, "key": "response|GET /user-agent|200||"}
+{"id": "f285af9592ae", "category": "response", "op": "GET /uuid", "location": "200", "name": null, "key": "response|GET /uuid|200||"}
+{"id": "af12892e51db", "category": "response", "op": "GET /xml", "location": "200", "name": null, "key": "response|GET /xml|200||"}
+{"id": "b17eee7df29c", "category": "response", "op": "PATCH /anything/{}", "location": "200", "name": null, "key": "response|PATCH /anything/{}|200||"}
+{"id": "38e28e56f158", "category": "response", "op": "PATCH /anything", "location": "200", "name": null, "key": "response|PATCH /anything|200||"}
+{"id": "8eef926bdcc3", "category": "response", "op": "PATCH /delay/{}", "location": "200", "name": null, "key": "response|PATCH /delay/{}|200||"}
+{"id": "5a201e9b6fea", "category": "response", "op": "PATCH /patch", "location": "200", "name": null, "key": "response|PATCH /patch|200||"}
+{"id": "1a81b564d2b0", "category": "response", "op": "PATCH /redirect-to", "location": "302", "name": null, "key": "response|PATCH /redirect-to|302||"}
+{"id": "36d3502d5be8", "category": "response", "op": "PATCH /status/{}", "location": "100", "name": null, "key": "response|PATCH /status/{}|100||"}
+{"id": "dc697903ed92", "category": "response", "op": "PATCH /status/{}", "location": "200", "name": null, "key": "response|PATCH /status/{}|200||"}
+{"id": "567ac3dc1106", "category": "response", "op": "PATCH /status/{}", "location": "300", "name": null, "key": "response|PATCH /status/{}|300||"}
+{"id": "f0e6c9bec79a", "category": "response", "op": "PATCH /status/{}", "location": "400", "name": null, "key": "response|PATCH /status/{}|400||"}
+{"id": "8ec140bc2615", "category": "response", "op": "PATCH /status/{}", "location": "500", "name": null, "key": "response|PATCH /status/{}|500||"}
+{"id": "10e49088c2e8", "category": "response", "op": "POST /anything/{}", "location": "200", "name": null, "key": "response|POST /anything/{}|200||"}
+{"id": "12547a559c86", "category": "response", "op": "POST /anything", "location": "200", "name": null, "key": "response|POST /anything|200||"}
+{"id": "5e37598c2201", "category": "response", "op": "POST /delay/{}", "location": "200", "name": null, "key": "response|POST /delay/{}|200||"}
+{"id": "6154fd3dd066", "category": "response", "op": "POST /post", "location": "200", "name": null, "key": "response|POST /post|200||"}
+{"id": "aeada7680064", "category": "response", "op": "POST /redirect-to", "location": "302", "name": null, "key": "response|POST /redirect-to|302||"}
+{"id": "efd24d9aabb2", "category": "response", "op": "POST /response-headers", "location": "200", "name": null, "key": "response|POST /response-headers|200||"}
+{"id": "137a94e3b466", "category": "response", "op": "POST /status/{}", "location": "100", "name": null, "key": "response|POST /status/{}|100||"}
+{"id": "e38a21751e68", "category": "response", "op": "POST /status/{}", "location": "200", "name": null, "key": "response|POST /status/{}|200||"}
+{"id": "181b0fe19e72", "category": "response", "op": "POST /status/{}", "location": "300", "name": null, "key": "response|POST /status/{}|300||"}
+{"id": "571762ee4431", "category": "response", "op": "POST /status/{}", "location": "400", "name": null, "key": "response|POST /status/{}|400||"}
+{"id": "1f1795949a35", "category": "response", "op": "POST /status/{}", "location": "500", "name": null, "key": "response|POST /status/{}|500||"}
+{"id": "a814f3f6bf14", "category": "response", "op": "PUT /anything/{}", "location": "200", "name": null, "key": "response|PUT /anything/{}|200||"}
+{"id": "42e197043595", "category": "response", "op": "PUT /anything", "location": "200", "name": null, "key": "response|PUT /anything|200||"}
+{"id": "a344f4889f56", "category": "response", "op": "PUT /delay/{}", "location": "200", "name": null, "key": "response|PUT /delay/{}|200||"}
+{"id": "656ae23812a7", "category": "response", "op": "PUT /put", "location": "200", "name": null, "key": "response|PUT /put|200||"}
+{"id": "92e4fe1b17e9", "category": "response", "op": "PUT /redirect-to", "location": "302", "name": null, "key": "response|PUT /redirect-to|302||"}
+{"id": "8ae1ba4bead5", "category": "response", "op": "PUT /status/{}", "location": "100", "name": null, "key": "response|PUT /status/{}|100||"}
+{"id": "e62a7a0c3281", "category": "response", "op": "PUT /status/{}", "location": "200", "name": null, "key": "response|PUT /status/{}|200||"}
+{"id": "06bdd1d86f27", "category": "response", "op": "PUT /status/{}", "location": "300", "name": null, "key": "response|PUT /status/{}|300||"}
+{"id": "18769bb0bc8c", "category": "response", "op": "PUT /status/{}", "location": "400", "name": null, "key": "response|PUT /status/{}|400||"}
+{"id": "29c59b626058", "category": "response", "op": "PUT /status/{}", "location": "500", "name": null, "key": "response|PUT /status/{}|500||"}
+{"id": "8ab4aaf57170", "category": "response", "op": "TRACE /anything/{}", "location": "200", "name": null, "key": "response|TRACE /anything/{}|200||"}
+{"id": "861a2c23c95e", "category": "response", "op": "TRACE /anything", "location": "200", "name": null, "key": "response|TRACE /anything|200||"}
+{"id": "995f40d1234a", "category": "response", "op": "TRACE /delay/{}", "location": "200", "name": null, "key": "response|TRACE /delay/{}|200||"}
+{"id": "a0d216de2064", "category": "response", "op": "TRACE /redirect-to", "location": "302", "name": null, "key": "response|TRACE /redirect-to|302||"}
+{"id": "891176bb303d", "category": "response", "op": "TRACE /status/{}", "location": "100", "name": null, "key": "response|TRACE /status/{}|100||"}
+{"id": "f182c01450f6", "category": "response", "op": "TRACE /status/{}", "location": "200", "name": null, "key": "response|TRACE /status/{}|200||"}
+{"id": "f8776eab9805", "category": "response", "op": "TRACE /status/{}", "location": "300", "name": null, "key": "response|TRACE /status/{}|300||"}
+{"id": "1c6fca63b2f7", "category": "response", "op": "TRACE /status/{}", "location": "400", "name": null, "key": "response|TRACE /status/{}|400||"}
+{"id": "f251631bde5f", "category": "response", "op": "TRACE /status/{}", "location": "500", "name": null, "key": "response|TRACE /status/{}|500||"}

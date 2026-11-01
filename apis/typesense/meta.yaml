@@ -1,0 +1,49 @@
+id: typesense
+name: Typesense API
+group: A
+description: 'Máy tìm kiếm Typesense (79 operation): collection, document, tìm kiếm
+  đơn/đa, alias, khóa API, từ đồng nghĩa, override, preset, stopword, analytics. Nhiều
+  enum (kiểu trường, locale, chiến lược xếp hạng), required, giá trị mặc định; tham
+  số tìm kiếm rất phong phú.'
+source:
+  spec_url: https://raw.githubusercontent.com/typesense/typesense-api-spec/master/openapi.yml
+  spec_file: source/openapi_original.yml
+  license: GPL-3.0 (theo info.license của đặc tả; kho typesense/typesense-api-spec)
+  homepage: https://typesense.org
+  docs_url: https://typesense.org/docs/latest/api/
+  retrieved_at: '2026-11-01'
+  normalization:
+  - 'servers[0].url: ''{protocol}://{hostname}:{port}'' -> ''http://localhost:8108'''
+environment:
+  type: local-docker
+  base_url: http://localhost:8108
+  test_scope: full
+  auth:
+    type: apiKey
+    in: header
+    name: X-TYPESENSE-API-KEY
+    env_var: TYPESENSE_API_KEY
+  rate_limit_rps: 5
+  connectivity_checked: true
+  probe:
+    method: GET
+    path: /health
+    params: {}
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: docs/ablated.md
+  make_ablated: true
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (đợt mở rộng lên 20 API, 11/2026)
+notes: 'Docker: typesense/typesense:28.0 với TYPESENSE_API_KEY=specloop, TYPESENSE_DATA_DIR=/data.
+  Khi kiểm thử đặt biến môi trường TYPESENSE_API_KEY=specloop.'

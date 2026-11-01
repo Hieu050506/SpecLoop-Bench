@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>SpecLoop · Dataset Explorer</title>
+  <style>
+    :root{font-family:Inter,"Segoe UI",system-ui,sans-serif;color:#18263e;background:#f5f7fb;font-synthesis:none;--line:#e3e8f0;--blue:#355ae8}
+    *{box-sizing:border-box}body{margin:0}button,input,select{font:inherit}button,a,input,select{outline-offset:4px}button,select{cursor:pointer}a{color:var(--blue);text-decoration:none}a:hover{text-decoration:underline}
+    header{background:white;border-bottom:1px solid var(--line);padding:22px 4vw;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px}.mark{background:#355ae8;color:white;border-radius:12px;padding:10px 12px;font-weight:800;font-size:23px}.brand strong{font-size:20px}.brand small{display:block;color:#7a8599;margin-top:3px}.local{font-size:13px;background:#eff8f3;color:#278354;padding:8px 12px;border-radius:20px}
+    main{max-width:1500px;margin:0 auto;padding:32px 4vw}.eyebrow{color:var(--blue);font-size:12px;letter-spacing:1.6px;font-weight:700}h1{font-size:31px;letter-spacing:-1px;margin:10px 0}p{line-height:1.65}.intro{color:#748096;margin:0 0 24px}.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:26px}.stat{background:white;border:1px solid var(--line);border-radius:14px;padding:19px 24px}.stat span{font-size:13px;color:#748096}.stat strong{display:block;font-size:28px;margin-top:7px;letter-spacing:-.6px}
+    .layout{display:grid;grid-template-columns:300px minmax(0,1fr);gap:22px;align-items:start}.sidebar,.detail{background:white;border:1px solid var(--line);border-radius:15px;overflow:hidden}.sidehead{padding:19px;border-bottom:1px solid var(--line)}.sidehead strong{font-size:14px}.search,select{width:100%;border:1px solid var(--line);border-radius:9px;background:#fbfcfe;color:#23324b;padding:11px 12px}.search{margin-top:14px}select{margin-top:10px;font-size:13px}.api-list{max-height:670px;overflow:auto;padding:8px}.api-button{display:block;text-align:left;width:100%;border:0;background:white;border-radius:9px;padding:13px 12px;color:#27344e;margin:3px 0}.api-button:hover{background:#f5f7fb}.api-button.active{background:#edf1ff;color:#3156d9;box-shadow:inset 3px 0 #355ae8}.api-name{display:block;font-weight:650;font-size:14px}.api-meta{display:block;font-size:12px;color:#8490a4;margin-top:6px}.detail-head{padding:26px 28px 20px}.tags{display:flex;gap:8px;flex-wrap:wrap}.tag{font-size:11px;font-weight:650;padding:5px 9px;border-radius:6px;background:#edf1ff;color:#4a64bf}.tag.neutral{background:#f1f4f8;color:#748096}h2{margin:14px 0 8px;font-size:25px;letter-spacing:-.6px}.description{font-size:14px;color:#748096;margin:0}.server{margin-top:17px;padding:11px 13px;border-radius:8px;background:#f7f9fc;display:flex;align-items:center;gap:12px;flex-wrap:wrap}.server span{font-size:11px;color:#8390a4}.server code{font-size:12px;overflow-wrap:anywhere}.actions{display:flex;gap:18px;margin-top:17px;font-size:12px}.tabs{border-bottom:1px solid var(--line);display:flex;padding:0 28px;gap:25px}.tab{padding:14px 0;border:0;border-bottom:2px solid transparent;background:white;color:#8490a4;font-size:13px;font-weight:600}.tab.active{color:var(--blue);border-bottom-color:var(--blue)}.panel{padding:20px 28px 28px}.endpoint-search{margin:0 0 16px}.endpoint{border:1px solid var(--line);border-radius:9px;margin:9px 0;overflow:hidden}.endpoint summary{display:flex;align-items:center;gap:12px;cursor:pointer;padding:14px;list-style:none}.endpoint summary::-webkit-details-marker{display:none}.method{display:inline-flex;min-width:62px;justify-content:center;border-radius:5px;padding:5px 8px;font-size:10px;font-weight:800;letter-spacing:.3px;background:#edf1f8;color:#556078}.get{background:#e7f5ef;color:#20815f}.post{background:#eaf0ff;color:#3e64c7}.put,.patch{background:#fff4dd;color:#b98722}.delete{background:#ffebee;color:#c55764}.path{font-size:12px;overflow-wrap:anywhere}.summary-text{font-size:12px;color:#8490a4;margin-left:auto;text-align:right}.operation-body{padding:0 17px 17px;border-top:1px solid var(--line)}.operation-body h3{font-size:13px;margin:19px 0 9px}.operation-body p{font-size:13px;color:#748096;white-space:pre-wrap}.code{font-family:Consolas,monospace;font-size:12px;line-height:1.65;white-space:pre-wrap;overflow-wrap:anywhere;background:#f6f8fb;padding:16px;border-radius:8px;max-height:520px;overflow:auto}.document{font-family:inherit;font-size:13px;line-height:1.8}.hint{font-size:12px;color:#8a94a5;margin:14px 0 0}.empty{padding:28px 10px;color:#8390a4;text-align:center;font-size:13px}.error{color:#b84949}.doc-select{max-width:260px;margin:0 0 8px}.count{font-size:12px;color:#8a94a5;margin:0 0 14px}footer{font-size:11px;color:#9aa3b4;padding:24px 0;text-align:center}[hidden]{display:none!important}
+    @media(max-width:850px){.layout{grid-template-columns:1fr}.api-list{max-height:230px}.stats{gap:9px}.stat{padding:15px}.stat strong{font-size:23px}.detail-head{padding:21px}.tabs{padding:0 21px}.panel{padding:18px 21px}.summary-text{display:none}header{padding:18px 5vw}.local{display:none}h1{font-size:27px}main{padding:25px 5vw}}
+  </style>
+</head>
+<body>
+  <header><div class="brand"><span class="mark">S</span><div><strong>SpecLoop</strong><small>Dataset Explorer</small></div></div><span class="local">● &nbsp; Dữ liệu cục bộ</span></header>
+  <main>
+    <div class="eyebrow">SPECLOOP BENCHMARK</div><h1>Khám phá bộ dữ liệu API</h1>
+    <p class="intro">Chọn một API để xem endpoint, tài liệu và đặc tả OpenAPI.</p>
+    <div class="stats"><div class="stat"><span>API trong dataset</span><strong id="total-apis">—</strong></div><div class="stat"><span>Endpoint / phương thức</span><strong id="total-ops">—</strong></div><div class="stat"><span>Atomic facts</span><strong id="total-facts">—</strong></div></div>
+    <div class="layout">
+      <aside class="sidebar"><div class="sidehead"><strong>Danh sách API</strong><input id="api-search" class="search" placeholder="Tìm tên API…" aria-label="Tìm API"><select id="env-filter" aria-label="Lọc môi trường"><option value="">Tất cả môi trường</option value="local-docker">Docker cục bộ</option><option value="public">API công khai</option><option value="offline">Ngoại tuyến</option></select></div><nav id="api-list" class="api-list" aria-label="Danh sách API"><div class="empty">Đang tải dataset…</div></nav></aside>
+      <section class="detail" id="detail" aria-label="Chi tiết API"><div class="empty">Đang tải thông tin API…</div></section>
+    </div>
+    <footer>SpecLoop-Bench · Trang xem dữ liệu và đặc tả · Trạng thái hoạt động của máy chủ API chưa được kiểm tra tại đây.</footer>
+  </main>
+<script>
+  const $ = id => document.getElementById(id);
+  const number = value => new Intl.NumberFormat('vi-VN').format(value);
+  const methods = new Set(['get','post','put','patch','delete','head','options','trace']);
+  const envNames = {'local-docker':'Docker cục bộ',public:'Công khai',offline:'Ngoại tuyến'};
+  const docNames = {original:'Tài liệu gốc',rendered:'Tài liệu được render',ablated:'Tài liệu lược ràng buộc'};
+  let catalog = [], selected = '', requestId = 0;
+  function el(tag, text, className) {const node=document.createElement(tag);if(text!==undefined)node.textContent=text;if(className)node.className=className;return node;}
+  async function get(url) {const response=await fetch(url);if(!response.ok)throw new Error('Không tải được dữ liệu ('+response.status+').');return response;}
+  function renderList() {
+    const query=$('api-search').value.trim().toLowerCase(), env=$('env-filter').value;
+    const visible=catalog.filter(api=>(!env||api.environment===env)&&(api.id+' '+api.name).toLowerCase().includes(query));
+    $('api-list').replaceChildren();
+    for(const api of visible){const button=el('button',undefined,'api-button'+(selected===api.id?' active':''));button.type='button';button.setAttribute('aria-pressed',String(selected===api.id));button.append(el('span',api.name,'api-name'),el('span',number(api.operations)+' endpoint · '+envNames[api.environment],'api-meta'));button.onclick=()=>selectApi(api.id);$('api-list').append(button);}
+    if(!visible.length)$('api-list').append(el('div','Không tìm thấy API phù hợp.','empty'));
+  }
+  function resolve(spec,value){if(!value||!value.$ref||!value.$ref.startsWith('#/'))return value;try{return value.$ref.slice(2).split('/').reduce((node,key)=>node[key.replace(/~1/g,'/').replace(/~0/g,'~')],spec);}catch{return value;}}
+  function addCode(parent,title,value){if(!value||(Array.isArray(value)&&!value.length)||(typeof value==='object'&&!Object.keys(value).length))return;parent.append(el('h3',title),el('pre',JSON.stringify(value,null,2),'code'));}
+  async function selectApi(id){
+    const current=++requestId;selected=id;history.replaceState(null,'','#'+encodeURIComponent(id));renderList();$('detail').replaceChildren(el('div','Đang tải API…','empty'));
+    try{
+      const data=await(await get('/api/items/'+encodeURIComponent(id))).json();if(current!==requestId)return;
+      const {info,spec}=data, head=el('div',undefined,'detail-head'),tags=el('div',undefined,'tags');
+      tags.append(el('span','NHÓM '+info.group,'tag'),el('span',envNames[info.environment],'tag neutral'),el('span','OpenAPI '+spec.openapi,'tag neutral'));
+      head.append(tags,el('h2',info.name),el('p',info.description,'description'));
+      const server=el('div',undefined,'server');server.append(el('span','BASE URL'),el('code',info.base_url||'Chưa khai báo'));head.append(server);
+      const actions=el('div',undefined,'actions');for(const [text,url] of [['Mở OpenAPI JSON','/specs/'+id+'.json'],['Mở Swagger UI ↗','/swagger/'+id]]){const link=el('a',text);link.href=url;link.target='_blank';link.rel='noopener';if(url.startsWith('/swagger/'))link.title='Swagger UI cần Internet để tải thư viện giao diện';actions.append(link);}head.append(actions);
+      const tabs=el('div',undefined,'tabs'),panel=el('div',undefined,'panel');tabs.setAttribute('role','tablist');$('detail').replaceChildren(head,tabs,panel);
+      function tab(name,callback){const button=el('button',name,'tab');button.type='button';button.setAttribute('role','tab');button.setAttribute('aria-selected','false');button.onclick=()=>{for(const node of tabs.children){node.classList.remove('active');node.setAttribute('aria-selected','false');}button.classList.add('active');button.setAttribute('aria-selected','true');panel.replaceChildren();callback();};tabs.append(button);return button;}
+      const endpointTab=tab('Endpoint ('+number(info.operations)+')',()=>{
+        const search=el('input',undefined,'search endpoint-search');search.placeholder='Tìm đường dẫn hoặc phương thức…';search.setAttribute('aria-label','Tìm endpoint');const count=el('p',undefined,'count'),list=el('div');panel.append(search,count,list);
+        function endpoints(){let shown=0;list.replaceChildren();const query=search.value.trim().toLowerCase();for(const [path,item] of Object.entries(spec.paths||{})){if(!item||typeof item!=='object')continue;for(const [method,op] of Object.entries(item)){if(!methods.has(method)||!op||!(method+' '+path+' '+(op.summary||'')).toLowerCase().includes(query))continue;shown++;const details=el('details',undefined,'endpoint'),summary=el('summary');summary.append(el('span',method.toUpperCase(),'method '+method),el('code',path,'path'),el('span',op.summary||'','summary-text'));details.append(summary);details.addEventListener('toggle',()=>{if(!details.open||details.childElementCount>1)return;const body=el('div',undefined,'operation-body');if(op.description)body.append(el('p',op.description));addCode(body,'Tham số',[...(item.parameters||[]),...(op.parameters||[])].map(p=>resolve(spec,p)));addCode(body,'Cấu trúc request theo đặc tả',resolve(spec,op.requestBody));addCode(body,'Các phản hồi được khai báo',op.responses);details.append(body);});list.append(details);}}count.textContent=number(shown)+' endpoint phù hợp · Bấm vào endpoint để xem chi tiết.';if(!shown)list.append(el('div','Không tìm thấy endpoint.','empty'));}search.oninput=endpoints;endpoints();
+      });
+      tab('Tài liệu',()=>{
+        const select=el('select',undefined,'doc-select'),pre=el('pre',undefined,'code document');select.setAttribute('aria-label','Loại tài liệu');for(const kind of info.docs){const option=el('option',docNames[kind]);option.value=kind;select.append(option);}if(!info.docs.length){panel.append(el('div','API này chưa có tài liệu.','empty'));return;}panel.append(select,pre);let docRequest=0;async function loadDoc(){const docCurrent=++docRequest;pre.textContent='Đang tải tài liệu…';try{const text=await(await get('/documents/'+id+'/'+select.value)).text();if(docCurrent===docRequest)pre.textContent=text;}catch(error){if(docCurrent===docRequest)pre.textContent=error.message;}}select.onchange=loadDoc;loadDoc();
+      });
+      tab('Đặc tả OpenAPI',()=>{panel.append(el('pre',JSON.stringify(spec,null,2),'code'));});endpointTab.click();
+    }catch(error){if(current===requestId)$('detail').replaceChildren(el('div',error.message,'empty error'));}
+  }
+  $('api-search').oninput=renderList;$('env-filter').onchange=renderList;
+  (async()=>{try{catalog=await(await get('/api/catalog')).json();$('total-apis').textContent=number(catalog.length);$('total-ops').textContent=number(catalog.reduce((n,a)=>n+a.operations,0));$('total-facts').textContent=number(catalog.reduce((n,a)=>n+a.facts,0));renderList();const fromHash=decodeURIComponent(location.hash.slice(1)),first=catalog.find(api=>api.id===fromHash)||catalog[0];if(first)await selectApi(first.id);else $('detail').replaceChildren(el('div','Chưa có API trong dataset.','empty'));}catch(error){$('api-list').replaceChildren(el('div',error.message,'empty error'));$('detail').replaceChildren(el('div','Không tải được dataset. Hãy khởi động lại trang xem dữ liệu.','empty'));}})();
+</script>
+</body>
+</html>

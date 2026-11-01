@@ -1,0 +1,48 @@
+id: nws-weather
+name: National Weather Service API (weather.gov)
+group: B
+description: 'API dự báo thời tiết của NWS (Hoa Kỳ): 69 operation GET – điểm lưới,
+  trạm, quan trắc, cảnh báo, vùng, văn phòng, dự báo lưới, sản phẩm văn bản. Nhiều
+  pattern (mã trạm, mã vùng, tọa độ), enum (vùng, loại cảnh báo, mức khẩn), tham số
+  thời gian ISO 8601; đặc tả gốc 3.1.'
+source:
+  spec_url: https://api.weather.gov/openapi.json
+  spec_file: source/openapi_original.json
+  license: Public domain (tác phẩm của Chính phủ Hoa Kỳ, 17 U.S.C. §105); yêu cầu
+    header User-Agent nhận diện ứng dụng
+  homepage: https://www.weather.gov/documentation/services-web-api
+  docs_url: https://www.weather.gov/documentation/services-web-api
+  retrieved_at: '2026-11-01'
+  normalization:
+  - hạ cấp OpenAPI 3.1.2 -> 3.0.3 (type null -> nullable, exclusive* số -> boolean,
+    const -> enum, examples -> example)
+environment:
+  type: public
+  base_url: https://api.weather.gov
+  test_scope: read-only
+  auth:
+    type: none
+  rate_limit_rps: 1
+  connectivity_checked: true
+  probe:
+    method: GET
+    path: /points/38.8894,-77.0352
+    params: {}
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: null
+  make_ablated: false
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (đợt mở rộng lên 20 API, 11/2026)
+notes: Không khóa; phải gửi User-Agent. Dữ liệu thay đổi theo thời gian thực – ghi
+  ngày chạy khi thực nghiệm.

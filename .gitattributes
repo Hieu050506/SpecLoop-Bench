@@ -1,0 +1,8 @@
+# Preserve dataset bytes across platforms so manifest SHA-256 checks stay stable.
+* text=auto eol=lf
+
+# Keep downloaded source snapshots byte-for-byte, including original line endings.
+apis/**/source/** -text whitespace=cr-at-eol
+
+# Markdown uses two trailing spaces for an explicit line break.
+*.md whitespace=-blank-at-eol

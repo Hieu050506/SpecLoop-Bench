@@ -1,0 +1,47 @@
+id: wikimedia-rest
+name: Wikimedia REST API (en.wikipedia.org)
+group: B
+description: 'API nội dung Wikipedia tiếng Anh (49 operation): tóm tắt trang, HTML/wikitext,
+  lịch sử sửa đổi, media, tin nổi bật theo ngày, chuyển đổi định dạng, PDF, toán học.
+  Nhiều tham số path có pattern/enum (ngày, định dạng, loại), tham số header.'
+source:
+  spec_url: https://en.wikipedia.org/api/rest_v1/?spec
+  spec_file: source/openapi_original.json
+  license: Apache-2.0 (đặc tả RESTBase); nội dung trả về theo CC BY-SA 4.0; yêu cầu
+    User-Agent
+  homepage: https://www.mediawiki.org/wiki/Wikimedia_REST_API
+  docs_url: https://en.wikipedia.org/api/rest_v1/
+  retrieved_at: '2026-11-01'
+  normalization:
+  - đổi nhãn phiên bản 3.0.1 -> 3.0.3 (tương thích ngữ nghĩa)
+  - 'servers[0].url: ''/api/rest_v1'' -> ''https://en.wikipedia.org/api/rest_v1'''
+environment:
+  type: public
+  base_url: https://en.wikipedia.org/api/rest_v1
+  test_scope: read-only
+  auth:
+    type: none
+  rate_limit_rps: 1
+  connectivity_checked: true
+  probe:
+    method: GET
+    path: /page/summary/Earth
+    params: {}
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: null
+  make_ablated: false
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (đợt mở rộng lên 20 API, 11/2026)
+notes: Chính sách ≤ 200 request/giây; thực nghiệm đặt 1 rps. Một số endpoint ghi (POST
+  transform) không gọi.

@@ -1,0 +1,49 @@
+id: postcodes-io
+name: Postcodes.io
+group: B
+description: 'API mã bưu chính Vương quốc Anh (11 operation): tra cứu, kiểm tra, tự
+  hoàn thành, tìm theo tọa độ, mã ngẫu nhiên, tra cứu hàng loạt (POST nhưng chỉ đọc).
+  Ràng buộc: limit/radius có minimum/maximum, pattern mã bưu chính, enum; đặc tả gốc
+  3.1.'
+source:
+  spec_url: https://api.postcodes.io/openapi.yaml
+  spec_file: source/openapi_original.yaml
+  license: MIT (kho ideal-postcodes/postcodes.io); dữ liệu ONS/OS theo Open Government
+    Licence
+  homepage: https://postcodes.io
+  docs_url: https://postcodes.io/docs
+  retrieved_at: '2026-11-01'
+  normalization:
+  - hạ cấp OpenAPI 3.1.0 -> 3.0.3 (type null -> nullable, exclusive* số -> boolean,
+    const -> enum, examples -> example)
+  - default/example 'true'/'false' của trường boolean -> boolean
+environment:
+  type: public
+  base_url: https://api.postcodes.io
+  test_scope: read-only
+  auth:
+    type: none
+  rate_limit_rps: 1
+  connectivity_checked: true
+  probe:
+    method: GET
+    path: /postcodes/SW1A1AA
+    params: {}
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: null
+  make_ablated: false
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (đợt mở rộng lên 20 API, 11/2026)
+notes: Các endpoint POST (/postcodes, /terminated_postcodes…) chỉ tra cứu hàng loạt,
+  không ghi dữ liệu.

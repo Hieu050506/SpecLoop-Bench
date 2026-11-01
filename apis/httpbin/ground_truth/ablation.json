@@ -1,0 +1,13 @@
+{
+ "seed": 483263569,
+ "ratio": 0.4,
+ "n_candidates": 3,
+ "n_hidden": 1,
+ "hidden_keys": [
+  "constraint|POST /redirect-to|body:url|url|required"
+ ],
+ "hidden_fact_ids": [
+  "896ac074a745"
+ ],
+ "note": "Các ràng buộc này bị ẩn trong docs/ablated.md (kể cả câu mô tả có nhắc tới giá trị). Dùng để đo 'constraint recovery' nhờ phản hồi kiểm thử."
+}

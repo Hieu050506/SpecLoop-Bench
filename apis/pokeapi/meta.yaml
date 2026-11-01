@@ -1,0 +1,47 @@
+id: pokeapi
+name: PokéAPI v2
+group: B
+description: 'API dữ liệu Pokémon (102 operation GET): mọi tài nguyên (pokemon, move,
+  item, berry, location…) đều có cặp liệt kê phân trang (limit/offset) và chi tiết
+  theo id hoặc tên; đặc tả sinh từ Django REST Framework, schema phản hồi rất chi
+  tiết.'
+source:
+  spec_url: https://raw.githubusercontent.com/PokeAPI/pokeapi/master/openapi.yml
+  spec_file: source/openapi_original.yml
+  license: 'Đặc tả: BSD-3-Clause (kho PokeAPI/pokeapi); dữ liệu dùng miễn phí theo
+    quy tắc sử dụng hợp lý (nên cache)'
+  homepage: https://pokeapi.co
+  docs_url: https://pokeapi.co/docs/v2
+  retrieved_at: '2026-11-01'
+  normalization:
+  - hạ cấp OpenAPI 3.1.0 -> 3.0.3 (type null -> nullable, exclusive* số -> boolean,
+    const -> enum, examples -> example)
+environment:
+  type: public
+  base_url: https://pokeapi.co
+  test_scope: read-only
+  auth:
+    type: none
+  rate_limit_rps: 1
+  connectivity_checked: true
+  probe:
+    method: GET
+    path: /api/v2/pokemon/1
+    params: {}
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: null
+  make_ablated: false
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (đợt mở rộng lên 20 API, 11/2026)
+notes: Giới hạn theo fair use; đặt rate_limit_rps = 1 và bật cache khi thực nghiệm.

@@ -1,0 +1,47 @@
+id: qdrant
+name: Qdrant API
+group: A
+description: 'Cơ sở dữ liệu vector Qdrant (69 operation): collection, point, tìm kiếm/gợi
+  ý/khám phá, payload, snapshot, cluster, service. Body JSON phức tạp với nhiều enum
+  (distance, kiểu index, kiểu dữ liệu), minimum/maximum, oneOf/anyOf; nhiều ràng buộc
+  tham chiếu (collection phải tồn tại).'
+source:
+  spec_url: https://raw.githubusercontent.com/qdrant/qdrant/master/docs/redoc/master/openapi.json
+  spec_file: source/openapi_original.json
+  license: Apache-2.0 (kho qdrant/qdrant)
+  homepage: https://qdrant.tech
+  docs_url: https://api.qdrant.tech/api-reference
+  retrieved_at: '2026-11-01'
+  normalization:
+  - đổi nhãn phiên bản 3.0.1 -> 3.0.3 (tương thích ngữ nghĩa)
+  - 'servers[0].url: ''{protocol}://{hostname}:{port}'' -> ''http://localhost:6343'''
+environment:
+  type: local-docker
+  base_url: http://localhost:6343
+  test_scope: full
+  auth:
+    type: none
+  rate_limit_rps: 5
+  connectivity_checked: true
+  probe:
+    method: GET
+    path: /collections
+    params: {}
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: docs/ablated.md
+  make_ablated: true
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (đợt mở rộng lên 20 API, 11/2026)
+notes: 'Docker: qdrant/qdrant, ánh xạ cổng 6343:6333 (cổng 6333 hay bị Qdrant khác
+  chiếm), không bật khóa API. Xóa collection để reset.'

@@ -1,0 +1,46 @@
+id: jikan
+name: Jikan API v4 (MyAnimeList)
+group: B
+description: 'API không chính thức của MyAnimeList (100 operation GET): anime, manga,
+  nhân vật, người, mùa, lịch chiếu, câu lạc bộ, tìm kiếm. Rất nhiều enum (type, status,
+  rating, order_by, sort), minimum/maximum cho page/limit, pattern ngày.'
+source:
+  spec_url: https://raw.githubusercontent.com/jikan-me/jikan-rest/master/storage/api-docs/api-docs.json
+  spec_file: source/openapi_original.json
+  license: MIT (kho jikan-me/jikan-rest); giới hạn 3 request/giây, 60/phút
+  homepage: https://jikan.moe
+  docs_url: https://docs.api.jikan.moe
+  retrieved_at: '2026-11-01'
+  normalization:
+  - đổi nhãn phiên bản 3.0.0 -> 3.0.3 (tương thích ngữ nghĩa)
+  - giá trị số viết dạng chuỗi ở minimum/maximum/… -> số
+  - tên kiểu không chuẩn (int/float/bool/str…) -> kiểu JSON Schema
+environment:
+  type: public
+  base_url: https://api.jikan.moe/v4
+  test_scope: read-only
+  auth:
+    type: none
+  rate_limit_rps: 1
+  connectivity_checked: false
+  probe:
+    method: GET
+    path: /anime/1
+    params: {}
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: null
+  make_ablated: false
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (đợt mở rộng lên 20 API, 11/2026)
+notes: ''

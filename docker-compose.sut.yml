@@ -10,3 +10,22 @@ services:
     ports: ["8080:8080"]
   # realworld-conduit: chọn một backend tham chiếu (xem apis/realworld-conduit/meta.yaml) và thêm vào đây,
   # cổng 3000, đường dẫn gốc /api.
+  spring-petclinic:            # base URL: http://localhost:9966/petclinic/api
+    image: springcommunity/spring-petclinic-rest
+    ports: ["9966:9966"]
+  httpbin:                     # base URL: http://localhost:8800
+    image: kennethreitz/httpbin
+    ports: ["8800:80"]
+  typesense:                   # base URL: http://localhost:8108, header X-TYPESENSE-API-KEY: specloop
+    image: typesense/typesense:28.0
+    ports: ["8108:8108"]
+    environment:
+      TYPESENSE_API_KEY: specloop
+      TYPESENSE_DATA_DIR: /data
+    volumes: ["typesense-data:/data"]
+  qdrant:                      # base URL: http://localhost:6343 (cổng 6333 hay bị Qdrant khác trên máy chiếm)
+    image: qdrant/qdrant
+    ports: ["6343:6333"]
+
+volumes:
+  typesense-data: {}

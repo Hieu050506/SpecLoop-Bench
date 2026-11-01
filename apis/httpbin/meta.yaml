@@ -1,0 +1,50 @@
+id: httpbin
+name: httpbin
+group: A
+description: 'Dịch vụ thử request/response HTTP (73 operation): echo tham số/header/body,
+  mã trạng thái, chuyển hướng, nén, cookie, cache, xác thực Basic/Digest/Bearer, ảnh.
+  Ràng buộc nằm ở tham số path (mã trạng thái, số giây delay, số byte, số lần redirect)
+  và các endpoint xác thực; đặc tả gốc Swagger 2.0 được chuyển sang OpenAPI 3.'
+source:
+  spec_url: https://httpbin.org/spec.json
+  spec_file: source/openapi_original.yaml
+  license: ISC (kho postmanlabs/httpbin)
+  homepage: https://httpbin.org
+  docs_url: https://httpbin.org/
+  retrieved_at: '2026-11-01'
+  normalization:
+  - chuyển Swagger 2.0 (Flasgger) -> OpenAPI 3.0.3 bằng tools/swagger2_to_oas3.py
+    (body/formData -> requestBody, definitions -> components, host/basePath -> servers)
+  - thêm tham số path thiếu khai báo (chuỗi, bắt buộc) cho các operation có {biến}
+    trong đường dẫn
+  - tên kiểu không chuẩn (int/float/bool/str…) -> kiểu JSON Schema
+  - 'servers[0].url: ''https://httpbin.org'' -> ''http://localhost:8800'''
+environment:
+  type: local-docker
+  base_url: http://localhost:8800
+  test_scope: full
+  auth:
+    type: none
+  rate_limit_rps: 5
+  connectivity_checked: true
+  probe:
+    method: GET
+    path: /get
+    params: {}
+docs:
+  original: null
+  rendered: docs/rendered.md
+  ablated: docs/ablated.md
+  make_ablated: true
+ground_truth:
+  doc: ground_truth/openapi.yaml
+  behavior: null
+  behavior_status: pending
+  verified_by: []
+  notes: GT tài liệu = đặc tả chính thức; GT hành vi chưa xác minh.
+rq_scope:
+- RQ1
+- RQ2
+- RQ3
+added_by: nhóm đề tài (đợt mở rộng lên 20 API, 11/2026)
+notes: 'Docker: kennethreitz/httpbin, ánh xạ cổng 8800:80 để không trùng Bookstore-Lab/Petstore.'
